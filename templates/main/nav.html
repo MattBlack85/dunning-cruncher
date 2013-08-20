@@ -1,0 +1,15 @@
+<div class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <class="brand" href="{% url 'main:core.views.index' %}">Dunning Cruncher</a>
+    <class="brand">Welcome, {{% user.first_name %}} {{% user.last_name %}}</a>
+    <ul class="nav pull-right">
+      <li class="active"><a href="{% url 'main:core.views.index' %}">Home</a></li>
+      {% if user.is_super %}
+	<li><a href="{% url 'core.views.reporting' %}">Reporting</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+<div>
+  <img class="logo" src="{{ STATIC_URL }}main/images/Logo_hp.png">
+</div>
