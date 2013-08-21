@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" />
+    <link href="{{ STATIC_URL }}css/stylesheet.css" type="text/css" rel="stylesheet" />
+    <link type="text/css" href="{{ STATIC_URL }}jquery/css/ui-darkness/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="{{ STATIC_URL }}css/nav.css" type="text/css" rel="stylesheet" />
+    {% block header %}
+    {% endblock header %}
+  </head>
+  <body>
+    {% if request.get_full_path != "/login/" %}
+      {% block nav %}{% endblock nav %}
+    {% endif %}
+    {% block login_form %}{% endblock login_form%}
+    <script src="{{ STATIC_URL }}jquery/js/jquery-1.9.1.js"></script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+    {% block menubar %}
+    {% endblock menubar %}
+    {% block content %}
+    {% endblock %}
+    {% block extra_content %}
+    {% endblock extra_content %}
+    <script type="text/javascript" src="{{ STATIC_URL }}jquery/js/jquery-1.10.1.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery-migrate-1.2.1.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jquery/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jquery/js/csrf_protection.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jquery/json2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/validation.js"></script>
+    {% block additional_javascript %}
+    {% endblock additional_javascript %}
+  </body>
+</html>
