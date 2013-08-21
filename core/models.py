@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 class Vendor(models.Model):
     vname = models.CharField(max_length=50)
@@ -58,3 +59,26 @@ class Engine(models.Model):
     invoicenumber = models.IntegerField(max_length=20)
     invoicestatus = models.CharField(max_length=100, choices=INVSTATUS_OPT)
     actiontaken=models.CharField(max_length=1000)
+    
+    def is_super(self):
+	'''SUPER'''
+	return self.user_type == "SUPER"
+      
+class Login(forms.Form):
+
+    """ Basic login form
+
+    This form renders into a very simple login field, with fields identified
+    differently, both for styling and the optional javascript by-name
+    handling. Whilst this form is extremely simple, coding one each and
+    every time we wish to use one is just dumb and it's much easier to code it
+    once and import it into our project.
+    """
+
+    uname = forms.CharField(label="Username:")
+
+    uname.widget.attrs.update({'class': 'login-form','id': 'login-user'})
+
+    passw = forms.CharField(label="Password:",widget=forms.PasswordInput())
+
+    passw.widget.attrs.update({'class': 'login-form','id': 'login-password'})
