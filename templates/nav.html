@@ -1,17 +1,37 @@
 {% extends "base.html" %}
+{% block title %}Dunning Cruncher{% endblock title %}
+{% block nav %}
 <div class="navbar navbar-inverse">
-  <div class="navbar-inner">
-    <class="brand" href="{% url 'main:core.views.index' %}">Dunning Cruncher</a>
-    <class="brand">Welcome, {{% user.first_name %}} {{% user.last_name %}}</a>
-    <ul class="nav pull-right">
-      <li class="active"><a href="{% url 'main:core.views.index' %}">Home</a></li>
+  <div class="navbar-header">
+    <a class="navbar-brand" href="{% url 'core.views.index' %}">Dunning Cruncher</a>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'core.views.index' %}">Home</a></li>
       {% if user.is_super %}
-	<li><a href="{% url 'core.views.reporting' %}">Reporting</a></li>
+      <li><a href="{% url 'core.views.reporting' %}">Reporting</a></li>
       {% endif %}
-      <button type="button" class="btn btn-default navbar-btn">Logout</button>
     </ul>
   </div>
+  <ul class="nav navbar-nav navbar-right">
+    <p class="navbar-text">Signed in as {{ welcome_name }}</p>
+    <li><a href="{% url 'core.views.logout' %}">Logout</a></li>
+  </ul>
 </div>
-<div>
-  <img class="logo" src="{{ STATIC_URL }}main/images/Logo_hp.png">
+<div class="jumbotron">
+  <div class="container">
+    <h2>Hello, {{ user.first_name }}</h2>
+    <p>To start tracking a new DL click on the below button.</p>
+    <img class="logo" src="{{ STATIC_URL }}images/Logo_hp.png">
+    <p><a class="btn btn-primary">Track!</a></p>
+  </div>
 </div>
+<div class="trackform">
+  <h3>TRACKING FORM</h3>
+  <form action="." method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="fieldmain">
+      <legend><b>DL tracking form</b></legend>
+    </fieldset>
+  </form>
+</div>
+{% endblock nav %}
+{% block welc %}{% endblock welc %}
