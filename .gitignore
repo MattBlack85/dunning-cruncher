@@ -1,4 +1,4 @@
 *~
 *.pyc
 *.bak
-settings.py
+dunning_cruncher/settings.py
