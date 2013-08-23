@@ -67,5 +67,24 @@ def login(request):
 
     return HttpResponseRedirect("/")
 
+def logout(request):
+
+    """Simple logout function
+
+    This function will delete a session id from the session dictionary
+    so that the user will need to log back in order to access the same
+    pages.
+
+    :param request: Automatically passed contains a map of the httprequest
+    :return: A HttpResponse object which is passed to the browser.
+
+    """
+
+    try:
+        del request.session['user_id']
+    except KeyError:
+        pass
+    return HttpResponseRedirect("/")
+
 def tracker (request):
     return render_to_response('tracking.html', {}, RequestContext(request))
