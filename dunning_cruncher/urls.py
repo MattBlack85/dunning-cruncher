@@ -4,9 +4,10 @@ from core import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', views.index),
-    url(r'^login/?$', views.login),
-    url(r'^main/?$', views.tracker),
+                       url(r'^$', views.index),
+                       url(r'^login/?$', views.login),
+                       url(r'^main/?$', views.tracker),
+                       url(r'logout/?$', views.logout),
     # url(r'^$', 'dunning_cruncher.views.home', name='home'),
     # url(r'^dunning_cruncher/', include('dunning_cruncher.foo.urls')),
 
