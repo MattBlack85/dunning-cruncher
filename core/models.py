@@ -59,10 +59,6 @@ class Engine(models.Model):
     invoicenumber = models.IntegerField(max_length=20)
     invoicestatus = models.CharField(max_length=100, choices=INVSTATUS_OPT)
     actiontaken=models.CharField(max_length=1000)
-    
-    def is_super(self):
-	'''SUPER'''
-	return self.user_type == "SUPER"
       
 class Login(forms.Form):
 
