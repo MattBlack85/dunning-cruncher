@@ -19,9 +19,11 @@
 <div class="jumbotron">
   <div class="container">
     <h2>Hello, {{ user.first_name }}</h2>
-    <p>To start tracking a new DL click on the below button.</p>
+    <p id="ptrack">To start tracking a new DL click on the below button.</p>
     <img class="logo" src="{{ STATIC_URL }}images/Logo_hp.png">
-    <p><a class="btn btn-primary">Track!</a></p>
+    <button type="button" class="btn btn-primary" id="trbutton">
+      <span class="glyphicon glyphicon-briefcase"></span> Track!
+    </button>
   </div>
 </div>
 <div class="trackform">
