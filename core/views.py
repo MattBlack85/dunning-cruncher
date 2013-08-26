@@ -56,8 +56,8 @@ def login(request):
     user = authenticate(username=username, password=password)
     if user:
 	request.session['user_id'] = user.id
-	# the password verified for the user
 	if user.is_active:
+            auth_login(request, user)
 	    return HttpResponseRedirect("/main/")
 	else:
 	    print("The password is valid, but the account has been disabled!")
@@ -67,7 +67,7 @@ def login(request):
 
     return HttpResponseRedirect("/")
 
-def logout(request):
+def logout_view(request):
 
     """Simple logout function
 
@@ -81,10 +81,15 @@ def logout(request):
     """
 
     try:
-        del request.session['user_id']
+        logout(request)
     except KeyError:
         pass
     return HttpResponseRedirect("/")
 
+@login_required(redirect_field_name='error', login_url='/')
 def tracker (request):
     return render_to_response('tracking.html', {}, RequestContext(request))
+
+@login_required(redirect_field_name='error', login_url='/')
+def reporting (request):
+    pass
