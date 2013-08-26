@@ -50,7 +50,7 @@ class Engine(models.Model):
     market = models.CharField(max_length=3, choices=MARKET_OPT)
     ccode = models.CharField(max_length=2, choices=CCODE_OPT)
     level = models.CharField(max_length=8, choices=LEVEL_OPT)
-    apclerk = models.CharField(max_length=50)
+    clerk = models.CharField(max_length=50)
     actiondate = models.DateTimeField(auto_now_add=True)
     reminderdate = models.DateTimeField()
     remindernumber = models.CharField(max_length=30)
