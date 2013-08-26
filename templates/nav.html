@@ -25,11 +25,36 @@
   </div>
 </div>
 <div class="trackform">
-  <h3>TRACKING FORM</h3>
-  <form action="." method="POST" enctype="multipart/form-data">
+  <form action="." method="POST" enctype="multipart/form-data" class="form-horizontal" role="form" id="trform">
     {% csrf_token %}
     <fieldset class="fieldmain">
       <legend><b>DL tracking form</b></legend>
+      <div class="form-group">
+	<label class="col-lg-2 control-label">Clerk:</label>
+	<div class="col-lg-3">
+	  <p class="form-control-static">{{ user.get_full_name }}</p>
+	</div>
+      </div>
+      <div class="form-group">
+	<label class="col-lg-2 control-label">Market:</label>
+	<div class="col-lg-2">
+	  <p class="form-control-static">{{ question.market }}</p>
+	</div>
+	<label class="col-lg-2 control-label">Company Code:</label>
+	<div class="col-lg-1">
+	  <p class="form-control-static">{{ question.ccode }}</p>
+	</div>
+      </div>
+      <div class="form-group">
+	<label class="col-lg-2 control-label">Action Date:</label>
+	<div class="col-lg-2">
+	  <p class="form-control-static">{{ question.actiondate }}</p>
+	</div>
+	<label class="col-lg-2 control-label">Reminder Date:</label>
+	<div class="col-lg-2">
+	  <p class="form-control-static">{{ question.reminderdate }}</p>
+	</div>
+      </div>
     </fieldset>
   </form>
 </div>
