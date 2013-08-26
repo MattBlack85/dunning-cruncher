@@ -6,6 +6,10 @@ body {
    background: white;
 }
 
+#trform {
+    display: none;
+}
+
 #menu-bar {
    position: absolute;
    height: 35px;
