@@ -11,9 +11,7 @@
     {% endblock header %}
   </head>
   <body>
-    {% if request.get_full_path != "/login/" %}
-      {% block nav %}{% endblock nav %}
-    {% endif %}
+    {% block nav %}{% endblock nav %}
     {% block login_form %}{% endblock login_form%}
     <script src="{{ STATIC_URL }}jquery/js/jquery-1.9.1.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
