@@ -1,5 +1,6 @@
 from django.db import models
 from django import forms
+from django.forms import ModelForm
 
 class Vendor(models.Model):
     vname = models.CharField(max_length=50)
@@ -78,3 +79,12 @@ class Login(forms.Form):
     passw = forms.CharField(label="Password:",widget=forms.PasswordInput())
 
     passw.widget.attrs.update({'class': 'login-form','id': 'login-password'})
+
+class TrackingForm(ModelForm):
+
+    class Meta:
+	model = Engine
+	widgets = {
+	    'actiontaken' : forms.Textarea()
+	}
+	#exclude = ('ldate','adate','answered','status','category',)
