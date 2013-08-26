@@ -59,4 +59,15 @@
   </form>
 </div>
 {% endblock nav %}
-{% block welc %}{% endblock welc %}
+{% block trackingjs %}
+<script>
+    $(document).ready(function(){
+	$('#trbutton').on('click', function(){
+	    $('#trbutton').fadeOut('slow', function(){
+		$('#trform').fadeIn('slow');
+		$('#ptrack').html('Please fill in all the fields.');
+	    });
+	});
+    });
+</script>
+{% endblock trackingjs %}
