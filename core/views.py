@@ -1,10 +1,10 @@
 from django.contrib import auth
 from django.db import models
+from core.models import Login, Engine, TrackingForm
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import Context
 from django.template import RequestContext
-from core.models import Login
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -88,7 +88,16 @@ def logout_view(request):
 
 @login_required(redirect_field_name='error', login_url='/')
 def tracker (request):
-    return render_to_response('tracking.html', {}, RequestContext(request))
+    if request.method == 'POST':
+	question = TrackingForm(request.POST, request.FILES)
+        if question.is_valid():
+            question.save()
+
+    question = TrackingForm()
+    question.fields['market'].widget.attrs = {'class':'form-control'}
+    question.fields['ccode'].widget.attrs = {'class':'form-control'}
+
+    return render_to_response('tracking.html', {'question': question}, RequestContext(request))
 
 @login_required(redirect_field_name='error', login_url='/')
 def reporting (request):
