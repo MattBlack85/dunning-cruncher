@@ -52,12 +52,12 @@ class Engine(models.Model):
     ccode = models.CharField(max_length=2, choices=CCODE_OPT)
     level = models.CharField(max_length=8, choices=LEVEL_OPT)
     clerk = models.CharField(max_length=50)
-    actiondate = models.DateTimeField(auto_now_add=True)
-    reminderdate = models.DateTimeField()
+    actiondate = models.DateField()
+    reminderdate = models.DateField()
     remindernumber = models.CharField(max_length=30)
-    vendor = models.IntegerField()
+    vendor = models.CharField(max_length=10)
     mailvendor = models.EmailField()
-    invoicenumber = models.IntegerField(max_length=20)
+    invoicenumber = models.CharField(max_length=20)
     invoicestatus = models.CharField(max_length=100, choices=INVSTATUS_OPT)
     actiontaken=models.CharField(max_length=1000)
       
@@ -87,4 +87,3 @@ class TrackingForm(ModelForm):
 	widgets = {
 	    'actiontaken' : forms.Textarea()
 	}
-	#exclude = ('ldate','adate','answered','status','category',)
