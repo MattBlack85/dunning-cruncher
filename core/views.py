@@ -8,6 +8,8 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 
+from datetime import date, timedelta
+
 
 def user_context_manager(request):
     '''Context manager which always puts certain variables into the
@@ -89,13 +91,29 @@ def logout_view(request):
 @login_required(redirect_field_name='error', login_url='/')
 def tracker (request):
     if request.method == 'POST':
-	question = TrackingForm(request.POST, request.FILES)
+	question = TrackingForm(request.POST)
         if question.is_valid():
             question.save()
 
     question = TrackingForm()
+    question.fields['clerk'].widget.attrs = {'class': 'form-control'}
+    question.fields['actiontaken'].widget.attrs = {'class':'form-control'}
+    question.fields['invoicestatus'].widget.attrs = {'class':'form-control'}
+    question.fields['invoicenumber'].widget.attrs = {'class':'form-control'}
     question.fields['market'].widget.attrs = {'class':'form-control'}
     question.fields['ccode'].widget.attrs = {'class':'form-control'}
+    question.fields['remindernumber'].widget.attrs = {'class':'form-control'}
+    question.fields['level'].widget.attrs = {'class':'form-control'}
+    question.fields['vendor'].widget.attrs = {'class':'form-control'}
+    question.fields['mailvendor'].widget.attrs = {'class':'form-control'}
+    question.fields['actiondate'].widget.attrs = {
+        'class': 'form-control',
+        'value': date.today()
+        }
+    question.fields['reminderdate'].widget.attrs = {
+        'placeholder': "Insert date of reminder...",
+        'class': 'form-control'
+        }
 
     return render_to_response('tracking.html', {'question': question}, RequestContext(request))
 
