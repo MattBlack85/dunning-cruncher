@@ -24,8 +24,8 @@ class Engine(models.Model):
         ('PT', 'Portugal'),
         ('PL', 'Poland'),
         ('GB', 'Great Britain'),
-        ('CH', 'Switzerland'),
-    )
+        ('CH', 'Switzerland')
+        )
 
     CCODE_OPT = (
         ('10', '10'),
@@ -36,8 +36,15 @@ class Engine(models.Model):
         ('15', '15'),
         ('16', '16'),
         ('18', '18'),
-        ('31', '31')
-    )
+        ('29', '29'),
+        ('30', '30'),
+        ('31', '31'),
+        ('52', '52'),
+        ('55', '55'),
+        ('60', '60'),
+        ('64', '64'),
+        ('66', '66')
+        )
 
     LEVEL_OPT = (
         ('1', '1st'),
@@ -45,13 +52,13 @@ class Engine(models.Model):
         ('3', '3rd'),
         ('4', '4th'),
         ('9', 'to scan'),
-    )
+        )
 
     INVSTATUS_OPT = (
         ('PA', 'Paid'),
         ('RTV', 'RTV'),
         ('MI', 'Missing'),
-    )
+        )
 
     market = models.CharField(max_length=3, choices=MARKET_OPT)
     ccode = models.CharField(max_length=2, choices=CCODE_OPT)
@@ -65,7 +72,7 @@ class Engine(models.Model):
     invoicenumber = models.CharField(max_length=20)
     invoicestatus = models.CharField(max_length=100, choices=INVSTATUS_OPT)
     actiontaken=models.CharField(max_length=1000)
-      
+
 class Login(forms.Form):
 
     """ Basic login form
@@ -91,4 +98,4 @@ class TrackingForm(ModelForm):
 	model = Engine
 	widgets = {
 	    'actiontaken' : forms.Textarea()
-	}
+            }
