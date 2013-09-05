@@ -187,3 +187,30 @@ fieldset {
     margin-bottom: 7px;
 }
 
+.HPfont {
+    font-family: HPSimplified, Arial; /*font-size:1.6em*/
+}
+
+@font-face{
+    font-family: 'HPSimplified';
+    src: url(../fonts/hps-euro-regular-eot.eot); /* IE9 compat */
+    src: url(../fonts/hps-euro-regular-eot.eot?#iefix) format('embedded-opentype'), /* IE6-IE8 */
+    /* non-IE */
+    url('../fonts/hps-euro-regular-woff.woff') format('woff'), /*IE9 and some modern browsers*/
+    url('../fonts/hps-euro-regular-ttf.ttf') format('truetype'); /*iOS, Android, Safari*/
+
+    font-weight: normal;
+    font-style: normal;
+}
+/*BOLD*/
+@font-face{
+    font-family: 'HPSimplified-Bold';
+    src: url(../fonts/hps-euro-bold-eot.eot); /* IE9 compat */
+    src: url(../fonts/hps-euro-bold-eot.eot?#iefix) format('embedded-opentype'), /* IE6-IE8 */
+    /* non-IE */
+    url('../fonts/hps-euro-bold-woff.woff') format('woff'), /*IE9 and some modern browsers*/
+    url('../fonts/hps-euro-bold-ttf.ttf') format('truetype'); /*iOS, Android, Safari*/
+
+    font-weight: bold;
+    font-style: normal;
+}
