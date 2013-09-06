@@ -122,6 +122,11 @@
 		$('#ptrack').html('Please fill in all the fields.');
 	    });
 	});
+        $('#id_reminderdate').datepicker();
+        var name = $('#vclerk').attr('value');
+        $('#id_clerk').val(name);
+        $('#id_clerk').attr('readonly', true);
+        $('#id_actiondate').attr('readonly', true);
     });
 </script>
 {% endblock trackingjs %}
