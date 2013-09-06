@@ -26,15 +26,12 @@
     </button>
   </div>
 </div>
-<div class="trackform">
   <form action="." method="POST" class="form-horizontal" role="form" id="trform">
     {% csrf_token %}
     <fieldset class="fieldmain">
       <legend><b>DL tracking form</b></legend>
       <div class="form-group">
 	<label class="col-lg-2 control-label">Clerk:</label>
-	<div class="col-lg-3">
-	  <p class="form-control-static">{{ user.get_full_name }}</p>
 	<div class="col-lg-2">
 	  <p class="form-control-static" id="vclerk" value="{{ user.get_full_name }}">{{ question.clerk }}</p> 
 	</div>
