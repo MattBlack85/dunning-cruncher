@@ -179,12 +179,20 @@ a:visited {
     margin-left: 50%;
 }
 
+#addbutt {
+    margin-top: 4.7%;
+}
+
 fieldset {
     padding-top:10px;
     margin-left: 5px;
     margin-right: 8px;
     margin-top: 4px;
     margin-bottom: 7px;
+}
+
+.addtohide {
+    display: none;
 }
 
 .HPfont {
