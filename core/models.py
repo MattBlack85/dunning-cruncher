@@ -6,6 +6,11 @@ class Vendor(models.Model):
     vname = models.CharField(max_length=50)
     vnumber = models.IntegerField(max_length=11, unique=True)
     vmail = models.EmailField(unique=True)
+    vstate = models.CharField(max_length=20)
+    vstreet = models.CharField(max_length=70)
+    vcity = models.CharField(max_length=30)
+    vnumber = models.CharField(max_length=20)
+    vzip = models.CharField(max_length=10)
 
     def __unicode__(self):
         return '%s %s %s' %(self.vname, str(self.vnumber), str(self.vmail))
@@ -20,11 +25,12 @@ class Engine(models.Model):
         ('FR', 'France'),
         ('DE', 'Germany'),
         ('IT', 'Italy'),
-        ('ES', 'Spain'),
+        ('NL', 'Netherland'),
         ('PT', 'Portugal'),
         ('PL', 'Poland'),
         ('GB', 'Great Britain'),
-        ('CH', 'Switzerland')
+        ('CH', 'Switzerland'),
+        ('BE', 'Belgium')
         )
 
     CCODE_OPT = (
@@ -51,13 +57,22 @@ class Engine(models.Model):
         ('2', '2nd'),
         ('3', '3rd'),
         ('4', '4th'),
-        ('9', 'to scan'),
+        ('5', 'to scan'),
         )
 
     INVSTATUS_OPT = (
-        ('PA', 'Paid'),
-        ('RTV', 'RTV'),
-        ('MI', 'Missing'),
+        ('RJ', 'Rejected'),
+        ('PO', 'Posted'),
+        ('PD', 'Paid on'),
+        ('NP', 'Not posted yet'),
+        ('BL', 'Blocked'),
+        ('NR', 'Not received'),
+        ('CA', 'Cancelled'),
+        ('RE', 'Reversed')
+        )
+
+    REJ_REASONS = (
+        ('MPO', 'Missing PO'),
         )
 
     market = models.CharField(max_length=3, choices=MARKET_OPT)
@@ -71,7 +86,9 @@ class Engine(models.Model):
     mailvendor = models.EmailField()
     invoicenumber = models.CharField(max_length=20)
     invoicestatus = models.CharField(max_length=100, choices=INVSTATUS_OPT)
-    actiontaken=models.CharField(max_length=1000)
+    actiontaken = models.CharField(max_length=1000)
+    rejectreason = models.CharField(max_length=3, choices=REJ_REASONS)
+    paidon = models.DateField()
 
 class Login(forms.Form):
 
