@@ -123,3 +123,80 @@ def tracker (request):
 @login_required(redirect_field_name='error', login_url='/')
 def reporting (request):
     pass
+
+@csrf_protect
+@login_required(redirect_field_name='error', login_url='/')
+def ajax (request):
+    "From django-timetracker"
+
+    """Ajax request handler, dispatches to specific ajax functions
+    depending on what json gets sent.
+
+    Any additional ajax views should be added to the ajax_funcs map,
+    this will allow the dispatch function to be used. Future revisions
+    could have a kind of decorator which could be applied to functions
+    to mutate some global map of ajax dispatch functions. For now,
+    however, just add them into the map.
+
+    The idea for this is that on the client-side call you would
+    construct your javascript call with something like the below
+    (using jQuery):
+
+    .. code-block:: javascript
+
+    $.ajaxSetup({
+        type: 'POST',
+        url: '/ajax/',
+        dataType: 'json'
+        });\n
+
+    $.ajax({
+        data: {
+        form: 'functionName',
+        data: 'data'
+        }
+    });
+
+    Using this method, this allows us to construct a single view url
+    and have all ajax requests come through here. This is highly
+    advantagious because then we don't have to create a url map and
+    construct views to handle that specific call. We just have some
+    server-side map and route through there.
+
+    The lookup and dispatch works like this:
+
+    1) Request comes through.
+    2) Request gets sent to the ajax view due to the client-side call making a
+    request to the url mapped to this view.
+    3) The form type is detected in the json data sent along with the call.
+    4) This string is then pulled out of the dict, executed and it's response
+    sent back to the browser.
+
+    :param request: Automatically passed contains a map of the httprequest
+    :return: HttpResponse object back to the browser.
+
+    """
+
+    # see which form we're dealing with and if it's in the POST
+    form_type = request.POST.get('form_type', None)
+
+    # if not, try the GET
+    if not form_type:
+        form_type = request.GET.get('form_type', None)
+
+    #if there isn't one, we'll send an error back
+    if not form_type:
+        return ajax_error("Missing Form")
+
+    # this could be mutated with a @register_ajax
+    # decorator or something
+    ajax_funcs = {
+        'multi': ajax_multitracking,
+        }
+    try:
+        return ajax_funcs.get(
+            form_type,ajax_error
+            )(request)
+    except Exception as e: # pragma: no cover
+        error_log.error(str(e))
+        raise
