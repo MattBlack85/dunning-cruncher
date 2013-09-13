@@ -109,4 +109,54 @@ $(document).ready(function(){
 	// need to modify if the item is the last, actually is a bug because it's removed as well
 	$('.addhiddendata:last').remove();
     });
+
+    $('#trackbutton').on('mouseover', function() {
+	// get the total number of invoices.
+	var invo = $('.invoice').length;
+
+	var data = []
+
+	//loop through the invoice to create our data to post
+	for (x = 1; x <= invo; x++) {
+	    var formn = 'form'+x;
+	    var obj = {
+		    market: $('#id_market').val(),
+		    ccode: $('#id_ccode').val(),
+		    level: $('').val(),
+		    clerk: $('#id_clerk').val(),
+		    actiondate: $('#id_actiondate').val(),
+		    reminderdate: $('#id_actiondate').val(),
+		    remindernumber: $('#id_remindernumber').val(),
+		    vendor: $('#id_vendor').val(),
+		    mailvendor: $('#id_mailvendor').val(),
+		    invoicenumber: $('#id_invoicenumber'+x).val(),
+		    invoicestatus: $('#id_invoicestatus'+x).val(),
+		    actiontaken: $('#id_actiontaken').val(),
+		    rejectreason: $('#id_rejectreason'+x).val(),
+		    paidon: $('#id_paidon'+x).val()
+	    };
+	    data.push(obj);
+	}
+	alert(JSON.stringify(data));
+
+	//setup the AJAX request
+	$.ajaxSetup({
+	    type: 'POST',
+	    dataType: 'json'
+	});
+
+	//the real AJAX request
+	$.ajax({
+	    url: '/ajax/',
+	    data: {
+		form_type: 'multi',
+		mass_data: JSON.stringify(data)
+	    },
+	    success: alert('Posted to /ajax/'),
+	    error: function (ajaxObj, textStatus, error) {
+		alert(error);
+	    }
+	});
+	return true;
+    });
 });
