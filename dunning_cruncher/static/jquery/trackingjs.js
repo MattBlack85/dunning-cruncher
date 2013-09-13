@@ -54,7 +54,7 @@ $(document).ready(function(){
 
     });
 
-    $('#id_invoicestatus').on('change', function() {
+    $(document).on('change', '.status', function() {
 	var status = $(this).val();
 
 	if ($('#rejpaidform').is(':hidden')){
