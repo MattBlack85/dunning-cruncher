@@ -77,4 +77,36 @@ $(document).ready(function(){
 	    nextform.fadeIn('slow');
 	};
     });
+
+    $('#addbutt').on('click', function() {
+	if (nofinv == 1) {
+	    $('.addhiddendata:first').find('#id_invoicenumber').attr('id', 'id_invoicenumber'+nofinv);
+	    $('.addhiddendata:first').find('#id_invoicestatus').attr('id', 'id_invoicestatus'+nofinv);
+	}
+
+	var formToApp = $('.addhiddendata:first').clone();
+	formToApp.find('button').remove();
+	formToApp.find('.paid').removeClass('hasDatepicker');
+	formToApp.find('#id_invoicenumber1').removeClass('invoice'+' '+nofinv);
+	formToApp.find('#id_invoicestatus1').removeClass('invoiceadditional'+' '+nofinv);
+	nofinv = nofinv + 1;
+	formToApp.find('.paid').val('');
+	formToApp.find('.paid').attr('name', 'paid'+nofinv);
+	formToApp.find('.reject').attr('name', 'reject'+nofinv);
+	formToApp.find('.paid').attr('id', 'id_paidon'+nofinv);
+	formToApp.find('.reject').attr('id', 'id_rejectreason'+nofinv);
+	formToApp.find('#id_invoicenumber1').addClass('invoice'+' '+nofinv);
+	formToApp.find('#id_invoicenumber1').attr('name', 'invoicenumber'+nofinv);
+	formToApp.find('#id_invoicenumber1').attr('id', 'id_invoicenumber'+nofinv);
+	formToApp.find('#id_invoicestatus1').addClass('invoiceadditional'+' '+nofinv);
+	formToApp.find('#id_invoicestatus1').attr('name', 'invoicestatus'+nofinv);
+	formToApp.find('#id_invoicestatus1').attr('id', 'id_invoicestatus'+nofinv);
+	$('#vendorform').before(formToApp);
+	formToApp.find('.paid').datepicker();
+    });
+
+    $('#rembutt').on('click', function() {
+	// need to modify if the item is the last, actually is a bug because it's removed as well
+	$('.addhiddendata:last').remove();
+    });
 });
