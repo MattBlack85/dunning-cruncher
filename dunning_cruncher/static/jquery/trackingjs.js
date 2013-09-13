@@ -58,13 +58,13 @@ $(document).ready(function(){
 	var status = $(this).val();
 	var nextform = $(this).parent().parent().parent().next();
 
-	if ($('#rejpaidform').is(':hidden')){
+	if (nextform.is(':hidden')){
 	    ;
 	} else {
-	    $('#rejpaidform').hide();
-	    if ($('#id_paidon').is(':hidden')) {$('#id_paidon').show()};
-	    if ($('#id_rejectreason').is(':hidden')) {$('#id_rejectreason').show()};
-	    $('#rejpaidform').find('label').show();
+	    nextform.hide();
+	    if (nextform.find('.paid').is(':hidden')) {nextform.find('.paid').show()};
+	    if (nextform.find('.reject').is(':hidden')) {nextform.find('.reject').show()};
+	    nextform.find('label').show();
 	}
 
 	if (status == 'RJ'){
