@@ -68,13 +68,13 @@ $(document).ready(function(){
 	}
 
 	if (status == 'RJ'){
-	    $('#id_paidon').hide();
-	    $('#rejpaidform').find('label:last').hide();
-	    $('#rejpaidform').fadeIn('slow');
+	    nextform.find('.paid').hide();
+	    nextform.find('label:last').hide();
+	    nextform.fadeIn('slow');
 	} else if (status == 'PD') {
-	    $('#id_rejectreason').hide();
-	    $('#rejpaidform').find('label:first').hide();
-	    $('#rejpaidform').fadeIn('slow');
+	    nextform.find('.reject').hide();
+	    nextform.find('label:first').hide();
+	    nextform.fadeIn('slow');
 	};
     });
 });
