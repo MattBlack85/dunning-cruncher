@@ -56,6 +56,7 @@ $(document).ready(function(){
 
     $(document).on('change', '.status', function() {
 	var status = $(this).val();
+	var nextform = $(this).parent().parent().parent().next();
 
 	if ($('#rejpaidform').is(':hidden')){
 	    ;
