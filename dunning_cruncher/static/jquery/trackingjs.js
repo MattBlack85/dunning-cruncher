@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var nofinv = 1;
-    $('#id_invoicenumber').addClass('invoice'+nofinv);
-    $('#id_invoicestatus').addClass('invoice'+nofinv);
+    $('#id_invoicenumber').addClass('invoice'+' '+nofinv);
+    $('#id_invoicestatus').addClass('invoiceadditional'+' '+nofinv);
     
     $('#trbutton').on('click', function(){
 	$('#trbutton').fadeOut('slow', function(){
