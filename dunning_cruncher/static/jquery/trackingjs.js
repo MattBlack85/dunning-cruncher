@@ -11,7 +11,7 @@ $(document).ready(function(){
     });
     
     $('#id_reminderdate').datepicker();
-    $('#id_paidon').datepicker();
+    $('.paid:first').datepicker();
     
     var $name = $('#vclerk').attr('value');
     $('#id_clerk').val($name);
