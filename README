@@ -1,7 +1,0 @@
-Project regarding dunning letters, the goal is to develop a web application (built with django webframework) to track received letters and 
-send ready templates to vendors when needed. 
-Also a reporting section could be developed for statistic purposes. The application is intended for all AP teams.
-
-Contributors:
-
-Mattia Procopio - mattia.procopio@hp.com
