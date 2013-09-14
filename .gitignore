@@ -1,4 +1,5 @@
 *~
 *.pyc
 *.bak
+*#
 dunning_cruncher/settings.py
