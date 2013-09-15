@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Items review{% endblock title %}
+{% block edittable %}
+<div class="navbar navbar-inverse">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="{% url 'core.views.index' %}">Dunning Cruncher</a>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'core.views.index' %}">Home</a></li>
+      {% if user.groups.values.0.name == 'TL_SV' %}
+      <li><a href="{% url 'core.views.reporting' %}">Reporting</a></li>
+      {% endif %}
+      <li><a href="{% url 'core.views.edit' %}">Review</a></li>
+    </ul>
+  </div>
+  <ul class="nav navbar-nav navbar-right">
+    <p class="navbar-text">Signed in as {{ welcome_name }}</p>
+    <li><a href="{% url 'core.views.logout_view' %}">Logout</a></li>
+  </ul>
+</div>
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>DL number</th>
+    <th>Market</th>
+    <th>C. Code</th>
+    <th>Invoice N.</th>
+    <th>Inv. Status</th>
+    <th>Rej. Reason</th>
+    <th>Paid on</th>
+  </tr>
+  {% for obj in ownitems %}
+  <tr>
+    <td width=100px>
+      {{ obj.remindernumber }}
+    </td>
+    <td width=75px>
+      {{ obj.market }}
+    </td>
+    <td width=75px>
+      {{ obj.ccode }}
+    </td>
+    <td>
+      {{ obj.invoicenumber }}
+    </td>
+    <td>
+      {{ obj.invoicestatus }}
+    </td>
+    <td>
+      {% if obj.rejectreason %}
+      {{ obj.rejectreason }}
+      {% else %}
+      {{ "-" }}
+      {% endif %}
+    </td>
+    <td>
+      {% if obj.paidon %}
+      {{ obj.paidon }}
+      {% else %}
+      {{ "-" }}
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock edittable %}
