@@ -79,16 +79,16 @@ class Engine(models.Model):
     ccode = models.CharField(max_length=2, choices=CCODE_OPT)
     level = models.CharField(max_length=8, choices=LEVEL_OPT)
     clerk = models.CharField(max_length=50)
-    actiondate = models.CharField(max_length=30)
-    reminderdate = models.CharField(max_length=30)
+    actiondate = models.DateField()
+    reminderdate = models.DateField()
     remindernumber = models.CharField(max_length=30)
     vendor = models.CharField(max_length=10)
     mailvendor = models.EmailField()
     invoicenumber = models.CharField(max_length=20)
     invoicestatus = models.CharField(max_length=100, choices=INVSTATUS_OPT)
-    actiontaken = models.CharField(max_length=1000)
-    rejectreason = models.CharField(max_length=3, choices=REJ_REASONS)
-    paidon = models.CharField(max_length=30)
+    #actiontaken = models.CharField(max_length=1000)
+    rejectreason = models.CharField(max_length=3, choices=REJ_REASONS, blank=True)
+    paidon = models.DateField(null=True, blank=True)
 
 class Login(forms.Form):
 
