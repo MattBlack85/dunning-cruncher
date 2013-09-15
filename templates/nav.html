@@ -9,6 +9,7 @@
       {% if user.groups.values.0.name == 'TL_SV' %}
       <li><a href="{% url 'core.views.reporting' %}">Reporting</a></li>
       {% endif %}
+      <li><a href="{% url 'core.views.edit' %}">Review</a></li>
     </ul>
   </div>
   <ul class="nav navbar-nav navbar-right">
@@ -26,115 +27,9 @@
     </button>
   </div>
 </div>
-  <form action="." method="POST" class="form-horizontal" role="form" id="trform">
-    {% csrf_token %}
-    <fieldset class="fieldmain">
-      <legend><b>DL tracking form</b></legend>
-      <div class="form-group">
-	<label class="col-lg-2 control-label">Clerk:</label>
-	<div class="col-lg-2">
-	  <p class="form-control-static" id="vclerk" value="{{ user.get_full_name }}">{{ question.clerk }}</p> 
-	</div>
-      </div>
-      <div class="form-group">
-	<label class="col-lg-2 control-label">Market:</label>
-	<div class="col-lg-2">
-	  <p class="form-control-static">{{ question.market }}</p>
-	</div>
-	<label class="col-lg-2 control-label">Company Code:</label>
-	<div class="col-lg-1">
-	  <p class="form-control-static">{{ question.ccode }}</p>
-	</div>
-      </div>
-      <div class ="form-group">
-	<label class="col-lg-2 control-label">DL Number:</label>
-	<div class="col-lg-2">
-	  <p class="form-control-static">{{ question.remindernumber }}</p>
-	</div>
-	<label class="col-lg-2 control-label">DL Level:</label>
-	<div class="col-lg-1">
-	  <p class="form-control-static">{{ question.level }}</p>
-	</div>
-      </div>
-      <div class="form-group">
-	<label class="col-lg-2 control-label">Action Date:</label>
-	<div class="col-lg-2">
-	  <p class="form-control-static">{{ question.actiondate }}</p>
-	</div>
-	<label class="col-lg-2 control-label">Reminder Date:</label>
-	<div class="col-lg-2">
-	  <p class="form-control-static">{{ question.reminderdate }}</p>
-	</div>
-      </div>
-      <div class="addhiddendata">
-	<div class="form-group">
-	  <label class="col-lg-2 control-label">Inv. number:</label>
-	  <div class="col-lg-2">
-	    <p class="form-control-static">{{ question.invoicenumber }}</p>
-	  </div>
-	  <label class="col-lg-2 control-label">Inv. status:</label>
-	  <div class="col-lg-2">
-	    <p class="form-control-static">{{ question.invoicestatus }}</p>
-	  </div>
-	  <div class="col-lg-2">
-	    <button type="button" class="btn btn-primary btn-sm" id="addbutt">
-	      Add  <span class="glyphicon glyphicon-plus"></span>
-	    </button>
-	    <button type="button" class="btn btn-primary btn-sm" id="rembutt">
-	      Remove  <span class="glyphicon glyphicon-minus"></span>
-	    </button>
-	  </div>
-	</div>
-	<div class="form-group addtohide rejpaidform">
-	  <label class="col-lg-2 control-label">Rejection reason:</label>
-	  <div class="col-lg-2">
-	    <p class="form-control-static">{{ question.rejectreason }}</p>
-	  </div>
-	  <label class="col-lg-2 control-label">Paid on:</label>
-	  <div class="col-lg-2">
-	    <p class="form-control-static">{{ question.paidon }}</p>
-	  </div>
-	</div>
-      </div>
-      <div class="form-group" id="vendorform">
-	<label class="col-lg-2 control-label">Vendor number:</label>
-	<div class="col-lg-2">
-	  <div class="input-group">
-	    <span class="input-group-addon">123</span>
-	    {{ question.vendor }}
-	  </div>
-	</div>
-	<label class="col-lg-2 control-label">Vendor mail:</label>
-	<div class="col-lg-2">
-	  <div class="input-group">
-	    <span class="input-group-addon">@</span>
-	    {{ question.mailvendor }}
-	  </div>
-	</div>
-      </div>
-      <!--
-      <div class="form-group">
-	<div class="col-lg-offset-2 col-lg-10">
-	  <div class="checkbox">
-            <label>
-              <input type="checkbox"> Add Vendor Address
-            </label>
-	  </div>
-	</div>
-      </div>
-      !-->
-      <div class="form-group">
-	<label class="col-lg-2 control-label">Action:</label>
-	<div class="col-lg-7">
-	  <p class="form-control-static">{{ question.actiontaken }}</p>
-	</div>
-      </div>
-      <div>
-	<input type="submit" value="Submit" id ="trackbutton" class="btn btn-primary btn-large">
-      </div>
-    </fieldset>
-  </form>
 {% endblock nav %}
+{% block trackingform %}
+{% endblock trackingform %}
 {% block trackingjs %}
 <script src='{{ STATIC_URL }}jquery/trackingjs.js'>
 </script>
