@@ -81,11 +81,6 @@ $(document).ready(function(){
     });
 
     $('#addbutt').on('click', function() {
-	if (nofinv == 1) {
-	    $('.addhiddendata:first').find('#id_invoicenumber').attr('id', 'id_invoicenumber'+nofinv);
-	    $('.addhiddendata:first').find('#id_invoicestatus').attr('id', 'id_invoicestatus'+nofinv);
-	}
-
 	var formToApp = $('.addhiddendata:first').clone();
 	formToApp.find('button').remove();
 	formToApp.find('.paid').removeClass('hasDatepicker');
