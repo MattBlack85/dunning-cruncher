@@ -118,6 +118,12 @@ def tracker (request):
     return render_to_response('tracking.html', {'question': question}, RequestContext(request))
 
 @login_required(redirect_field_name='error', login_url='/')
+def edit (request):
+    user = auth.models.User.objects.get(id=request.session.get("user_id"))
+    ownitems = Engine.objects.all().filter(clerk=user.first_name + " " + user.last_name, actiondate=date.today())
+    return render_to_response('edit.html', {'ownitems': ownitems}, RequestContext(request))
+
+@login_required(redirect_field_name='error', login_url='/')
 def reporting (request):
     pass
 
