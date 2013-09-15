@@ -93,11 +93,6 @@ def logout_view(request):
 
 @login_required(redirect_field_name='error', login_url='/')
 def tracker (request):
-    if request.method == 'POST':
-	question = TrackingForm(request.POST)
-        if question.is_valid():
-            question.save()
-
     question = TrackingForm()
     question.fields['clerk'].widget.attrs = {'class': 'form-control'}
     question.fields['actiontaken'].widget.attrs = {'class':'form-control'}
