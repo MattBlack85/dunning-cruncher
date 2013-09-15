@@ -11,6 +11,8 @@ from django.views.decorators.csrf import csrf_protect
 
 from datetime import date, timedelta
 
+from utils.tracking_utils import ajax_multitracking, ajax_error
+
 
 def user_context_manager(request):
     '''Context manager which always puts certain variables into the
