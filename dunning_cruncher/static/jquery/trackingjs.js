@@ -111,7 +111,7 @@ $(document).ready(function(){
 	// get the total number of invoices.
 	var invo = $('.invoice').length;
 
-	var data = []
+	var data = new Array()
 
 	//loop through the invoice to create our data to post
 	for (x = 1; x <= invo; x++) {
