@@ -117,20 +117,21 @@ $(document).ready(function(){
 	for (x = 1; x <= invo; x++) {
 	    var formn = 'form'+x;
 	    var obj = {
-		    market: $('#id_market').val(),
-		    ccode: $('#id_ccode').val(),
-		    level: $('').val(),
-		    clerk: $('#id_clerk').val(),
-		    actiondate: $('#id_actiondate').val(),
-		    reminderdate: $('#id_actiondate').val(),
-		    remindernumber: $('#id_remindernumber').val(),
-		    vendor: $('#id_vendor').val(),
-		    mailvendor: $('#id_mailvendor').val(),
-		    invoicenumber: $('#id_invoicenumber'+x).val(),
-		    invoicestatus: $('#id_invoicestatus'+x).val(),
-		    actiontaken: $('#id_actiontaken').val(),
-		    rejectreason: $('#id_rejectreason'+x).val(),
-		    paidon: $('#id_paidon'+x).val()
+		market: $('#id_market').val(),
+		ccode: $('#id_ccode').val(),
+		level: $('').val(),
+		clerk: $('#id_clerk').val(),
+		actiondate: $('#id_actiondate').val(),
+		reminderdate: $('#id_actiondate').val(),
+		level: $('#id_level').val(),
+		remindernumber: $('#id_remindernumber').val(),
+		vendor: $('#id_vendor').val(),
+		mailvendor: $('#id_mailvendor').val(),
+		invoicenumber: $('#id_invoicenumber'+x).val(),
+		invoicestatus: $('#id_invoicestatus'+x).val(),
+		//actiontaken: $('#id_actiontaken').val(),
+		rejectreason: $('#id_rejectreason'+x).val(),
+		paidon: $('#id_paidon'+x).val()
 	    };
 	    data.push(obj);
 	}
