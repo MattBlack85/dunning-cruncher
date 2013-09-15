@@ -149,7 +149,7 @@ $(document).ready(function(){
 		form_type: 'multi',
 		mass_data: JSON.stringify(data)
 	    },
-	    success: alert('Posted to /ajax/'),
+	    success: window.location.href = "/main",
 	    error: function (ajaxObj, textStatus, error) {
 		alert(error);
 	    }
