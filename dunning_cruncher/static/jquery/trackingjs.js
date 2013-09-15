@@ -2,6 +2,8 @@ $(document).ready(function(){
     var nofinv = 1;
     $('#id_invoicenumber').addClass('invoice'+' '+nofinv);
     $('#id_invoicestatus').addClass('invoiceadditional'+' '+nofinv);
+    $('.addhiddendata:first').find('#id_invoicenumber').attr('id', 'id_invoicenumber'+nofinv);
+    $('.addhiddendata:first').find('#id_invoicestatus').attr('id', 'id_invoicestatus'+nofinv);
     
     $('#trbutton').on('click', function(){
 	$('#trbutton').fadeOut('slow', function(){
