@@ -135,7 +135,6 @@ $(document).ready(function(){
 	    };
 	    data.push(obj);
 	}
-	alert(JSON.stringify(data));
 
 	//setup the AJAX request
 	$.ajaxSetup({
