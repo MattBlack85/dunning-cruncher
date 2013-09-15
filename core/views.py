@@ -95,7 +95,7 @@ def logout_view(request):
 def tracker (request):
     question = TrackingForm()
     question.fields['clerk'].widget.attrs = {'class': 'form-control'}
-    question.fields['actiontaken'].widget.attrs = {'class':'form-control'}
+    #question.fields['actiontaken'].widget.attrs = {'class':'form-control'}
     question.fields['invoicestatus'].widget.attrs = {'class':'form-control status'}
     question.fields['invoicenumber'].widget.attrs = {'class':'form-control'}
     question.fields['market'].widget.attrs = {'class':'form-control'}
