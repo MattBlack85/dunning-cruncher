@@ -200,6 +200,5 @@ def ajax (request):
         return ajax_funcs.get(
             form_type,ajax_error
             )(request)
-    except Exception as e: # pragma: no cover
-        error_log.error(str(e))
-        raise
+    except: # pragma: no cover
+        return ajax_error("Function does not exist")
