@@ -10,6 +10,7 @@ urlpatterns = patterns('',
                        url(r'logout/?$', views.logout_view),
                        url(r'reporting/?$', views.reporting),
                        url(r'ajax/?$', views.ajax),
+                       url(r'overview/?$', views.edit),
     # url(r'^$', 'dunning_cruncher.views.home', name='home'),
     # url(r'^dunning_cruncher/', include('dunning_cruncher.foo.urls')),
 
