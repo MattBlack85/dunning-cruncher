@@ -96,16 +96,16 @@ def tracker (request):
     question = TrackingForm()
     question.fields['clerk'].widget.attrs = {'class': 'form-control'}
     #question.fields['actiontaken'].widget.attrs = {'class':'form-control'}
-    question.fields['invoicestatus'].widget.attrs = {'class':'form-control status'}
-    question.fields['invoicenumber'].widget.attrs = {'class':'form-control'}
-    question.fields['market'].widget.attrs = {'class':'form-control'}
-    question.fields['ccode'].widget.attrs = {'class':'form-control'}
-    question.fields['remindernumber'].widget.attrs = {'class':'form-control'}
-    question.fields['level'].widget.attrs = {'class':'form-control'}
-    question.fields['vendor'].widget.attrs = {'class':'form-control'}
-    question.fields['mailvendor'].widget.attrs = {'class':'form-control'}
-    question.fields['rejectreason'].widget.attrs = {'class':'form-control reject'}
-    question.fields['paidon'].widget.attrs = {'class':'form-control paid'}
+    question.fields['invoicestatus'].widget.attrs = {'class': 'form-control status'}
+    question.fields['invoicenumber'].widget.attrs = {'class': 'form-control'}
+    question.fields['market'].widget.attrs = {'class': 'form-control'}
+    question.fields['ccode'].widget.attrs = {'class': 'form-control'}
+    question.fields['remindernumber'].widget.attrs = {'class': 'form-control'}
+    question.fields['level'].widget.attrs = {'class': 'form-control'}
+    question.fields['vendor'].widget.attrs = {'class': 'form-control'}
+    question.fields['mailvendor'].widget.attrs = {'class': 'form-control'}
+    question.fields['rejectreason'].widget.attrs = {'class': 'form-control reject'}
+    question.fields['paidon'].widget.attrs = {'class': 'form-control paid'}
     question.fields['actiondate'].widget.attrs = {
         'class': 'form-control',
         'value': date.today()
