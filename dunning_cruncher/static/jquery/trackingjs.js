@@ -22,6 +22,9 @@ $(document).ready(function(){
     $('#id_actiondate').attr('readonly', true);
 
     $('#id_market').on('change', function(){
+	//show the ccode choice if is hidden
+	if ($('#id_ccode').is(':hidden')) {$('#id_ccode').show()};
+
 	$('#id_ccode option').each(function(){
 	    $(this).show();
 	});
