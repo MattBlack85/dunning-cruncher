@@ -17,6 +17,7 @@
     <li><a href="{% url 'core.views.logout_view' %}">Logout</a></li>
   </ul>
 </div>
+{% if request.path == "/main/" %}
 <div class="jumbotron">
   <div class="container">
     <h2>Hello, {{ user.first_name }}</h2>
@@ -27,6 +28,8 @@
     </button>
   </div>
 </div>
+{% else %}
+{% endif %}
 {% endblock nav %}
 {% block trackingform %}
 {% endblock trackingform %}
