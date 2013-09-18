@@ -162,5 +162,11 @@ $(document).ready(function(){
 	    }
 	});
 	return true;
-    });
+    };
+
+    $('#trackbutton').on('click', ValidateForm);
+
+    function ValidateForm() {
+	DunningTrack();
+    };
 });
