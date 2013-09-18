@@ -106,8 +106,12 @@ $(document).ready(function(){
     });
 
     $('#rembutt').on('click', function() {
-	// need to modify if the item is the last, actually is a bug because it's removed as well
-	$('.addhiddendata:last').remove();
+	//Remove additional invoices if there are at least 2 of them.
+	if ($('.invoice').length == 1) {
+	    ;
+	} else {
+	    $('.addhiddendata:last').remove();
+	};
     });
 
     $('#trackbutton').on('mouseover', function() {
