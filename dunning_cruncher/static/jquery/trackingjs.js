@@ -45,7 +45,7 @@ $(document).ready(function(){
 	} else if (market == 'DK') {
 	    var marketArray = ['', '12'];
 	} else {
-	    return false;
+	    var marketArray = [''];
 	}
 
 	$('#id_ccode option').each(function(){
