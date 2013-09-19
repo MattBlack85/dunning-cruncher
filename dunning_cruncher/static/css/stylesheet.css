@@ -203,6 +203,10 @@ fieldset {
     display: none;
 }
 
+.secondaryitems {
+    display: none;
+}
+
 .HPfont {
     font-family: HPSimplified, Arial; /*font-size:1.6em*/
 }
