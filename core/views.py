@@ -197,6 +197,7 @@ def ajax (request):
     # decorator or something
     ajax_funcs = {
         'multi': ajax_multitracking,
+        'edit': edit_item,
         }
     try:
         return ajax_funcs.get(
