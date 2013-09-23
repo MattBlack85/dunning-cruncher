@@ -1,6 +1,7 @@
 {% extends "nav.html" %}
 {% block title %}Items review{% endblock title %}
 {% block edittable %}
+{% csrf_token %}
 <table class="table table-striped table-hover table-bordered">
   <tr>
     <th>DL number</th>

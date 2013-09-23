@@ -49,7 +49,7 @@ def ajax_multitracking(request):
         return json_data
 
     json_data['success'] = True
-    #json_data['data'] = form_data                    Why the hell I returned the data?
+    json_data['data'] = form_data
     return json_data
 
 @json_response
@@ -59,6 +59,18 @@ def edit_item(request):
         'error': ''
         }
 
-    object_id = simplejson.loads(request.POST.get('id'))
+    try:
+        object_id = request.POST.get('id')
+        toNum = int(object_id)
+        print object_id
+        print toNum
+        #db_item = Engine.objects.filter(pk=toNum)
+    
+    except Exception as err:
+        json_data['error'] = str(err)
+        return json_data
 
-    db_item = Engine.objects.filter(pk=object_id)
+    json_data['success'] = True
+    json_data['itemid'] = object_id
+
+    return json_data
