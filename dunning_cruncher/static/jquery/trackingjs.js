@@ -156,7 +156,7 @@ $(document).ready(function(){
 		form_type: 'multi',
 		mass_data: JSON.stringify(data)
 	    },
-	    success: window.location.href = "/main",
+	    success: window.location.href = "/main/", // need to remove the hardcoded url
 	    error: function (ajaxObj, textStatus, error) {
 		alert(error);
 	    }
