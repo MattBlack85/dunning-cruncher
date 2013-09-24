@@ -25,12 +25,19 @@ $(document).ready(function() {
 		form_type: 'edit',
 		id: objId
 	    },
-	    success: alert('Successfull'),
+	    success: function(json_data) {
+		modalEdit(json_data);
+		},
 	    error: function (ajaxObj, textStatus, error) {
 		alert(error);
 	    }
 	});
 	return true;
-	$('#modalreview').modal();
     });
 });
+
+function modalEdit(dataEdit) {
+    var formData = JSON.stringify(dataEdit)
+    $('#modbody').text(formData)
+    $('#modalreview').modal();
+};
