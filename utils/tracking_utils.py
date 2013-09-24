@@ -61,16 +61,24 @@ def edit_item(request):
 
     try:
         object_id = request.POST.get('id')
-        toNum = int(object_id)
-        print object_id
-        print toNum
-        #db_item = Engine.objects.filter(pk=toNum)
-    
+        db_item = Engine.objects.get(pk=object_id)
+
     except Exception as err:
         json_data['error'] = str(err)
         return json_data
 
     json_data['success'] = True
     json_data['itemid'] = object_id
+    json_data['market'] = str(db_item.market)
+    json_data['ccode'] = str(db_item.ccode)
+    json_data['level'] = str(db_item.level)
+    json_data['reminderdate'] = str(db_item.reminderdate)
+    json_data['remindernumber'] = str(db_item.remindernumber)
+    json_data['vendor'] = str(db_item.vendor)
+    json_data['mailvendor'] = str(db_item.mailvendor)
+    json_data['invoicenumber'] = str(db_item.invoicenumber)
+    json_data['invoicestatus'] = str(db_item.invoicestatus)
+    json_data['rejectreason'] = str(db_item.rejectreason)
+    json_data['paidon'] = str(db_item.paidon)
 
     return json_data
