@@ -90,6 +90,21 @@ class Engine(models.Model):
     rejectreason = models.CharField(max_length=3, choices=REJ_REASONS, blank=True)
     paidon = models.DateField(null=True, blank=True)
 
+    def __unicode__(self):
+        return '%s, %s, %s, %s, %s, %s, %s, %s, %s %s, %s' % (
+            self.market,
+            self.ccode,
+            self.level,
+            self.reminderdate,
+            self.remindernumber,
+            self.vendor,
+            self.mailvendor,
+            self.invoicenumber,
+            self.invoicestatus,
+            self.rejectreason,
+            self.paidon
+            )
+
 class Login(forms.Form):
 
     """ Basic login form
