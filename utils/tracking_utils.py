@@ -43,13 +43,12 @@ def ajax_multitracking(request):
         for item in form_data:
             form[x] = item
             TrackingForm(form[x]).save()
-
     except Exception as err:
         json_data['error'] = str(err)
         return json_data
 
     json_data['success'] = True
-    json_data['data'] = form_data
+    #json_data['data'] = form_data
     return json_data
 
 @json_response
@@ -82,3 +81,7 @@ def edit_item(request):
     json_data['paidon'] = str(db_item.paidon)
 
     return json_data
+
+@json_response
+def update_item(request):
+    pass
