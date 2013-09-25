@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_protect
 
 from datetime import date, timedelta
 
-from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item
+from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item
 
 
 def user_context_manager(request):
@@ -198,6 +198,7 @@ def ajax (request):
     ajax_funcs = {
         'multi': ajax_multitracking,
         'edit': edit_item,
+        'update': update_item,
         }
 
     try:
