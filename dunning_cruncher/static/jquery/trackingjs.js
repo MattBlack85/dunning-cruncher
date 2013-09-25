@@ -114,6 +114,13 @@ $(document).ready(function(){
 	};
     });
 
+    $('#id_reminderdate').on('change', function() {
+	var rdate = $(this).val().split('/');
+	var market = $('#id_market').val();
+	$('#id_remindernumber').val('');
+	$('#id_remindernumber').val(market+rdate[2]+rdate[0]+rdate[1]+'/');
+    });
+
     function DunningTrack() {
 	// get the total number of invoices.
 	var invo = $('.invoice').length;
@@ -126,7 +133,6 @@ $(document).ready(function(){
 	    var obj = {
 		market: $('#id_market').val(),
 		ccode: $('#id_ccode').val(),
-		level: $('').val(),
 		clerk: $('#id_clerk').val(),
 		actiondate: $('#id_actiondate').val(),
 		reminderdate: $('#id_actiondate').val(),
