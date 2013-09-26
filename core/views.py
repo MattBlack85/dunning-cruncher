@@ -135,8 +135,10 @@ def edit (request):
     trackform.fields['paidon'].widget.attrs = {'class': 'form-control paid'}
 
     ownitems = Engine.objects.all().filter(clerk=user.first_name + " " + user.last_name, actiondate=date.today())
+
     return render_to_response('edit.html', {'ownitems': ownitems,
-                                            'distitems': distitems}, RequestContext(request))
+                                            'distitems': distitems,
+                                            'trackform': trackform}, RequestContext(request))
 
 @login_required(redirect_field_name='error', login_url='/')
 def reporting (request):
