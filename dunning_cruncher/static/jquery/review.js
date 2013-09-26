@@ -37,7 +37,24 @@ $(document).ready(function() {
 });
 
 function modalEdit(dataEdit) {
-    var formData = JSON.stringify(dataEdit)
-    $('#modbody').text(formData)
+    //populate the field with the values from DB
+    changedItem = dataEdit;
+    var iid = dataEdit.itemid;
+
+    $('h4').append('<span id="itemid">'+iid+'</span>');
+    $('#id_market').val(dataEdit.market);
+    $('#id_ccode').show();
+    $('#id_ccode').val(dataEdit.ccode);
+    $('#dln').val(dataEdit.remindernumber);
+    $('#invn').val(dataEdit.invoicenumber);
+    $('#id_invoicestatus').val(dataEdit.invoicestatus);
+    $('#id_rejectreason').val(dataEdit.rejectreason);
+    $('#id_paidon').val(dataEdit.paidon);
+    $('#vendm').val(dataEdit.mailvendor);
+    $('#vendn').val(dataEdit.vendor);
+    $('#id_level').val(dataEdit.level);
+    $('#dld').val(dataEdit.reminderdate);
     $('#modalreview').modal();
+    $('#dld').datepicker();
+
 };
