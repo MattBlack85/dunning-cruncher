@@ -57,4 +57,26 @@ function modalEdit(dataEdit) {
     $('#modalreview').modal();
     $('#dld').datepicker();
 
+    $('#save').on('click', function() {
+	var obj = {
+	    itemid: $('#itemid').val(),
+	    market: $('#id_market').val(),
+	    ccode: $('#id_ccode').val(),
+	    remindernumber: $('#dln').val(),
+	    invoicenumber: $('#invn').val(),
+	    invoicestatus: $('#id_invoicestatus').val(),
+	    //actiontaken: $('#id_actiontaken').val(),
+	    rejectreason: $('#id_rejectreason').val(),
+	    paidon: $('#id_paidon').val(),
+	    mailvendor: $('#vendm').val(),
+	    vendor: $('#vendn').val(),
+	    level: $('#id_level').val(),
+	    reminderdate: $('#dld').val(),
+	    };
+	if (obj == changedItem) {
+	    console.log("same item");
+	} else {
+	    console.log("different items");
+	};
+    });
 };
