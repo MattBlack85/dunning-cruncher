@@ -126,6 +126,14 @@ def edit (request):
         actiondate=date.today()
         ).values('remindernumber', 'market', 'ccode').distinct()
 
+    trackform = TrackingForm()
+    trackform.fields['level'].widget.attrs = {'class': 'form-control'}
+    trackform.fields['market'].widget.attrs = {'class': 'form-control'}
+    trackform.fields['ccode'].widget.attrs = {'class': 'form-control'}
+    trackform.fields['invoicestatus'].widget.attrs = {'class': 'form-control'}
+    trackform.fields['rejectreason'].widget.attrs = {'class': 'form-control reject'}
+    trackform.fields['paidon'].widget.attrs = {'class': 'form-control paid'}
+
     ownitems = Engine.objects.all().filter(clerk=user.first_name + " " + user.last_name, actiondate=date.today())
     return render_to_response('edit.html', {'ownitems': ownitems,
                                             'distitems': distitems}, RequestContext(request))
