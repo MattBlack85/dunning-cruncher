@@ -73,10 +73,14 @@ function modalEdit(dataEdit) {
 	    level: $('#id_level').val(),
 	    reminderdate: $('#dld').val(),
 	    };
-	if (obj == changedItem) {
-	    console.log("same item");
-	} else {
-	    console.log("different items");
-	};
+
+	$.each(obj, function(key, value) {
+	    if (key !== "success" || key !== "error") {
+		if (obj[key] !== changedItem[key]) {
+		    changedStuff++;
+		};
+	    };
+	});
+	if (changedStuff != 0) {Update(obj)};
     });
 };
