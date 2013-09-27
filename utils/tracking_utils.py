@@ -44,8 +44,8 @@ def ajax_multitracking(request):
         json_data['error'] = str(err)
         return json_data
 
+    TrackingForm()
     json_data['success'] = True
-    #json_data['data'] = form_data
     return json_data
 
 @json_response
