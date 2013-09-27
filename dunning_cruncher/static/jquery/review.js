@@ -39,6 +39,7 @@ $(document).ready(function() {
 function modalEdit(dataEdit) {
     //populate the field with the values from DB
     changedItem = dataEdit;
+    changedStuff = 0;
     var iid = dataEdit.itemid;
 
     $('h4').append('<span id="itemid">'+iid+'</span>');
