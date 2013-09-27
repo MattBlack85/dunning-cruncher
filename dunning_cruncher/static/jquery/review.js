@@ -84,3 +84,24 @@ function modalEdit(dataEdit) {
 	if (changedStuff != 0) {Update(obj)};
     });
 };
+
+function Update(item) {
+    $.ajaxSetup({
+	type: 'POST',
+	dataType: 'json'
+    });
+
+    //the real AJAX request
+    $.ajax({
+	url: '/ajax/',
+	data: {
+	    form_type: 'update',
+	    mass_data: JSON.stringify(item)
+	},
+	success: alert("success"), //todo
+	error: function (ajaxObj, textStatus, error) {
+	    alert(error);
+	}
+    });
+    return true;
+}
