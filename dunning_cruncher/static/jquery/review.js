@@ -59,17 +59,17 @@ function modalEdit(dataEdit) {
 
     $('#save').on('click', function() {
 	var obj = {
-	    itemid: $('#itemid').val(),
-	    market: $('#id_market').val(),
+	    itemid: $('#itemid').text(),
+	    mailvendor: $('#vendm').val(),
+	    paidon: $('#id_paidon').val(),
+	    vendor: $('#vendn').val(),
 	    ccode: $('#id_ccode').val(),
+	    market: $('#id_market').val(),
 	    remindernumber: $('#dln').val(),
 	    invoicenumber: $('#invn').val(),
 	    invoicestatus: $('#id_invoicestatus').val(),
 	    //actiontaken: $('#id_actiontaken').val(),
 	    rejectreason: $('#id_rejectreason').val(),
-	    paidon: $('#id_paidon').val(),
-	    mailvendor: $('#vendm').val(),
-	    vendor: $('#vendn').val(),
 	    level: $('#id_level').val(),
 	    reminderdate: $('#dld').val(),
 	    };
