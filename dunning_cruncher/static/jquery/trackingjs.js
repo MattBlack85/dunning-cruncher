@@ -162,7 +162,7 @@ $(document).ready(function(){
 		form_type: 'multi',
 		mass_data: JSON.stringify(data)
 	    },
-	    success: window.location.href = "/main/", // need to remove the hardcoded url
+	    success: SuccessfulTracking(), //window.location.href = "/main/",
 	    error: function (ajaxObj, textStatus, error) {
 		alert(error);
 	    }
@@ -176,3 +176,9 @@ $(document).ready(function(){
 	DunningTrack();
     };
 });
+
+function SuccessfulTracking() {
+    $('#trform *').filter(':input').each(function() {
+	$(this).val('');
+    });
+};
