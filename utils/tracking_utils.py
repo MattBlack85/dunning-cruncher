@@ -35,14 +35,11 @@ def ajax_multitracking(request):
         'error': ''
         }
 
-    form = {}
-
     try:
         form_data = simplejson.loads(request.POST.get('mass_data'))
-        x = 1
         for item in form_data:
-            form[x] = item
-            TrackingForm(form[x]).save()
+            TrackingForm(item).save()
+
     except Exception as err:
         json_data['error'] = str(err)
         return json_data
