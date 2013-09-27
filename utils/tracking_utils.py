@@ -81,4 +81,43 @@ def edit_item(request):
 
 @json_response
 def update_item(request):
-    pass
+    json_data = {
+        'success': False,
+        'error': ''
+        }
+
+    try:
+        data = simplejson.loads(request.POST.get('mass_data'))
+        object_id = data['itemid']
+        db_item = Engine.objects.get(pk=object_id)
+
+    except Exception as err:
+        json_data['error'] = str(err)
+        return json_data
+
+    db_item.market = data['market']
+    db_item.invoicenumber = data['invoicenumber']
+    db_item.vendor = data['vendor']
+    db_item.mailvendor = data['mailvendor']
+    db_item.remindernumber = data['remindernumber']
+    db_item.invoicestatus = data['invoicestatus']
+    db_item.level = data['level']
+    db_item.rejectreason = data['rejectreason']
+    db_item.reminderdate = data['reminderdate']
+
+    if data['paidon'] == "None":
+        pass
+    else:
+        db_item.paidon = data['paidon']
+
+    db_item.ccode = data['ccode']
+
+    try:
+        db_item.save()
+        json_data['success'] = True
+
+    except Exception as err:
+        json_data['error'] = str(err)
+        return json_data
+
+    return json_data
