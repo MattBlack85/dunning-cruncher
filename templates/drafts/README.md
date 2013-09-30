@@ -1,0 +1,1 @@
+In this folder should be gathered the templats that will be rendered based on the languaga and country.
