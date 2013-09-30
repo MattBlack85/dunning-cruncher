@@ -4,4 +4,4 @@
 *#
 dunning_cruncher/settings.py
 cstatic/
-drafts/*
+templates/drafts/*.*html
