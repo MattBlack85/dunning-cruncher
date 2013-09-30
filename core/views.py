@@ -221,3 +221,14 @@ def ajax (request):
             )(request)
     except: # pragma: no cover
         return ajax_error("Function does not exist")
+
+@login_required(redirect_field_name='error', login_url='/')
+def draft (request, dnumber, language):
+    mainit = Engine.objects.get(pk=dnumber)
+    vendor = mainit.vendor
+    items = Engine.objects.all().filter(remindernumber=mainit.remindernumber)
+    market = mainit.market
+    template = market+'_'+language+'.html'
+
+    return render_to_response(template, {'items': items,
+                                         'vendor': vendor}, RequestContext(request))
