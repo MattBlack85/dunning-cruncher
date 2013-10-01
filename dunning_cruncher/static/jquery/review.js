@@ -128,3 +128,18 @@ function Update(item) {
     });
     return true;
 }
+
+function whatLanguage(market) {
+
+    switch(market)
+    {
+	case "IT":
+	var lObj = {IT: "Italian", EN: "English"};
+	break;
+	case "DE":
+	var lObj = {DE: "German", EN: "English"};
+	break;
+    };
+
+    return lObj;
+};
