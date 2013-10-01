@@ -63,6 +63,7 @@ function modalEdit(dataEdit) {
     changedStuff = 0;
     var iid = dataEdit.itemid;
 
+    $("#id_paidon").datepicker({dateFormat: 'yyyy-mm-dd'});
     $('h4').append('<span id="itemid">'+iid+'</span>');
     $('#id_market').val(dataEdit.market);
     $('#id_ccode').show();
@@ -80,11 +81,10 @@ function modalEdit(dataEdit) {
     $('#dld').datepicker();
 
     $('#save').on('click', function() {
-	var dateToSplit = $('#id_paidon').val()
 	var obj = {
 	    itemid: $('#itemid').text(),
 	    mailvendor: $('#vendm').val(),
-	    paidon: dateToSplit.split("/")[2]+"-"+dateToSplit.split("/")[0]+"-"+dateToSplit.split("/")[1],
+	    paidon: $("#id_paidon").val(),
 	    vendor: $('#vendn').val(),
 	    ccode: $('#id_ccode').val(),
 	    market: $('#id_market').val(),
