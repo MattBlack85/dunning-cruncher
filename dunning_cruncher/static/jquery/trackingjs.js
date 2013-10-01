@@ -109,7 +109,10 @@ $(document).ready(function(){
 	formToApp.find('#id_invoicestatus1').attr('name', 'invoicestatus'+nofinv);
 	formToApp.find('#id_invoicestatus1').attr('id', 'id_invoicestatus'+nofinv);
 	$('#vendorform').before(formToApp);
-	formToApp.find('.paid').datepicker();
+	formToApp.find('.paid').datepicker({
+	    dateFormat: 'yy-mm-dd',
+	    constrainInput: false
+	});
     });
 
     $('#rembutt').on('click', function() {
