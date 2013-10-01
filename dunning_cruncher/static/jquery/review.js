@@ -1,4 +1,25 @@
 $(document).ready(function() {
+    $('.draftbutt').on('click', function() {
+	var dnum = $(this).parent().parent().next('.secondaryitems').attr('id');
+	var mark = $(this).parent().parent().find('td :first').next().text().trim();
+	var langSelect = whatLanguage(mark);
+
+	$('#lansel').append('<p attr="hidden">'+dnum+'</p>');
+
+	for (var langKey in langSelect) {
+	    if (langSelect.hasOwnProperty(langKey)) {
+		var langValue = langSelect[langKey];
+		$('#lansel').append('<option val='+langKey+'>'+langValue+'</option>')
+	    };
+	};
+
+	$('#modalreview2').modal();
+
+	$('#loaddraft').on('click', function() {
+	    window.location.replace('/draft/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
+	});
+    });
+
     $('.mainitems, .secondaryitems').each(function() {
 	var cleanclass = $(this).children('td:first').text().replace('/','').trim();
 	$(this).addClass(cleanclass);
