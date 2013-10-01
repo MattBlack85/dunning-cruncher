@@ -12,6 +12,12 @@ body {
     margin-bottom: 8px;
 }
 
+#sendm {
+    border-top: 1px solid;
+    margin-left: 5em;
+    margin-right: 5em;
+}
+
 #menu-bar {
    position: absolute;
    height: 35px;
