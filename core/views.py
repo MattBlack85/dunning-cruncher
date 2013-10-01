@@ -106,6 +106,8 @@ def tracker (request):
     question.fields['mailvendor'].widget.attrs = {'class': 'form-control'}
     question.fields['rejectreason'].widget.attrs = {'class': 'form-control reject'}
     question.fields['paidon'].widget.attrs = {'class': 'form-control paid'}
+    #question.fields['currency'].widget.attrs = {'class': 'form-control'}
+    #question.fields['amount'].widget.attrs = {'class': 'form-control'}
     question.fields['actiondate'].widget.attrs = {
         'class': 'form-control',
         'value': date.today()
