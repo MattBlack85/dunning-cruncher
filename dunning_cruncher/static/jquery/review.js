@@ -80,10 +80,11 @@ function modalEdit(dataEdit) {
     $('#dld').datepicker();
 
     $('#save').on('click', function() {
+	var dateToSplit = $('#id_paidon').val()
 	var obj = {
 	    itemid: $('#itemid').text(),
 	    mailvendor: $('#vendm').val(),
-	    paidon: $('#id_paidon').val(),
+	    paidon: dateToSplit.split("/")[2]+"-"+dateToSplit.split("/")[0]+"-"+dateToSplit.split("/")[1],
 	    vendor: $('#vendn').val(),
 	    ccode: $('#id_ccode').val(),
 	    market: $('#id_market').val(),
