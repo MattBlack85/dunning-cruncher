@@ -121,7 +121,7 @@ function Update(item) {
 	    form_type: 'update',
 	    mass_data: JSON.stringify(item)
 	},
-	success: alert("success"), //todo
+	success: window.location.replace("/overview/"),
 	error: function (ajaxObj, textStatus, error) {
 	    alert(error);
 	}
