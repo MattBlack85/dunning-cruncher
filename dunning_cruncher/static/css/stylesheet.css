@@ -6,6 +6,12 @@ body {
     display: none;
 }
 
+#mailbutton {
+    margin-left: 50%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
 #menu-bar {
    position: absolute;
    height: 35px;
