@@ -30,7 +30,8 @@ class Engine(models.Model):
         ('PL', 'Poland'),
         ('GB', 'Great Britain'),
         ('CH', 'Switzerland'),
-        ('BE', 'Belgium')
+        ('BE', 'Belgium'),
+        ('ES', 'Spain')
         )
 
     CCODE_OPT = (
