@@ -229,8 +229,11 @@ def draft (request, dnumber, language):
     mainit = Engine.objects.get(pk=dnumber)
     vendor = mainit.vendor
     items = Engine.objects.all().filter(remindernumber=mainit.remindernumber)
-    market = mainit.market
-    template = market+'_'+language+'.html'
+    template = mainit.market+'_'+language+'.html'
+    status = Engine.INVSTATUS_OPT
+    reasons = Engine.REJ_REASONS
 
     return render_to_response(template, {'items': items,
+                                         'status': status,
+                                         'reasons': reasons,
                                          'vendor': vendor}, RequestContext(request))
