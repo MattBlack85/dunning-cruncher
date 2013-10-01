@@ -13,8 +13,14 @@ $(document).ready(function(){
 	});
     });
     
-    $('#id_reminderdate').datepicker();
-    $('.paid:first').datepicker();
+    $('#id_reminderdate').datepicker({
+	dateFormat: 'yy-mm-dd',
+	constrainInput: false
+    });
+    $('.paid:first').datepicker({
+	dateFormat: 'yy-mm-dd',
+	constrainInput: false
+    });
     
     var $name = $('#vclerk').attr('value');
     $('#id_clerk').val($name);
