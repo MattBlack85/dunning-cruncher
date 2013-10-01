@@ -125,10 +125,10 @@ $(document).ready(function(){
     });
 
     $('#id_reminderdate').on('change', function() {
-	var rdate = $(this).val().split('/');
+	var rdate = $(this).val().split('-');
 	var market = $('#id_market').val();
 	$('#id_remindernumber').val('');
-	$('#id_remindernumber').val(market+rdate[2]+rdate[0]+rdate[1]+'/');
+	$('#id_remindernumber').val(market+rdate[0]+rdate[1]+rdate[2]+'/');
     });
 
     function DunningTrack() {
