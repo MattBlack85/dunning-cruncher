@@ -1,10 +1,13 @@
 $(document).ready(function(){
     var nofinv = 1;
-    $("#id_paidon").attr("id", "id_paidon"+nofinv);
     $('#id_invoicenumber').addClass('invoice'+' '+nofinv);
     $('#id_invoicestatus').addClass('invoiceadditional'+' '+nofinv);
+    $('#id_paidon').addClass('paid'+' '+nofinv);
+    $('#id_rejectreason').addClass('reject'+' '+nofinv);
     $('.addhiddendata:first').find('#id_invoicenumber').attr('id', 'id_invoicenumber'+nofinv);
     $('.addhiddendata:first').find('#id_invoicestatus').attr('id', 'id_invoicestatus'+nofinv);
+    $('.addhiddendata:first').find('#id_paidon').attr('id', 'id_paidon'+nofinv);
+    $('.addhiddendata:first').find('#id_rejectreason').attr('id', 'id_rejectreason'+nofinv);
     
     $('#trbutton').on('click', function(){
 	$('#trbutton').fadeOut('slow', function(){
