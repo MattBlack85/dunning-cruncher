@@ -172,7 +172,7 @@ $(document).ready(function(){
 		form_type: 'multi',
 		mass_data: JSON.stringify(data)
 	    },
-	    success: window.location.replace = "/main/",
+	    success: window.location.replace("/main/"),
 	    error: function (ajaxObj, textStatus, error) {
 		alert(error);
 	    }
