@@ -78,6 +78,12 @@ class Engine(models.Model):
 
     REJ_REASONS = (
         ('MPO', 'Missing PO'),
+    CURR_OPT = (
+        ("EUR", "EUR"),
+        ("GBP", "GBP"),
+        ("CHF", "CHF"),
+        ("NOK", "NOK"),
+        ("SEK", "SEK"),
         )
 
     market = models.CharField(max_length=3, choices=MARKET_OPT)
