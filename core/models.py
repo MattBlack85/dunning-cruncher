@@ -129,6 +129,7 @@ class Engine(models.Model):
     #amount = models.DecimalField(max_digits=11, decimal_places=2)
     #currency = models.CharField(max_length=3, choices=CURR_OPT)
     #attachment = models.FileField(upload_to='img', blank=True)
+    #reasonother = models.CharField(max_length=500, blank=True)
     actiondate = models.DateField()
     reminderdate = models.DateField()
     remindernumber = models.CharField(max_length=30)
