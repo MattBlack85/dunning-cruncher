@@ -3,7 +3,8 @@ from django.http import Http404, HttpResponse
 
 from core.models import Engine, TrackingForm
 from core.decorators import json_response
-from core.mail import send_mail
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 
 import simplejson
 
@@ -124,20 +125,37 @@ def update_item(request):
     return json_data
 
 @json_response
-def send_info (request):
-    #json_data = {
-    #    'success': False,
-    #    'error': ''
-    #    }
+def send_info(request):
+    json_data = {
+        'success': False,
+        'error': ''
+        }
 
-    #mbody = simplejson.loads(request.POST.get('mailbody'))
-    #item = simplejson.loads(request.POST.get('id'))
+    mbody = simplejson.loads(request.POST.get('mailbody'))
 
-    #mailto = item.mailvendor
+    itemid = simplejson.loads(request.POST.get('id'))
 
-    #send_mail('Information rgearding reminder: %s' % item.remindernumber,
-    #          mbody,
-    #          'dunningteam@dl.com',
-    #          mailto
-    #          )
-    pass
+    dbitem = Engine.objects.get(pk=itemid)
+
+    mailto = dbitem.mailvendor
+
+    try:
+        subject = 'Your subject %s: %s%s' % (dbitem.market, dbitem.market, dbitem.ccode)
+        from_email = 'Your address'
+        html_content = mbody
+        msg = EmailMultiAlternatives(subject, from_email, ['promat85@gmail.com', mailto])
+        msg.attach_alternative(html_content, "text/html")
+        msg.attach_file('your/pathto/file')
+        msg.send()
+        #send_mail('Information regarding reminder: %s' % dbitem.remindernumber,
+        #      mbody,
+        #      'dunningteam@dl.com',
+        #      [mailto]
+        #      )
+        json_data['success'] = True
+
+    except Exception as err:
+        json_data['error'] = str(err)
+        return json_data
+
+    return json_data
