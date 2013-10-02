@@ -18,6 +18,11 @@ body {
     margin-right: 5em;
 }
 
+.beforevendor {
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgb(0,150,214);
+}
+
 #menu-bar {
    position: absolute;
    height: 35px;
