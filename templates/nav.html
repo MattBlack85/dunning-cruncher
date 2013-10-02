@@ -32,8 +32,10 @@
 {% endif %}
 {% endblock nav %}
 {% block draft %}{% endblock draft %}
+{% block mailbuttons %}{% endblock mailbuttons %}
+{% block mailJS %}{% endblock mailJS %}
 {% block trackingform %}{% endblock trackingform %}
 {% block trackingjs %}
-<script src='{{ STATIC_URL }}jquery/trackingjs.js'>
+<script src="{{ STATIC_URL }}jquery/trackingjs.js">
 </script>
 {% endblock trackingjs %}
