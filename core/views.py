@@ -215,7 +215,7 @@ def ajax (request):
         'multi': ajax_multitracking,
         'edit': edit_item,
         'update': update_item,
-        #'mailsend': send_info,
+        'mailsend': send_info,
         }
 
     try:
