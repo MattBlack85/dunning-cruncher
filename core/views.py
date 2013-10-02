@@ -220,8 +220,10 @@ def ajax (request):
 
     try:
         return ajax_funcs.get(
-            form_type,ajax_error
+            form_type,
+            ajax_error
             )(request)
+
     except: # pragma: no cover
         return ajax_error("Function does not exist")
 
@@ -237,4 +239,5 @@ def draft (request, dnumber, language):
     return render_to_response(template, {'items': items,
                                          'status': status,
                                          'reasons': reasons,
+                                         'iid': mainit.id,
                                          'vendor': vendor}, RequestContext(request))
