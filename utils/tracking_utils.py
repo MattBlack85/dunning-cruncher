@@ -3,6 +3,7 @@ from django.http import Http404, HttpResponse
 
 from core.models import Engine, TrackingForm
 from core.decorators import json_response
+from core.mail import send_mail
 
 import simplejson
 
@@ -121,3 +122,22 @@ def update_item(request):
         return json_data
 
     return json_data
+
+@json_response
+def send_info (request):
+    #json_data = {
+    #    'success': False,
+    #    'error': ''
+    #    }
+
+    #mbody = simplejson.loads(request.POST.get('mailbody'))
+    #item = simplejson.loads(request.POST.get('id'))
+
+    #mailto = item.mailvendor
+
+    #send_mail('Information rgearding reminder: %s' % item.remindernumber,
+    #          mbody,
+    #          'dunningteam@dl.com',
+    #          mailto
+    #          )
+    pass
