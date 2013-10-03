@@ -120,6 +120,8 @@ class Engine(models.Model):
         ("CHF", "CHF"),
         ("NOK", "NOK"),
         ("SEK", "SEK"),
+        ("PLN", "PLN"),
+        ("USD", "USD")
         )
 
     market = models.CharField(max_length=3, choices=MARKET_OPT)
