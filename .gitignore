@@ -5,4 +5,3 @@
 dunning_cruncher/settings.py
 cstatic/
 templates/drafts/*.*html
-*/migration/
