@@ -78,6 +78,8 @@ def edit_item(request):
     json_data['invoicestatus'] = str(db_item.invoicestatus)
     json_data['rejectreason'] = str(db_item.rejectreason)
     json_data['paidon'] = str(db_item.paidon)
+    json_data['amount'] = db_item.amount
+    json_data['currency'] = str(db_item.currency)
 
     return json_data
 
@@ -106,6 +108,8 @@ def update_item(request):
     db_item.level = data['level']
     db_item.rejectreason = data['rejectreason']
     db_item.reminderdate = data['reminderdate']
+    db_item.amount = data['amount']
+    db_item.currency = data['currency']
 
     if data['paidon'] == "None":
         pass

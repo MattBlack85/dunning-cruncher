@@ -120,16 +120,18 @@ class Engine(models.Model):
         ("CHF", "CHF"),
         ("NOK", "NOK"),
         ("SEK", "SEK"),
+        ("PLN", "PLN"),
+        ("USD", "USD")
         )
 
     market = models.CharField(max_length=3, choices=MARKET_OPT)
     ccode = models.CharField(max_length=2, choices=CCODE_OPT)
     level = models.CharField(max_length=8, choices=LEVEL_OPT)
     clerk = models.CharField(max_length=50)
-    #amount = models.DecimalField(max_digits=11, decimal_places=2)
-    #currency = models.CharField(max_length=3, choices=CURR_OPT)
-    #attachment = models.FileField(upload_to='img', blank=True)
-    #reasonother = models.CharField(max_length=500, blank=True)
+    amount = models.DecimalField(max_digits=11, decimal_places=2, null=True, blank=True)
+    currency = models.CharField(max_length=3, choices=CURR_OPT, null=True, blank=True)
+    #attachment = models.FileField(upload_to='img', null=True, blank=True)
+    #reasonother = models.CharField(max_length=500, null=True, blank=True)
     actiondate = models.DateField()
     reminderdate = models.DateField()
     remindernumber = models.CharField(max_length=30)
@@ -138,7 +140,7 @@ class Engine(models.Model):
     invoicenumber = models.CharField(max_length=20)
     invoicestatus = models.CharField(max_length=100, choices=INVSTATUS_OPT)
     #actiontaken = models.CharField(max_length=1000)
-    rejectreason = models.CharField(max_length=3, choices=REJ_REASONS, blank=True)
+    rejectreason = models.CharField(max_length=3, choices=REJ_REASONS, null=True, blank=True)
     paidon = models.DateField(null=True, blank=True)
 
     def __unicode__(self):

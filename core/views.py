@@ -106,8 +106,8 @@ def tracker (request):
     question.fields['mailvendor'].widget.attrs = {'class': 'form-control'}
     question.fields['rejectreason'].widget.attrs = {'class': 'form-control reject'}
     question.fields['paidon'].widget.attrs = {'class': 'form-control paid'}
-    #question.fields['currency'].widget.attrs = {'class': 'form-control'}
-    #question.fields['amount'].widget.attrs = {'class': 'form-control'}
+    question.fields['currency'].widget.attrs = {'class': 'form-control'}
+    question.fields['amount'].widget.attrs = {'class': 'form-control'}
     question.fields['actiondate'].widget.attrs = {
         'class': 'form-control',
         'value': date.today()
@@ -134,6 +134,8 @@ def edit (request):
     trackform.fields['invoicestatus'].widget.attrs = {'class': 'form-control'}
     trackform.fields['rejectreason'].widget.attrs = {'class': 'form-control reject'}
     trackform.fields['paidon'].widget.attrs = {'class': 'form-control paid'}
+    trackform.fields['amount'].widget.attrs = {'class': 'form-control amount'}
+    trackform.fields['currency'].widget.attrs = {'class': 'form-control currency'}
 
     ownitems = Engine.objects.all().filter(clerk=user.first_name + " " + user.last_name, actiondate=date.today())
 
