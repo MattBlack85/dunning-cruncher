@@ -4,10 +4,14 @@ $(document).ready(function(){
     $('#id_invoicestatus').addClass('invoiceadditional'+' '+nofinv);
     $('#id_paidon').addClass('paid'+' '+nofinv);
     $('#id_rejectreason').addClass('reject'+' '+nofinv);
+    $("#id_amount").addClass("amount"+" "+nofinv);
+    $("#id_currency").addClass("currency"+" "+nofinv);
     $('.addhiddendata:first').find('#id_invoicenumber').attr('id', 'id_invoicenumber'+nofinv);
     $('.addhiddendata:first').find('#id_invoicestatus').attr('id', 'id_invoicestatus'+nofinv);
     $('.addhiddendata:first').find('#id_paidon').attr('id', 'id_paidon'+nofinv);
     $('.addhiddendata:first').find('#id_rejectreason').attr('id', 'id_rejectreason'+nofinv);
+    $(".addhiddendata:first").find("#id_amount").attr("id", "id_amount"+nofinv);
+    $(".addhiddendata:first").find("#id_currency").attr("id", "id_currency"+nofinv);
     
     $('#trbutton').on('click', function(){
 	$('#trbutton').fadeOut('slow', function(){
@@ -102,6 +106,8 @@ $(document).ready(function(){
 	formToApp.find('#id_invoicestatus1').removeClass('invoiceadditional'+' '+nofinv);
 	formToApp.find('#id_paidon1').removeClass('paid'+' '+nofinv);
 	formToApp.find('#id_rejectreason1').removeClass('reject'+' '+nofinv);
+	formToApp.find("#id_amount1").removeClass("amount"+" "+nofinv);
+	formToApp.find("#id_currency1").removeClass("currency"+" "+nofinv);
 	nofinv = nofinv + 1;
 	formToApp.find('#id_rejectreason1').addClass('reject'+' '+nofinv);
 	formToApp.find('#id_rejectreason1').attr('name', 'reject'+nofinv);
@@ -115,6 +121,12 @@ $(document).ready(function(){
 	formToApp.find('#id_invoicestatus1').addClass('invoiceadditional'+' '+nofinv);
 	formToApp.find('#id_invoicestatus1').attr('name', 'invoicestatus'+nofinv);
 	formToApp.find('#id_invoicestatus1').attr('id', 'id_invoicestatus'+nofinv);
+	formToApp.find("#id_amount1").addClass("amount"+" "+nofinv);
+	formToApp.find("#id_amount1").attr("name", "amount"+nofinv);
+	formToApp.find("#id_amount1").attr("id", "id_amount"+nofinv);
+	formToApp.find("#id_currency1").addClass("currency"+" "+nofinv);
+	formToApp.find("#id_currency1").attr("name", "currency"+nofinv);
+	formToApp.find("#id_currency1").attr("id", "id_currency"+nofinv);
 	$('#vendorform').before(formToApp);
 	formToApp.find('.paid').datepicker({
 	    dateFormat: 'yy-mm-dd',
@@ -154,6 +166,8 @@ $(document).ready(function(){
 		actiondate: $('#id_actiondate').val(),
 		reminderdate: $('#id_actiondate').val(),
 		level: $('#id_level').val(),
+		amount: $("#id_amount"+x).val(),
+		currency: $("#id_currency"+x).val(),
 		remindernumber: $('#id_remindernumber').val(),
 		vendor: $('#id_vendor').val(),
 		mailvendor: $('#id_mailvendor').val(),
