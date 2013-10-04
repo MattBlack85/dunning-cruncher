@@ -5,11 +5,11 @@ Login - Dunning Cruncher
 {% block centre_piece %}
 <div id="wrapper">
   <form id="login" method="POST" action="/login/">
-  <img id="hp-logo" src="{{ STATIC_URL }}images/hp-logo.png" />
+  <img id="hp-logo" src="{{ STATIC_URL }}images/logo.png" />
   {% csrf_token %}
   <table id="login-table">
     <tr>
-      <th><label for="login-user">Username/HP Email:</label></th>
+      <th><label for="login-user">Username:</label></th>
       <td colspan="2">
 	{{ login.uname }}
       </td>
