@@ -31,8 +31,8 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.editbutton', function() {
-	//need to build an ajax call which will populate the modal with the data from the item
 	var objId = parseInt($(this).parent().parent().attr('id'));
+
 	//setup the AJAX request
 	$.ajaxSetup({
 	    type: 'POST',
@@ -73,6 +73,8 @@ function modalEdit(dataEdit) {
     $('#id_invoicestatus').val(dataEdit.invoicestatus);
     $('#id_rejectreason').val(dataEdit.rejectreason);
     $('#id_paidon').val(dataEdit.paidon);
+    $("#id_amount").val(dataEdit.amount);
+    $("#id_currency").val(dataEdit.currency);
     $('#vendm').val(dataEdit.mailvendor);
     $('#vendn').val(dataEdit.vendor);
     $('#id_level').val(dataEdit.level);
@@ -91,6 +93,8 @@ function modalEdit(dataEdit) {
 	    remindernumber: $('#dln').val(),
 	    invoicenumber: $('#invn').val(),
 	    invoicestatus: $('#id_invoicestatus').val(),
+	    amount: $("#id_amount").val(),
+	    currency: $("#id_currency").val(),
 	    //actiontaken: $('#id_actiontaken').val(),
 	    rejectreason: $('#id_rejectreason').val(),
 	    level: $('#id_level').val(),
