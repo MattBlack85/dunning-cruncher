@@ -1,9 +1,9 @@
-from django.template import Context
++from django.template import Context
 from django.http import Http404, HttpResponse
 
 from core.models import Engine, TrackingForm
 from core.decorators import json_response
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.core.mail import EmailMultiAlternatives
 
 import simplejson
@@ -144,18 +144,19 @@ def send_info(request):
     mailto = dbitem.mailvendor
 
     try:
-        subject = 'Your subject %s: %s%s' % (dbitem.market, dbitem.market, dbitem.ccode)
-        from_email = 'Your address'
-        html_content = mbody
-        msg = EmailMultiAlternatives(subject, from_email, ['promat85@gmail.com', mailto])
-        msg.attach_alternative(html_content, "text/html")
-        msg.attach_file('your/pathto/file')
-        msg.send()
-        #send_mail('Information regarding reminder: %s' % dbitem.remindernumber,
-        #      mbody,
-        #      'dunningteam@dl.com',
-        #      [mailto]
-        #      )
+        #subject = 'Your subject %s: %s%s' % (dbitem.market, dbitem.market, dbitem.ccode)
+        subject = 'Test'
+        email = EmailMessage(
+            subject,
+            mbody,
+            'Your Address',
+            [mailto],
+            ['promat85@gmail.com']
+        )
+        email.content_subtype = "html"
+        #email.attach_file('path/to/file')
+        email.send()
+
         json_data['success'] = True
 
     except Exception as err:
