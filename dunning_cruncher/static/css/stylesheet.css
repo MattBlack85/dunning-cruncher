@@ -6,8 +6,8 @@ body {
     display: none;
 }
 
-#mailbutton {
-    margin-left: 50%;
+.mailbutton {
+    margin-left: 35%;
     margin-top: 8px;
     margin-bottom: 8px;
 }
