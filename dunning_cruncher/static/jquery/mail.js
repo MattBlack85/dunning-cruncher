@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#mailbutton").on("click", function() {
+    $("#mailbuttonvendor").on("click", function() {
 	var mailData = $(".mailbody").html();
 
 	//setup the AJAX request
