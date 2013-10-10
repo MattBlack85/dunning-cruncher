@@ -3,13 +3,12 @@ from django import forms
 from django.forms import ModelForm
 
 class Vendor(models.Model):
-    vname = models.CharField(max_length=50)
+    vname = models.CharField(max_length=200)
     vnumber = models.IntegerField(max_length=11, unique=True)
-    vmail = models.EmailField(unique=True)
+    vmail = models.EmailField()
     vstate = models.CharField(max_length=20)
     vstreet = models.CharField(max_length=70)
     vcity = models.CharField(max_length=30)
-    vnumber = models.CharField(max_length=20)
     vzip = models.CharField(max_length=10)
 
     def __unicode__(self):
