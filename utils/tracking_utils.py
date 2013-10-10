@@ -3,8 +3,7 @@ from django.http import Http404, HttpResponse
 
 from core.models import Engine, TrackingForm
 from core.decorators import json_response
-from django.core.mail import send_mail, EmailMessage
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMessage
 
 import simplejson
 
