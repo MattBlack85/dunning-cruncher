@@ -7,3 +7,4 @@ cstatic/
 templates/drafts/*.*html
 core/migrations/
 dunning_cruncher/static/images/*.*
+utils/sendmail.py
