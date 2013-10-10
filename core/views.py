@@ -11,7 +11,8 @@ from django.views.decorators.csrf import csrf_protect
 
 from datetime import date, timedelta
 
-from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item, send_info
+from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item
+from utils.sendmail import send_info
 
 
 def user_context_manager(request):
