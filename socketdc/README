@@ -1,0 +1,1 @@
+If you are going to deploy on *nix bind your gunicorn (or your favorite server if capable) to a unix socket inside this folder.
