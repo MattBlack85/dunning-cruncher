@@ -95,7 +95,9 @@ $(document).ready(function(){
 	    nextform.fadeIn('slow');
 	} else if (status == 'PD') {
 	    nextform.find('.reject').hide();
+	    nextform.find(".other").hide();
 	    nextform.find('label:first').hide();
+	    nextform.find('label:first').next().next("label").hide();
 	    nextform.fadeIn('slow');
 	};
     });
