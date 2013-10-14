@@ -129,7 +129,7 @@ class Engine(models.Model):
     clerk = models.CharField(max_length=50)
     amount = models.DecimalField(max_digits=11, decimal_places=2, null=True, blank=True)
     currency = models.CharField(max_length=3, choices=CURR_OPT, null=True, blank=True)
-    attachment = models.FileField(upload_to='img', null=True, blank=True)
+    #attachment = models.FileField(upload_to='img', null=True, blank=True)
     reasonother = models.CharField(max_length=500, null=True, blank=True)
     actiondate = models.DateField()
     reminderdate = models.DateField()
