@@ -6,12 +6,14 @@ $(document).ready(function(){
     $('#id_rejectreason').addClass('reject'+' '+nofinv);
     $("#id_amount").addClass("amount"+" "+nofinv);
     $("#id_currency").addClass("currency"+" "+nofinv);
+    $("#id_reasonother").addClass("other"+" "+nofinv);
     $('.addhiddendata:first').find('#id_invoicenumber').attr('id', 'id_invoicenumber'+nofinv);
     $('.addhiddendata:first').find('#id_invoicestatus').attr('id', 'id_invoicestatus'+nofinv);
     $('.addhiddendata:first').find('#id_paidon').attr('id', 'id_paidon'+nofinv);
     $('.addhiddendata:first').find('#id_rejectreason').attr('id', 'id_rejectreason'+nofinv);
     $(".addhiddendata:first").find("#id_amount").attr("id", "id_amount"+nofinv);
     $(".addhiddendata:first").find("#id_currency").attr("id", "id_currency"+nofinv);
+    $("#id_reasonother").attr("id", "id_reasonother"+nofinv);
     
     $('#trbutton').on('click', function(){
 	$('#trbutton').fadeOut('slow', function(){
