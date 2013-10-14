@@ -5,13 +5,13 @@
   <fieldset class="fieldmain">
     <legend><b>DL tracking form</b></legend>
     <div class="form-group">
-      <label class="col-lg-2 control-label">Clerk:</label>
+      <label class="col-lg-3 control-label">Clerk:</label>
       <div class="col-lg-2">
 	<p class="form-control-static" id="vclerk" value="{{ user.get_full_name }}">{{ question.clerk }}</p> 
       </div>
     </div>
     <div class="form-group">
-      <label class="col-lg-2 control-label">Market:</label>
+      <label class="col-lg-3 control-label">Market:</label>
       <div class="col-lg-2">
 	<p class="form-control-static">{{ question.market }}</p>
       </div>
@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-lg-2 control-label">Action Date:</label>
+      <label class="col-lg-3 control-label">Action Date:</label>
       <div class="col-lg-2">
 	<p class="form-control-static">{{ question.actiondate }}</p>
       </div>
@@ -42,7 +42,7 @@
     </div>
     <div class="addhiddendata">
       <div class="form-group">
-	<label class="col-lg-2 control-label">Inv. number:</label>
+	<label class="col-lg-3 control-label">Inv. number:</label>
 	<div class="col-lg-2">
 	  <p class="form-control-static">{{ question.invoicenumber }}</p>
 	</div>
@@ -60,7 +60,7 @@
 	</div>
       </div>
       <div class="form-group addtohide rejpaidform">
-	<label class="col-lg-2 control-label">Rejection reason:</label>
+	<label class="col-lg-3 control-label">Rejection reason:</label>
 	<div class="col-lg-2">
 	  <p class="form-control-static">{{ question.rejectreason }}</p>
 	</div>
@@ -72,17 +72,9 @@
 	<div class="col-lg-2">
 	  <p class="form-control-static">{{ question.paidon }}</p>
 	</div>
-	<!--
-	    <div class="form-group">
-	      <label class="col-lg-2 control-label">Others:</label>
-	      <div class="col-lg-7">
-		<p class="form-control-static">{{ question.reasonother }}</p>
-	      </div>
-	    </div>
-	    !-->
       </div>
       <div class="form-group beforevendor">
-	<label class="col-lg-2 control-label">Amount:</label>
+	<label class="col-lg-3 control-label">Amount:</label>
 	<div class="col-lg-2">
 	  <p class="form-control-static">{{ question.amount }}</p>
 	</div>
@@ -93,7 +85,7 @@
       </div>
     </div>
     <div class="form-group" id="vendorform">
-      <label class="col-lg-2 control-label">Vendor number:</label>
+      <label class="col-lg-3 control-label">Vendor number:</label>
       <div class="col-lg-2">
 	<p class="form-control-static">{{ question.vendor }}</p>
       </div>
