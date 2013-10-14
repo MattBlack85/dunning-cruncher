@@ -114,7 +114,7 @@ def tracker (request):
         'value': date.today()
         }
     question.fields['reminderdate'].widget.attrs = {
-        'placeholder': "Insert date of reminder...",
+        'placeholder': "Insert date of the stamp...",
         'class': 'form-control'
         }
 
