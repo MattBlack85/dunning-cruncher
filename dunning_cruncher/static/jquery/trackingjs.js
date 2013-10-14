@@ -113,6 +113,7 @@ $(document).ready(function(){
 	formToApp.find('#id_rejectreason1').removeClass('reject'+' '+nofinv);
 	formToApp.find("#id_amount1").removeClass("amount"+" "+nofinv);
 	formToApp.find("#id_currency1").removeClass("currency"+" "+nofinv);
+	formToApp.find("#id_reasonother1").removeClass("other"+" "+nofinv);
 	nofinv = nofinv + 1;
 	formToApp.find('#id_rejectreason1').addClass('reject'+' '+nofinv);
 	formToApp.find('#id_rejectreason1').attr('name', 'reject'+nofinv);
@@ -132,6 +133,9 @@ $(document).ready(function(){
 	formToApp.find("#id_currency1").addClass("currency"+" "+nofinv);
 	formToApp.find("#id_currency1").attr("name", "currency"+nofinv);
 	formToApp.find("#id_currency1").attr("id", "id_currency"+nofinv);
+	formToApp.find('#id_reasonother1').addClass('other'+' '+nofinv);
+	formToApp.find('#id_reasonother1').attr('name', 'reasonother'+nofinv);
+	formToApp.find('#id_reasonother1').attr('id', 'id_reasonother'+nofinv);
 	$('#vendorform').before(formToApp);
 	formToApp.find('.paid').datepicker({
 	    dateFormat: 'yy-mm-dd',
