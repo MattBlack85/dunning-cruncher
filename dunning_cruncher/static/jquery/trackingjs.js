@@ -84,6 +84,7 @@ $(document).ready(function(){
 	} else {
 	    nextform.hide();
 	    if (nextform.find('.paid').is(':hidden')) {nextform.find('.paid').show()};
+	    if (nextform.find('.other').is(':hidden')) {nextform.find('.other').show()};
 	    if (nextform.find('.reject').is(':hidden')) {nextform.find('.reject').show()};
 	    nextform.find('label').show();
 	}
