@@ -138,7 +138,7 @@ class Engine(models.Model):
     mailvendor = models.EmailField()
     invoicenumber = models.CharField(max_length=20)
     invoicestatus = models.CharField(max_length=100, choices=INVSTATUS_OPT)
-    actiontaken = models.CharField(max_length=1000)
+    actiontaken = models.CharField(max_length=100, null=True, blank=True)
     rejectreason = models.CharField(max_length=3, choices=REJ_REASONS, null=True, blank=True)
     paidon = models.DateField(null=True, blank=True)
 
