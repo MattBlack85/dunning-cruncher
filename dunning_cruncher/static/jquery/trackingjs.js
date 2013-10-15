@@ -222,4 +222,8 @@ function SuccessfulTracking() {
     $('#trform *').filter(':input').each(function() {
 	$(this).val('');
     });
+
+function isInteger(value) {
+    var intPattern = new RegExp(/^[0-9]+$/)
+    return intPattern.test(value);
 };
