@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    //make a p element editable
+    $("p").bind('dblclick', function() {
+        $(this).attr('contentEditable', true);
+    });
+
+    $("p").on("focusout", function() {
+	$(this).attr('contentEditable', false);
+    });
+
     $("#mailbuttonvendor").on("click", function() {
 	var mailData = $(".mailbody").html();
 
