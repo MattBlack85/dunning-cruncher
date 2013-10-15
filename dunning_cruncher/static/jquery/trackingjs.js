@@ -211,7 +211,10 @@ $(document).ready(function(){
 	return true;
     };
 
-    $('#trackbutton').on('click', ValidateForm);
+    $('#trackbutton').on('click', function() {
+	if ( ValidateForm() == 0 ) { DunningTrack() };
+    });
+
     $("#trform :input").on("change", function() {
 	if ( $(this).val() != "" ) {
 	    if ( $(this).parent().parent().hasClass("has-error") ) {
