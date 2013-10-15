@@ -212,6 +212,13 @@ $(document).ready(function(){
     };
 
     $('#trackbutton').on('click', ValidateForm);
+    $("#trform :input").on("change", function() {
+	if ( $(this).val() != "" ) {
+	    if ( $(this).parent().parent().hasClass("has-error") ) {
+		$(this).parent().parent().removeClass("has-error");
+	    }
+	}
+    });
 
     function ValidateForm() {
 	DunningTrack();
