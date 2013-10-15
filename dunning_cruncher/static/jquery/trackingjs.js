@@ -220,9 +220,6 @@ $(document).ready(function(){
 	}
     });
 
-    function ValidateForm() {
-	DunningTrack();
-    };
 });
 
 function SuccessfulTracking() {
