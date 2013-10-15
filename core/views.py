@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_protect
 from datetime import date, timedelta
 
 from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item
-from utils.sendmail import send_info
+from utils.sendmail import send_info, send_to_buy
 
 
 def user_context_manager(request):
@@ -222,6 +222,7 @@ def ajax (request):
         'edit': edit_item,
         'update': update_item,
         'mailsend': send_info,
+        'mailsendbuy': send_to_buy,
         }
 
     try:
@@ -243,6 +244,7 @@ def draft (request, dnumber, language):
     reasons = Engine.REJ_REASONS
 
     return render_to_response(template, {'items': items,
+                                         'mainit': mainit,
                                          'status': status,
                                          'reasons': reasons,
                                          'iid': mainit.id,
