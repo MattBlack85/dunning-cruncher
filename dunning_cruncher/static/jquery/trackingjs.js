@@ -6,12 +6,14 @@ $(document).ready(function(){
     $('#id_rejectreason').addClass('reject'+' '+nofinv);
     $("#id_amount").addClass("amount"+" "+nofinv);
     $("#id_currency").addClass("currency"+" "+nofinv);
+    $("#id_reasonother").addClass("other"+" "+nofinv);
     $('.addhiddendata:first').find('#id_invoicenumber').attr('id', 'id_invoicenumber'+nofinv);
     $('.addhiddendata:first').find('#id_invoicestatus').attr('id', 'id_invoicestatus'+nofinv);
     $('.addhiddendata:first').find('#id_paidon').attr('id', 'id_paidon'+nofinv);
     $('.addhiddendata:first').find('#id_rejectreason').attr('id', 'id_rejectreason'+nofinv);
     $(".addhiddendata:first").find("#id_amount").attr("id", "id_amount"+nofinv);
     $(".addhiddendata:first").find("#id_currency").attr("id", "id_currency"+nofinv);
+    $("#id_reasonother").attr("id", "id_reasonother"+nofinv);
     
     $('#trbutton').on('click', function(){
 	$('#trbutton').fadeOut('slow', function(){
@@ -82,6 +84,7 @@ $(document).ready(function(){
 	} else {
 	    nextform.hide();
 	    if (nextform.find('.paid').is(':hidden')) {nextform.find('.paid').show()};
+	    if (nextform.find('.other').is(':hidden')) {nextform.find('.other').show()};
 	    if (nextform.find('.reject').is(':hidden')) {nextform.find('.reject').show()};
 	    nextform.find('label').show();
 	}
@@ -92,7 +95,9 @@ $(document).ready(function(){
 	    nextform.fadeIn('slow');
 	} else if (status == 'PD') {
 	    nextform.find('.reject').hide();
+	    nextform.find(".other").hide();
 	    nextform.find('label:first').hide();
+	    nextform.find('label:first').next().next("label").hide();
 	    nextform.fadeIn('slow');
 	};
     });
@@ -108,6 +113,7 @@ $(document).ready(function(){
 	formToApp.find('#id_rejectreason1').removeClass('reject'+' '+nofinv);
 	formToApp.find("#id_amount1").removeClass("amount"+" "+nofinv);
 	formToApp.find("#id_currency1").removeClass("currency"+" "+nofinv);
+	formToApp.find("#id_reasonother1").removeClass("other"+" "+nofinv);
 	nofinv = nofinv + 1;
 	formToApp.find('#id_rejectreason1').addClass('reject'+' '+nofinv);
 	formToApp.find('#id_rejectreason1').attr('name', 'reject'+nofinv);
@@ -127,6 +133,9 @@ $(document).ready(function(){
 	formToApp.find("#id_currency1").addClass("currency"+" "+nofinv);
 	formToApp.find("#id_currency1").attr("name", "currency"+nofinv);
 	formToApp.find("#id_currency1").attr("id", "id_currency"+nofinv);
+	formToApp.find('#id_reasonother1').addClass('other'+' '+nofinv);
+	formToApp.find('#id_reasonother1').attr('name', 'reasonother'+nofinv);
+	formToApp.find('#id_reasonother1').attr('id', 'id_reasonother'+nofinv);
 	$('#vendorform').before(formToApp);
 	formToApp.find('.paid').datepicker({
 	    dateFormat: 'yy-mm-dd',
@@ -173,9 +182,10 @@ $(document).ready(function(){
 		mailvendor: $('#id_mailvendor').val(),
 		invoicenumber: $('#id_invoicenumber'+x).val(),
 		invoicestatus: $('#id_invoicestatus'+x).val(),
-		//actiontaken: $('#id_actiontaken').val(),
+		actiontaken: actionArray(),
 		rejectreason: $('#id_rejectreason'+x).val(),
 		paidon: $('#id_paidon'+x).val()
+		//attachment:
 	    };
 	    data.push(obj);
 	}
@@ -201,15 +211,91 @@ $(document).ready(function(){
 	return true;
     };
 
-    $('#trackbutton').on('click', ValidateForm);
+    $('#trackbutton').on('click', function() {
+	if ( ValidateForm() == 0 ) { DunningTrack() };
+    });
 
-    function ValidateForm() {
-	DunningTrack();
-    };
+    $("#trform :input").on("change", function() {
+	if ( $(this).val() != "" ) {
+	    if ( $(this).parent().parent().hasClass("has-error") ) {
+		$(this).parent().parent().removeClass("has-error");
+	    }
+	}
+    });
+
 });
 
 function SuccessfulTracking() {
-    $('#trform *').filter(':input').each(function() {
-	$(this).val('');
+    alert("Item correctly tracked");
+};
+
+function actionArray() {
+    var actionPool = $(".actioncheck :input");
+    var actionList = new Array()
+
+    $.each(actionPool, function() {
+	if ($(this).prop("checked")) {actionList.push($(this).val())}
     });
+
+    actionList = actionList.join(",")
+    return actionList;
+};
+
+function ValidateForm() {
+    error = 0;
+    var howManyErrors = $(".has-error").length;
+    var fieldsToCheck = ["market", "ccode", "reminderdate", "remindernumber",
+			 "level", "vendor", "mailvendor"]
+    if ( howManyErrors == 0 ) {
+	//checks if some fields are not correctly filled (1st check)
+	$.each(fieldsToCheck, function() {
+	    if ($("#id_"+this).val() == "") {
+		if (! $("#id_"+this).parent().parent().hasClass("has-error")) {
+		    $("#id_"+this).parent().parent().addClass("has-error");
+		    error++;
+		}
+	    } else {
+		if ($("id_"+this).parent().parent().hasClass(".has-error")) {
+		    $("#id_"+this).removeClass("has-error");
+		}
+	    };
+	});
+    } else {
+	// no errors
+	;
+    }
+    // return the total number of errors
+    var errorSum = error + additionalErrorCheck()
+    return errorSum
+};
+
+function additionalErrorCheck() {
+    var error = 0;
+    var vendor = $("#id_vendor")
+    var mailVendor = $("#id_mailvendor")
+
+    //check if email field is e-mail like
+    if ( !isValidEmailAddress(mailVendor.val()) ) {
+	if ( !mailVendor.hasClass("has-error") ) { mailVendor.parent().parent().addClass("has-error") }
+	error++
+    };
+
+    //check if vendor number has 9 characters or if starts with 100 or if there are no characters into the field
+    if ( !(vendor.val().length == 9) || !(vendor.val().substr(0, 3) == "100") || !isInteger(vendor.val()) ) {
+	if ( ! vendor.hasClass("has-error") ) { vendor.parent().parent().addClass("has-error") }
+	error++
+    };
+
+    //returns the number of errors
+    return error
+};
+
+function isValidEmailAddress(emailAddress) {
+    var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+    return pattern.test(emailAddress);
+};
+
+function isInteger(value) {
+    var intPattern = new RegExp(/^[0-9]+$/)
+    return intPattern.test(value);
 };

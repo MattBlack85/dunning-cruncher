@@ -130,7 +130,7 @@ class Engine(models.Model):
     amount = models.DecimalField(max_digits=11, decimal_places=2, null=True, blank=True)
     currency = models.CharField(max_length=3, choices=CURR_OPT, null=True, blank=True)
     #attachment = models.FileField(upload_to='img', null=True, blank=True)
-    #reasonother = models.CharField(max_length=500, null=True, blank=True)
+    reasonother = models.CharField(max_length=500, null=True, blank=True)
     actiondate = models.DateField()
     reminderdate = models.DateField()
     remindernumber = models.CharField(max_length=30)
@@ -138,7 +138,7 @@ class Engine(models.Model):
     mailvendor = models.EmailField()
     invoicenumber = models.CharField(max_length=20)
     invoicestatus = models.CharField(max_length=100, choices=INVSTATUS_OPT)
-    #actiontaken = models.CharField(max_length=1000)
+    actiontaken = models.CharField(max_length=100, blank=True)
     rejectreason = models.CharField(max_length=3, choices=REJ_REASONS, null=True, blank=True)
     paidon = models.DateField(null=True, blank=True)
 
@@ -181,5 +181,5 @@ class TrackingForm(ModelForm):
     class Meta:
 	model = Engine
 	widgets = {
-	    'actiontaken' : forms.Textarea()
+	    'reasonother' : forms.Textarea()
             }

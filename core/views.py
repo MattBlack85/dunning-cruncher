@@ -96,7 +96,7 @@ def logout_view(request):
 def tracker (request):
     question = TrackingForm()
     question.fields['clerk'].widget.attrs = {'class': 'form-control'}
-    #question.fields['actiontaken'].widget.attrs = {'class':'form-control'}
+    question.fields['actiontaken'].widget.attrs = {'class':'form-control'}
     question.fields['invoicestatus'].widget.attrs = {'class': 'form-control status'}
     question.fields['invoicenumber'].widget.attrs = {'class': 'form-control'}
     question.fields['market'].widget.attrs = {'class': 'form-control'}
@@ -109,12 +109,15 @@ def tracker (request):
     question.fields['paidon'].widget.attrs = {'class': 'form-control paid'}
     question.fields['currency'].widget.attrs = {'class': 'form-control'}
     question.fields['amount'].widget.attrs = {'class': 'form-control'}
+    question.fields['reasonother'].widget.attrs = {'class': 'form-control'}
+    question.fields['actiontaken'].widget.attrs = {'class': 'form-control'}
+    #question.fields['attachment'].widget.attrs = {'class': 'form-control'}
     question.fields['actiondate'].widget.attrs = {
         'class': 'form-control',
         'value': date.today()
         }
     question.fields['reminderdate'].widget.attrs = {
-        'placeholder': "Insert date of reminder...",
+        'placeholder': "Insert date of the stamp...",
         'class': 'form-control'
         }
 
