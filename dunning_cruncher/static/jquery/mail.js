@@ -32,4 +32,8 @@ $(document).ready(function() {
 	});
 	return true;
     });
+
+    $("#mailbuttonbuy").on("click", function() {
+	$("#buyermod").modal();
+    });
 });
