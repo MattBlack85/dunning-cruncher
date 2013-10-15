@@ -241,6 +241,55 @@ function actionArray() {
     return actionList;
 };
 
+function ValidateForm() {
+    error = 0;
+    var howManyErrors = $(".has-error").length;
+    var fieldsToCheck = ["market", "ccode", "reminderdate", "remindernumber",
+			 "level", "vendor", "mailvendor"]
+    if ( howManyErrors == 0 ) {
+	//checks if some fields are not correctly filled (1st check)
+	$.each(fieldsToCheck, function() {
+	    if ($("#id_"+this).val() == "") {
+		if (! $("#id_"+this).parent().parent().hasClass("has-error")) {
+		    $("#id_"+this).parent().parent().addClass("has-error");
+		    error++;
+		}
+	    } else {
+		if ($("id_"+this).parent().parent().hasClass(".has-error")) {
+		    $("#id_"+this).removeClass("has-error");
+		}
+	    };
+	});
+    } else {
+	// no errors
+	;
+    }
+    // return the total number of errors
+    var errorSum = error + additionalErrorCheck()
+    return errorSum
+};
+
+function additionalErrorCheck() {
+    var error = 0;
+    var vendor = $("#id_vendor")
+    var mailVendor = $("#id_mailvendor")
+
+    //check if email field is e-mail like
+    if ( !isValidEmailAddress(mailVendor.val()) ) {
+	if ( !mailVendor.hasClass("has-error") ) { mailVendor.parent().parent().addClass("has-error") }
+	error++
+    };
+
+    //check if vendor number has 9 characters or if starts with 100 or if there are no characters into the field
+    if ( !(vendor.val().length == 9) || !(vendor.val().substr(0, 3) == "100") || !isInteger(vendor.val()) ) {
+	if ( ! vendor.hasClass("has-error") ) { vendor.parent().parent().addClass("has-error") }
+	error++
+    };
+
+    //returns the number of errors
+    return error
+};
+
 function isValidEmailAddress(emailAddress) {
     var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
     return pattern.test(emailAddress);
