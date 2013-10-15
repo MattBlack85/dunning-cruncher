@@ -185,6 +185,7 @@ $(document).ready(function(){
 		//actiontaken: $('#id_actiontaken').val(),
 		rejectreason: $('#id_rejectreason'+x).val(),
 		paidon: $('#id_paidon'+x).val()
+		//attachment:
 	    };
 	    data.push(obj);
 	}
