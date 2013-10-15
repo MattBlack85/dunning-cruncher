@@ -182,7 +182,7 @@ $(document).ready(function(){
 		mailvendor: $('#id_mailvendor').val(),
 		invoicenumber: $('#id_invoicenumber'+x).val(),
 		invoicestatus: $('#id_invoicestatus'+x).val(),
-		//actiontaken: $('#id_actiontaken').val(),
+		actiontaken: actionArray(),
 		rejectreason: $('#id_rejectreason'+x).val(),
 		paidon: $('#id_paidon'+x).val()
 		//attachment:
