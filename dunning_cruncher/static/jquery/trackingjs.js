@@ -226,8 +226,8 @@ $(document).ready(function(){
 });
 
 function SuccessfulTracking() {
-    $('#trform *').filter(':input').each(function() {
-	$(this).val('');
+    alert("Item correctly tracked");
+};
     });
 
 
