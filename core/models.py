@@ -14,6 +14,10 @@ class Vendor(models.Model):
     def __unicode__(self):
         return '%s %s %s' %(self.vname, str(self.vnumber), str(self.vmail))
 
+class StoredDocs(models.Model):
+    dnum = models.CharField(max_length=50)
+    file_upload = models.FileField(upload_to='img', blank=True)
+
 class Engine(models.Model):
     MARKET_OPT = (
         ('FI', 'Finland'),
