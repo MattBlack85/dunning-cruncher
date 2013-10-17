@@ -192,8 +192,8 @@ $(document).ready(function(){
 		invoicestatus: $('#id_invoicestatus'+x).val(),
 		actiontaken: actionArray(),
 		rejectreason: $('#id_rejectreason'+x).val(),
-		paidon: $('#id_paidon'+x).val()
-		//attachment:
+		paidon: $('#id_paidon'+x).val(),
+		attachment: attach
 	    };
 	    data.push(obj);
 	}
