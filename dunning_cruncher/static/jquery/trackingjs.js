@@ -237,7 +237,7 @@ function actionArray() {
     var actionList = new Array()
 
     $.each(actionPool, function() {
-	if ($(this).prop("checked")) {actionList.push($(this).val())}
+	if ( $(this).prop("checked") ) { actionList.push($(this).val()) }
     });
 
     actionList = actionList.join(",")
