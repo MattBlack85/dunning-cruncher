@@ -212,7 +212,7 @@ $(document).ready(function(){
     };
 
     $('#trackbutton').on('click', function() {
-	if ( ValidateForm() == 0 ) { DunningTrack() };
+	if ( ValidateForm() == 0 ) { AjaxUpload() };
     });
 
     $("#trform :input").on("change", function() {
