@@ -120,7 +120,8 @@ def tracker (request):
         'class': 'form-control'
         }
 
-    return render_to_response('tracking.html', {'question': question}, RequestContext(request))
+    return render_to_response('tracking.html', {'question': question,
+                                                'fileform': fileform}, RequestContext(request))
 
 @login_required(redirect_field_name='error', login_url='/')
 def edit (request):
