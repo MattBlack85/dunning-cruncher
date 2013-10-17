@@ -233,7 +233,35 @@ $(document).ready(function(){
 	}
     });
 
+    function AjaxUpload() {
+	//check if there is any file
+	if ( $("#id_file_upload").get(0).files[0] ) {
+	    file = $("#id_file_upload").get(0).files[0];
+	    var formdata = new FormData();
+	    formdata.append('file_upload', file);
+	    formdata.append('form_type', 'ajax_file_upload');
+	    formdata.append('dnum', $("#id_remindernumber").val());
+	    //the real AJAX request
+	    $.ajax({
+		url: '/ajax/',
+		type: 'POST',
+		data: formdata,
+		processData: false,
+		contentType: false,
+		success: function(response) {
+		    DunningTrack(response.id);
+		},
+		error: function (ajaxObj, textStatus, error) {
+		    alert(error);
+		}
+	    });
+	} else {
+	    // if not throw an alert
+	    alert("You must select a file!");
+	};
+    };
 });
+
 
 function SuccessfulTracking() {
     alert("Item correctly tracked");
