@@ -164,6 +164,13 @@ $(document).ready(function(){
 	// get the total number of invoices.
 	var invo = $('.invoice').length;
 
+	//check if we passed no arguments to our function
+	if ( id === undefined ) {
+	    alert("SOMETHING WENT WRONG, WE HAVE NO ITEM ID");
+	} else {
+	    attach = id;
+	};
+
 	var data = new Array()
 
 	//loop through the invoice to create our data to post
