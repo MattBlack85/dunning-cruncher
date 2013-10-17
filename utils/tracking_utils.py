@@ -41,12 +41,12 @@ def ajax_multitracking(request):
         for item in form_data:
             TrackingForm(item).save()
 
+        json_data['success'] = True
+
     except Exception as err:
         json_data['error'] = str(err)
         return json_data
 
-    TrackingForm()
-    json_data['success'] = True
     return json_data
 
 @json_response
