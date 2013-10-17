@@ -161,6 +161,11 @@ class Engine(models.Model):
             self.paidon
             )
 
+class StoredForm(ModelForm):
+
+    class Meta:
+	model = StoredDocs
+
 class Login(forms.Form):
 
     """ Basic login form
