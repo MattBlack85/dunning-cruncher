@@ -160,7 +160,7 @@ $(document).ready(function(){
 	$('#id_remindernumber').val(market+rdate[0]+rdate[1]+rdate[2]+'/');
     });
 
-    function DunningTrack() {
+    function DunningTrack(id) {
 	// get the total number of invoices.
 	var invo = $('.invoice').length;
 
