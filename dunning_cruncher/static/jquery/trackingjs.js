@@ -26,6 +26,7 @@ $(document).ready(function(){
 	dateFormat: 'yy-mm-dd',
 	constrainInput: false
     });
+
     $('.paid:first').datepicker({
 	dateFormat: 'yy-mm-dd',
 	constrainInput: false
