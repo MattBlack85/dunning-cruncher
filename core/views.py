@@ -94,6 +94,7 @@ def logout_view(request):
 
 @login_required(redirect_field_name='error', login_url='/')
 def tracker (request):
+    fileform = StoredForm()
     question = TrackingForm()
     question.fields['clerk'].widget.attrs = {'class': 'form-control'}
     question.fields['actiontaken'].widget.attrs = {'class':'form-control'}
