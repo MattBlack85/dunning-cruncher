@@ -120,6 +120,35 @@ class Engine(models.Model):
         ("RES", "Rescan, poor quality")
         )
 
+    REJ_REASONS_NL = (
+        ("MPO", "Ontbrekend PO nummer"),
+        ("BIX", "Onjuiste informatie"),
+        ("DIX", "Duplicaat"),
+        ("OTH", "Overige reden"),
+        ("IDX", "Ongeldig document"),
+        ("WFI", "Incorrect systeem - doorgestuurd naar FIN box"),
+        ("WSO", "Incorrect systeem - doorgestuurd naar SOS box"),
+        ("WCO", "Incorrect systeem - doorgestuurd naar COM box"),
+        ("IPO", "Ongeldig PO nummer"),
+        ("WCN", "Onjuiste bedrijfsnaam"),
+        ("WCA", "Onjuist bedrijsfadres"),
+        ("ICX", "Onjuiste valuta"),
+        ("MCX", "Ontbrekende valuta"),
+        ("WVA", "Incorrect BTW bedrag"),
+        ("MVN", "Ontbrekend BTW nummer"),
+        ("VMX", "Miscalculatie op factuur"),
+        ("DNV", "Informatie niet zichtbaar op de factuur"),
+        ("IDM", "Ontbrekende factuurdatum"),
+        ("INM", "Ontbrekend factuurnummer"),
+        ("MPX", "Ontbrekende paginas"),
+        ("TFM", "Onbrekende BTW vrijstelling "),
+        ("DEM", "Ontbrekende leveringsdatum/ontbrekende vrachtbrief"),
+        ("QMX", "Ontbrekende hoeveelheidsvermelding"),
+        ("SDM", "Onbrekende dienstomschrijving"),
+        ("MIA", "Ontbrekend factuurbedrag"),
+        ("IIX", "Incomplete factuur"),
+        )
+
     CURR_OPT = (
         ("EUR", "EUR"),
         ("GBP", "GBP"),
