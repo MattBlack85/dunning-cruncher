@@ -245,10 +245,12 @@ def draft (request, dnumber, language):
     template = mainit.market+'_'+language+'.html'
     status = Engine.INVSTATUS_OPT
     reasons = Engine.REJ_REASONS
+    reasonsnl = Engine.REJ.REASONS_NL
 
     return render_to_response(template, {'items': items,
                                          'mainit': mainit,
                                          'status': status,
                                          'reasons': reasons,
+                                         'reasonsnl': reasonsnl,
                                          'iid': mainit.id,
                                          'vendor': vendor}, RequestContext(request))
