@@ -26,10 +26,12 @@
     {% block edittable %}{% endblock edittable %}
     {% block trackingjs %}{% endblock trackingjs %}
     {% block mailJS %}{% endblock mailJS %}
+    <!--
     <script src="{{ STATIC_URL }}js/jquery-migrate-1.2.1.js"></script>
+    <script src="{{ STATIC_URL }}jquery/json2.js"></script>
+    !-->
     <script type="text/javascript" src="{{ STATIC_URL }}jquery/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jquery/js/csrf_protection.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}jquery/json2.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/validation.js"></script>
     {% block additional_javascript %}
     {% endblock additional_javascript %}
