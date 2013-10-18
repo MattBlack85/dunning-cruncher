@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_protect
 from datetime import date, timedelta
 
 from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item, ajax_file_upload
-from utils.sendmail import send_info, send_to_buy
+from utils.sendmail import send_info, send_to_buy, shubmail
 
 
 def user_context_manager(request):
@@ -225,6 +225,7 @@ def ajax (request):
         'mailsend': send_info,
         'mailsendbuy': send_to_buy,
         'ajax_file_upload': ajax_file_upload,
+        'shubmail': shubmail,
         }
 
     try:
