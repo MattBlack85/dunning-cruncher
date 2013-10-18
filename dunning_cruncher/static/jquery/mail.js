@@ -66,4 +66,35 @@ $(document).ready(function() {
 	});
 	return true;
     });
+
+    $("#shubmod").on("click", "button :last",  function() {
+	var mailTo = $("#modalmailshub").val();
+	var mailData = $("#shubmodalmailbody").html();
+
+	//check if there is any file
+	if ( $("#scanattach").get(0).files[0] ) {
+	    file = $("#scanattach").get(0).files[0];
+	    var formdata = new FormData();
+	    formdata.append('form_type', 'shubmail');
+	    formdata.append('mailto', mailTo);
+	    formdata.append('maildata', mailData);
+	    formdata.append('file_upload', file);
+
+	    //the real AJAX request
+	    $.ajax({
+		url: '/ajax/',
+		type: 'POST',
+		data: formdata,
+		processData: false,
+		contentType: false,
+		success: alert("Mail sent!"),
+		error: function (ajaxObj, textStatus, error) {
+		    alert(error);
+		}
+	    });
+	} else {
+	    // if not throw an alert
+	    alert("You must select a file!");
+	};
+    });
 });
