@@ -41,7 +41,6 @@ $(document).ready(function() {
 	$("#shubmod").modal();
     });
 
-
     $("#buyermod").on("click", "button :last",  function() {
 	var mailTo = $("#modalmailemail").val();
 	var mailData = $("#modalmailbody").html();
