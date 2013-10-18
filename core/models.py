@@ -18,6 +18,9 @@ class StoredDocs(models.Model):
     dnum = models.CharField(max_length=50)
     file_upload = models.FileField(upload_to='img', blank=True)
 
+    def __unicode__(self):
+        return '%s, %s' %(self.dnum, self.file_upload)
+
 class Engine(models.Model):
     MARKET_OPT = (
         ('FI', 'Finland'),
