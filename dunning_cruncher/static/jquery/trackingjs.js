@@ -26,6 +26,7 @@ $(document).ready(function(){
 	dateFormat: 'yy-mm-dd',
 	constrainInput: false
     });
+
     $('.paid:first').datepicker({
 	dateFormat: 'yy-mm-dd',
 	constrainInput: false
@@ -159,9 +160,16 @@ $(document).ready(function(){
 	$('#id_remindernumber').val(market+rdate[0]+rdate[1]+rdate[2]+'/');
     });
 
-    function DunningTrack() {
+    function DunningTrack(id) {
 	// get the total number of invoices.
 	var invo = $('.invoice').length;
+
+	//check if we passed no arguments to our function
+	if ( id === undefined ) {
+	    alert("SOMETHING WENT WRONG, WE HAVE NO ITEM ID");
+	} else {
+	    attach = id;
+	};
 
 	var data = new Array()
 
@@ -184,8 +192,8 @@ $(document).ready(function(){
 		invoicestatus: $('#id_invoicestatus'+x).val(),
 		actiontaken: actionArray(),
 		rejectreason: $('#id_rejectreason'+x).val(),
-		paidon: $('#id_paidon'+x).val()
-		//attachment:
+		paidon: $('#id_paidon'+x).val(),
+		attachment: attach
 	    };
 	    data.push(obj);
 	}
@@ -203,7 +211,9 @@ $(document).ready(function(){
 		form_type: 'multi',
 		mass_data: JSON.stringify(data)
 	    },
-	    success: window.location.replace("/main/"),
+	    success: function() {
+		SuccessfulTracking();
+	    },
 	    error: function (ajaxObj, textStatus, error) {
 		alert(error);
 	    }
@@ -212,7 +222,7 @@ $(document).ready(function(){
     };
 
     $('#trackbutton').on('click', function() {
-	if ( ValidateForm() == 0 ) { DunningTrack() };
+	if ( ValidateForm() == 0 ) { AjaxUpload() };
     });
 
     $("#trform :input").on("change", function() {
@@ -223,7 +233,35 @@ $(document).ready(function(){
 	}
     });
 
+    function AjaxUpload() {
+	//check if there is any file
+	if ( $("#id_file_upload").get(0).files[0] ) {
+	    file = $("#id_file_upload").get(0).files[0];
+	    var formdata = new FormData();
+	    formdata.append('file_upload', file);
+	    formdata.append('form_type', 'ajax_file_upload');
+	    formdata.append('dnum', $("#id_remindernumber").val());
+	    //the real AJAX request
+	    $.ajax({
+		url: '/ajax/',
+		type: 'POST',
+		data: formdata,
+		processData: false,
+		contentType: false,
+		success: function(response) {
+		    DunningTrack(response.id);
+		},
+		error: function (ajaxObj, textStatus, error) {
+		    alert(error);
+		}
+	    });
+	} else {
+	    // if not throw an alert
+	    alert("You must select a file!");
+	};
+    };
 });
+
 
 function SuccessfulTracking() {
     alert("Item correctly tracked");
@@ -234,7 +272,7 @@ function actionArray() {
     var actionList = new Array()
 
     $.each(actionPool, function() {
-	if ($(this).prop("checked")) {actionList.push($(this).val())}
+	if ( $(this).prop("checked") ) { actionList.push($(this).val()) }
     });
 
     actionList = actionList.join(",")

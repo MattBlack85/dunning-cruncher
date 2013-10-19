@@ -14,6 +14,13 @@ class Vendor(models.Model):
     def __unicode__(self):
         return '%s %s %s' %(self.vname, str(self.vnumber), str(self.vmail))
 
+class StoredDocs(models.Model):
+    dnum = models.CharField(max_length=50)
+    file_upload = models.FileField(upload_to='img', blank=True)
+
+    def __unicode__(self):
+        return '%s, %s' %(self.dnum, self.file_upload)
+
 class Engine(models.Model):
     MARKET_OPT = (
         ('FI', 'Finland'),
@@ -113,6 +120,35 @@ class Engine(models.Model):
         ("RES", "Rescan, poor quality")
         )
 
+    REJ_REASONS_NL = (
+        ("MPO", "Ontbrekend PO nummer"),
+        ("BIX", "Onjuiste informatie"),
+        ("DIX", "Duplicaat"),
+        ("OTH", "Overige reden"),
+        ("IDX", "Ongeldig document"),
+        ("WFI", "Incorrect systeem - doorgestuurd naar FIN box"),
+        ("WSO", "Incorrect systeem - doorgestuurd naar SOS box"),
+        ("WCO", "Incorrect systeem - doorgestuurd naar COM box"),
+        ("IPO", "Ongeldig PO nummer"),
+        ("WCN", "Onjuiste bedrijfsnaam"),
+        ("WCA", "Onjuist bedrijsfadres"),
+        ("ICX", "Onjuiste valuta"),
+        ("MCX", "Ontbrekende valuta"),
+        ("WVA", "Incorrect BTW bedrag"),
+        ("MVN", "Ontbrekend BTW nummer"),
+        ("VMX", "Miscalculatie op factuur"),
+        ("DNV", "Informatie niet zichtbaar op de factuur"),
+        ("IDM", "Ontbrekende factuurdatum"),
+        ("INM", "Ontbrekend factuurnummer"),
+        ("MPX", "Ontbrekende paginas"),
+        ("TFM", "Onbrekende BTW vrijstelling "),
+        ("DEM", "Ontbrekende leveringsdatum/ontbrekende vrachtbrief"),
+        ("QMX", "Ontbrekende hoeveelheidsvermelding"),
+        ("SDM", "Onbrekende dienstomschrijving"),
+        ("MIA", "Ontbrekend factuurbedrag"),
+        ("IIX", "Incomplete factuur"),
+        )
+
     CURR_OPT = (
         ("EUR", "EUR"),
         ("GBP", "GBP"),
@@ -129,7 +165,7 @@ class Engine(models.Model):
     clerk = models.CharField(max_length=50)
     amount = models.DecimalField(max_digits=11, decimal_places=2, null=True, blank=True)
     currency = models.CharField(max_length=3, choices=CURR_OPT, null=True, blank=True)
-    #attachment = models.FileField(upload_to='img', null=True, blank=True)
+    attachment = models.ForeignKey(StoredDocs, blank=True)
     reasonother = models.CharField(max_length=500, null=True, blank=True)
     actiondate = models.DateField()
     reminderdate = models.DateField()
@@ -156,6 +192,11 @@ class Engine(models.Model):
             self.rejectreason,
             self.paidon
             )
+
+class StoredForm(ModelForm):
+
+    class Meta:
+	model = StoredDocs
 
 class Login(forms.Form):
 

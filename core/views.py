@@ -1,6 +1,6 @@
 from django.contrib import auth
 from django.db import models
-from core.models import Login, Engine, TrackingForm
+from core.models import Login, Engine, TrackingForm, StoredDocs, StoredForm
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import Context
@@ -11,8 +11,8 @@ from django.views.decorators.csrf import csrf_protect
 
 from datetime import date, timedelta
 
-from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item
-from utils.sendmail import send_info, send_to_buy
+from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item, ajax_file_upload
+from utils.sendmail import send_info, send_to_buy, shubmail
 
 
 def user_context_manager(request):
@@ -94,6 +94,7 @@ def logout_view(request):
 
 @login_required(redirect_field_name='error', login_url='/')
 def tracker (request):
+    fileform = StoredForm()
     question = TrackingForm()
     question.fields['clerk'].widget.attrs = {'class': 'form-control'}
     question.fields['actiontaken'].widget.attrs = {'class':'form-control'}
@@ -111,7 +112,6 @@ def tracker (request):
     question.fields['amount'].widget.attrs = {'class': 'form-control'}
     question.fields['reasonother'].widget.attrs = {'class': 'form-control'}
     question.fields['actiontaken'].widget.attrs = {'class': 'form-control'}
-    #question.fields['attachment'].widget.attrs = {'class': 'form-control'}
     question.fields['actiondate'].widget.attrs = {
         'class': 'form-control',
         'value': date.today()
@@ -121,7 +121,8 @@ def tracker (request):
         'class': 'form-control'
         }
 
-    return render_to_response('tracking.html', {'question': question}, RequestContext(request))
+    return render_to_response('tracking.html', {'question': question,
+                                                'fileform': fileform}, RequestContext(request))
 
 @login_required(redirect_field_name='error', login_url='/')
 def edit (request):
@@ -223,6 +224,8 @@ def ajax (request):
         'update': update_item,
         'mailsend': send_info,
         'mailsendbuy': send_to_buy,
+        'ajax_file_upload': ajax_file_upload,
+        'shubmail': shubmail,
         }
 
     try:
@@ -242,10 +245,12 @@ def draft (request, dnumber, language):
     template = mainit.market+'_'+language+'.html'
     status = Engine.INVSTATUS_OPT
     reasons = Engine.REJ_REASONS
+    reasonsnl = Engine.REJ.REASONS_NL
 
     return render_to_response(template, {'items': items,
                                          'mainit': mainit,
                                          'status': status,
                                          'reasons': reasons,
+                                         'reasonsnl': reasonsnl,
                                          'iid': mainit.id,
                                          'vendor': vendor}, RequestContext(request))

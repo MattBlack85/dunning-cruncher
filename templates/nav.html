@@ -22,7 +22,7 @@
   <div class="container">
     <h2>Hello, {{ user.first_name }}</h2>
     <p id="ptrack">To start tracking a new DL click on the below button.</p>
-    <img class="logo" src="{{ STATIC_URL }}images/Logo_hp.png">
+    <img class="logo" src="{{ STATIC_URL }}images/logo2.png">
     <button type="button" class="btn btn-primary" id="trbutton">
       <span class="glyphicon glyphicon-briefcase"></span> Track!
     </button>
@@ -33,8 +33,8 @@
 {% endblock nav %}
 {% block draft %}{% endblock draft %}
 {% block mailbuttons %}{% endblock mailbuttons %}
-{% block modalforbuyer %}
-{% endblock modalforbuyer %}
+{% block modalforbuyer %}{% endblock modalforbuyer %}
+{% block modalforshub %}{% endblock modalforshub %}
 {% block mailJS %}{% endblock mailJS %}
 {% block trackingform %}{% endblock trackingform %}
 {% block trackingjs %}

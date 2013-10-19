@@ -1,7 +1,7 @@
 from django.template import Context
 from django.http import Http404, HttpResponse
 
-from core.models import Engine, TrackingForm
+from core.models import Engine, TrackingForm, StoredDocs, StoredForm
 from core.decorators import json_response
 from django.core.mail import EmailMessage
 
@@ -41,12 +41,12 @@ def ajax_multitracking(request):
         for item in form_data:
             TrackingForm(item).save()
 
+        json_data['success'] = True
+
     except Exception as err:
         json_data['error'] = str(err)
         return json_data
 
-    TrackingForm()
-    json_data['success'] = True
     return json_data
 
 @json_response
@@ -120,6 +120,26 @@ def update_item(request):
     try:
         db_item.save()
         json_data['success'] = True
+
+    except Exception as err:
+        json_data['error'] = str(err)
+        return json_data
+
+    return json_data
+
+@json_response
+def ajax_file_upload(request):
+    json_data = {
+        'success': False,
+        'error': ''
+        }
+
+    try:
+        NewUpload = StoredForm(request.POST, request.FILES)
+        if NewUpload.is_valid():
+            itemid = NewUpload.save()
+            json_data['success'] = True
+            json_data['id'] = itemid.id
 
     except Exception as err:
         json_data['error'] = str(err)
