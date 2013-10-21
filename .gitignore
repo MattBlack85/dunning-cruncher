@@ -8,3 +8,7 @@ templates/drafts/*.*html
 core/migrations/
 dunning_cruncher/static/images/*.*
 utils/sendmail.py
+upload/img/*.jpg
+upload/img/*.png
+upload/img/*.pdf
+upload/img/*.tiff
