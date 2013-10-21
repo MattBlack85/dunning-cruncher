@@ -243,14 +243,26 @@ def draft (request, dnumber, language):
     vendor = mainit.vendor
     items = Engine.objects.all().filter(remindernumber=mainit.remindernumber)
     template = mainit.market+'_'+language+'.html'
-    status = Engine.INVSTATUS_OPT
-    reasons = Engine.REJ_REASONS
-    reasonsnl = Engine.REJ.REASONS_NL
+
+    if language == 'EN':
+        status = Engine.INVSTATUS_OPT
+        reasons = Engine.REJ_REASONS
+
+    if language == 'FI':
+        status = Engine.INVSTATUS_OPT_FI
+        reasons = Engine.REJ_REASONS
+
+    if language == 'NL':
+        status = Engine.INVSTATUS_OPT
+        reasons = Engine.REJ.REASONS_NL
+
+    if language == 'SE':
+        status = Engine.INVSTATUS_OPT_SE
+        reasons = Engine.REJ.REASONS
 
     return render_to_response(template, {'items': items,
                                          'mainit': mainit,
                                          'status': status,
                                          'reasons': reasons,
-                                         'reasonsnl': reasonsnl,
                                          'iid': mainit.id,
                                          'vendor': vendor}, RequestContext(request))
