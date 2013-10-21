@@ -84,6 +84,19 @@ class Engine(models.Model):
         ('OX', 'Other')
         )
 
+    INVSTATUS_OPT_FI = (
+        ('RJ', 'Hylätty'),
+        ('PO', 'Kirjattu'),
+        ('PD', 'Maksettu'),
+        ('NP', 'Kirjaamatta'),
+        ('BL', 'Pysäytetty'),
+        ('NR', 'Ei saapunut'),
+        ('CA', 'Peruutettu'),
+        ('RE', 'Kumottu'),
+        ('PB', 'Lähetetty - velkasaldo'),
+        ('OX', 'Muu')
+        )
+
         )
 
     REJ_REASONS = (
