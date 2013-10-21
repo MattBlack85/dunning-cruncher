@@ -79,7 +79,11 @@ class Engine(models.Model):
         ('BL', 'Blocked'),
         ('NR', 'Not received'),
         ('CA', 'Cancelled'),
-        ('RE', 'Reversed')
+        ('RE', 'Reversed'),
+        ('PB', 'Posted - debit balance'),
+        ('OX', 'Other')
+        )
+
         )
 
     REJ_REASONS = (
