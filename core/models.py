@@ -97,6 +97,17 @@ class Engine(models.Model):
         ('OX', 'Muu')
         )
 
+    INVSTATUS_OPT_SE = (
+        ('RJ', 'Avvisad'),
+        ('PO', 'Bokfört'),
+        ('PD', 'Betalt den'),
+        ('NP', 'Inte bokfört än'),
+        ('BL', 'Blockerad'),
+        ('NR', 'Inte mottagits'),
+        ('CA', 'Raderad'),
+        ('RE', 'Annulerad'),
+        ('PB', 'Bokfört - debit balans'),
+        ('OX', 'Annat')
         )
 
     REJ_REASONS = (
