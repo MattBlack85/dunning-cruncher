@@ -211,8 +211,12 @@ $(document).ready(function(){
 		form_type: 'multi',
 		mass_data: JSON.stringify(data)
 	    },
-	    success: function() {
-		SuccessfulTracking();
+	    success: function(response) {
+		if ( response.success === true ) {
+		    SuccessfulTracking();
+		} else {
+		    alert(response.error);
+		};
 	    },
 	    error: function (ajaxObj, textStatus, error) {
 		alert(error);
@@ -253,7 +257,11 @@ $(document).ready(function(){
 		processData: false,
 		contentType: false,
 		success: function(response) {
-		    DunningTrack(response.id);
+		    if ( response.success === true ) {
+			DunningTrack(response.id);
+		    } else {
+			alert(response.error);
+		    };
 		},
 		error: function (ajaxObj, textStatus, error) {
 		    alert(error);
