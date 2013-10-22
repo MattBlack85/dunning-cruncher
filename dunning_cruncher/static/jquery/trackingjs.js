@@ -48,19 +48,19 @@ $(document).ready(function(){
 
 	var market = $('#id_market').val();
 	if (market == 'IT') {
-	    var marketArray = ['', '11', '13', '15', '16'];
+	    var marketArray = ['11', '13', '15', '16'];
 	} else if (market == 'DE') {
-	    var marketArray = ['', '13', '52', '55', '60', '64', '66'];
+	    var marketArray = ['13', '52', '55', '60', '64', '66'];
 	} else if (market == 'PT' || market == 'PL' || market == 'NL' || market == 'NO') {
-	    var marketArray = ['', '10'];
+	    var marketArray = ['10'];
 	} else if (market == 'BE') {
-	    var marketArray = ['', '12', '14', '18', '31'];
+	    var marketArray = ['12', '14', '18', '31'];
 	} else if (market == 'SE') {
-	    var marketArray = ['', '16'];
+	    var marketArray = ['16'];
 	} else if (market == 'FI') {
-	    var marketArray = ['', '11'];
+	    var marketArray = ['11'];
 	} else if (market == 'DK') {
-	    var marketArray = ['', '12'];
+	    var marketArray = ['12'];
 	} else {
 	    var marketArray = [''];
 	}
