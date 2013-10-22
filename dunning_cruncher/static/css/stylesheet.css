@@ -12,6 +12,11 @@ body {
     margin-bottom: 8px;
 }
 
+#succalert {
+    margin-top: 20%;
+    margin-left: 35%;
+    text-align: center;
+}
 #sendm {
     border-top: 1px solid;
     margin-left: 5em;
