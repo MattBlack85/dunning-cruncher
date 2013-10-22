@@ -264,7 +264,7 @@ $(document).ready(function(){
 
 
 function SuccessfulTracking() {
-    alert("Item correctly tracked");
+    $("#succmodal").modal();
 };
 
 function actionArray() {
