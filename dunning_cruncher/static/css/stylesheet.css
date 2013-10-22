@@ -17,6 +17,14 @@ body {
     margin-left: 35%;
     text-align: center;
 }
+
+#erralert {
+    display: none;
+    margin-left: 35%;
+    margin-right: auto;
+    text-align: center;
+}
+
 #sendm {
     border-top: 1px solid;
     margin-left: 5em;
