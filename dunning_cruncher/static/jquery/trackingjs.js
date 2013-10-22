@@ -222,7 +222,11 @@ $(document).ready(function(){
     };
 
     $('#trackbutton').on('click', function() {
-	if ( ValidateForm() == 0 ) { AjaxUpload() };
+	if ( ValidateForm() == 0 ) {
+	    AjaxUpload();
+	} else {
+	    $("#erralert").show();
+	};
     });
 
     $("#trform :input").on("change", function() {
