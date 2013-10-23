@@ -277,6 +277,11 @@ $(document).ready(function(){
 
 function SuccessfulTracking() {
     $("#succmodal").modal();
+    setTimeout(ReloadMain, 2000);
+};
+
+function ReloadMain() {
+    window.location.replace('/main/');
 };
 
 function actionArray() {
