@@ -146,3 +146,25 @@ def ajax_file_upload(request):
         return json_data
 
     return json_data
+
+@json_response
+def done(request):
+    json_data = {
+        'success': False,
+        'error': ''
+        }
+
+    try:
+        getids = simplejson.loads(request.POST.get('idarray'))
+        for item in getids:
+            itemdone = Engine.objects.get(pk=item)
+            itemdone.done = True
+            itemdone.save()
+
+        json_data['success'] = True
+
+    except Exception as err:
+        json_data['error'] = str(err)
+        return json_data
+
+    return json_data
