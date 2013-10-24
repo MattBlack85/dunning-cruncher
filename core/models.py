@@ -223,6 +223,11 @@ class Engine(models.Model):
             self.rejectreason,
             self.paidon
             )
+    def is_done(self):
+        return self.done
+
+    is_done.short_description = 'Done?'
+    is_done.boolean = True
 
 class StoredForm(ModelForm):
 
