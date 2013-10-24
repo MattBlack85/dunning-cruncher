@@ -207,6 +207,7 @@ class Engine(models.Model):
     actiontaken = models.CharField(max_length=100, blank=True)
     rejectreason = models.CharField(max_length=3, choices=REJ_REASONS, null=True, blank=True)
     paidon = models.DateField(null=True, blank=True)
+    done = models.BooleanField()
 
     def __unicode__(self):
         return '%s, %s, %s, %s, %s, %s, %s, %s, %s %s, %s' % (
