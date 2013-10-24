@@ -210,19 +210,8 @@ class Engine(models.Model):
     done = models.BooleanField()
 
     def __unicode__(self):
-        return '%s, %s, %s, %s, %s, %s, %s, %s, %s %s, %s' % (
-            self.market,
-            self.ccode,
-            self.level,
-            self.reminderdate,
-            self.remindernumber,
-            self.vendor,
-            self.mailvendor,
-            self.invoicenumber,
-            self.invoicestatus,
-            self.rejectreason,
-            self.paidon
-            )
+        return self.remindernumber
+
     def is_done(self):
         return self.done
 
