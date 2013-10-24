@@ -127,10 +127,7 @@ def tracker (request):
 @login_required(redirect_field_name='error', login_url='/')
 def edit (request):
     user = auth.models.User.objects.get(id=request.session.get("user_id"))
-    distitems = Engine.objects.all().filter(
-        clerk=user.get_full_name(),
-        actiondate=date.today()
-        ).values('remindernumber', 'market', 'ccode').distinct()
+    distitems = Engine.objects.all().filter(done=False).values('remindernumber', 'market', 'ccode').distinct()
 
     trackform = TrackingForm()
     trackform.fields['level'].widget.attrs = {'class': 'form-control'}
