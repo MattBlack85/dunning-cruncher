@@ -4,14 +4,15 @@
 {% csrf_token %}
 <table class="table table-striped table-hover table-bordered">
   <tr>
-    <th>DL number</th>
-    <th>Market</th>
-    <th>C. Code</th>
-    <th>Invoice N.</th>
-    <th>Inv. Status</th>
-    <th>Rej. Reason</th>
-    <th>Paid on</th>
-    <th>Action</th>
+    <th width=90px>DL number</th>
+    <th width=75px>Market</th>
+    <th width=75px>C. Code</th>
+    <th width=90px>Invoice N.</th>
+    <th width=90px>Inv. Status</th>
+    <th width=100px>Rej. Reason</th>
+    <th width=80px>Paid on</th>
+    <th width=100px>Action</th>
+    <th width=50px>Done</th>
   </tr>
   {% for object in distitems%}
   <tr class='mainitems'>
@@ -42,7 +43,7 @@
   {% for obj in ownitems %}
   {% if obj.remindernumber == object.remindernumber %}
   <tr class='secondaryitems success' id='{{ obj.id }}'>
-    <td width=120px>
+    <td width=90px>
       {{ obj.remindernumber }}
     </td>
     <td width=75px>
@@ -73,6 +74,8 @@
     </td>
     <td width=100px>
       <button type="button" class="btn btn-info btn-xs editbutton">Edit</button>
+    </td>
+    <td width=50px>
     </td>
   </tr>
   {% else %}
