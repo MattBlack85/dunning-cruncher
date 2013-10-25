@@ -337,12 +337,20 @@ function additionalErrorCheck() {
     if ( !isValidEmailAddress(mailVendor.val()) ) {
 	if ( !mailVendor.hasClass("has-error") ) { mailVendor.parent().parent().addClass("has-error") }
 	error++
+	if ( !isValidEmailAddress(mailVendor.val()) ) {
+	    if ( !mailVendor.hasClass("has-error") ) {
+		mailVendor.parent().parent().addClass("has-error");
+	    };
+	    error++;
+	};
     };
 
     //check if vendor number has 9 characters or if starts with 100 or if there are no characters into the field
     if ( !(vendor.val().length == 9) || !(vendor.val().substr(0, 3) == "100") || !isInteger(vendor.val()) ) {
-	if ( ! vendor.hasClass("has-error") ) { vendor.parent().parent().addClass("has-error") }
-	error++
+	if ( ! vendor.hasClass("has-error") ) {
+	    vendor.parent().parent().addClass("has-error");
+	};
+	error++;
     };
 
     //returns the number of errors
