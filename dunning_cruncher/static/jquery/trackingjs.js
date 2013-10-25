@@ -333,10 +333,8 @@ function additionalErrorCheck() {
     var vendor = $("#id_vendor")
     var mailVendor = $("#id_mailvendor")
 
-    //check if email field is e-mail like
-    if ( !isValidEmailAddress(mailVendor.val()) ) {
-	if ( !mailVendor.hasClass("has-error") ) { mailVendor.parent().parent().addClass("has-error") }
-	error++
+    if ( !$("#noact").prop("checked") ) {
+	//check if email field is e-mail like
 	if ( !isValidEmailAddress(mailVendor.val()) ) {
 	    if ( !mailVendor.hasClass("has-error") ) {
 		mailVendor.parent().parent().addClass("has-error");
