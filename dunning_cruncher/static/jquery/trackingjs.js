@@ -303,26 +303,32 @@ function actionArray() {
 function ValidateForm() {
     error = 0;
     var howManyErrors = $(".has-error").length;
-    var fieldsToCheck = ["market", "ccode", "reminderdate", "remindernumber",
-			 "level", "vendor", "mailvendor"]
-    if ( howManyErrors == 0 ) {
-	//checks if some fields are not correctly filled (1st check)
-	$.each(fieldsToCheck, function() {
-	    if ($("#id_"+this).val() == "") {
-		if (! $("#id_"+this).parent().parent().hasClass("has-error")) {
-		    $("#id_"+this).parent().parent().addClass("has-error");
-		    error++;
-		}
-	    } else {
-		if ($("id_"+this).parent().parent().hasClass(".has-error")) {
-		    $("#id_"+this).removeClass("has-error");
-		}
-	    };
-	});
+
+    if ( !$("#noact").prop("checked") ) {
+	var fieldsToCheck = ["market", "ccode", "reminderdate", "remindernumber",
+			     "level", "vendor", "mailvendor"];
     } else {
-	// no errors
-	;
-    }
+	var fieldsToCheck = ["market", "ccode", "reminderdate", "remindernumber",
+			     "level", "vendor"]
+	// if noact was checked after submit we need to remove the "has-error" class from mail
+	if ( $("#id_mailvendor").parent().parent().hasClass("has-error") ) {
+	    $("#id_mailvendor").parent().parent().removeClass("has-error");
+	};
+    };
+
+    $.each(fieldsToCheck, function() {
+	if ($("#id_"+this).val() == "") {
+	    if (! $("#id_"+this).parent().parent().hasClass("has-error")) {
+		$("#id_"+this).parent().parent().addClass("has-error");
+	    }
+	    error++;
+	} else {
+	    if ($("id_"+this).parent().parent().hasClass(".has-error")) {
+		$("#id_"+this).removeClass("has-error");
+	    }
+	};
+    });
+
     // return the total number of errors
     var errorSum = error + additionalErrorCheck()
     return errorSum
