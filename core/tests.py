@@ -1,16 +1,40 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
 from django.test import TestCase
 
+from core.models import Engine
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
+from utils import tracking_utils
+
+import json
+
+import datetime
+
+
+class EngineTest(TestCase):
+
+    def test_track_new_item(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Tests if a new basic item is tracked successfuly into DB.
         """
-        self.assertEqual(1 + 1, 2)
+        item = Engine(
+            market='IT',
+            ccode='15',
+            level='2',
+            clerk ='John Doe',
+            amount='1000.01',
+            currency='EUR',
+            attachment=None,
+            reasonother='Other',
+            actiondate='2013-10-15',
+            reminderdate='2013-10-11',
+            remindernumber='123456',
+            vendor='100123456',
+            mailvendor='john.doe@noone.com',
+            invoicenumber='987654321',
+            invoicestatus='PO',
+            done=0
+        )
+
+        item.full_clean()
+        item.save()
+
+        self.assertNotEqual(item.pk, None)
