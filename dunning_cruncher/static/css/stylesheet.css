@@ -12,6 +12,18 @@ body {
     margin-bottom: 8px;
 }
 
+#repotable {
+    width: 80%;
+    text-align: center;
+    position: relative;
+    top: 50px;
+    left: 10%;
+}
+
+#repotable td {
+    width: 40px;
+}
+
 #succalert {
     margin-top: 20%;
     margin-left: 35%;
