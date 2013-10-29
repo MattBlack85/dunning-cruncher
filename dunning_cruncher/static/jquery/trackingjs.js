@@ -90,16 +90,16 @@ $(document).ready(function(){
 	    nextform.find('label').show();
 	}
 
-	if (status == 'RJ'){
-	    nextform.find('.paid').hide();
-	    nextform.find('label:last').hide();
+	if ( status == 'RJ' ) {
+	    nextform.find(".paid").hide();
+	    nextform.find("label:last").hide();
 	    nextform.fadeIn('slow');
-	} else if (status == 'PD') {
-	    nextform.find('.reject').hide();
+	} else if ( status == 'PD' || status == 'PO' ) {
+	    nextform.find(".reject").hide();
 	    nextform.find(".other").hide();
-	    nextform.find('label:first').hide();
-	    nextform.find('label:first').next().next("label").hide();
-	    nextform.fadeIn('slow');
+	    nextform.find("label:first").hide();
+	    nextform.find("label:first").next().next("label").hide();
+	    nextform.fadeIn("slow");
 	};
     });
 
