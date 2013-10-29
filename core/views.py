@@ -141,9 +141,9 @@ def edit (request):
     trackform.fields['amount'].widget.attrs = {'class': 'form-control amount'}
     trackform.fields['currency'].widget.attrs = {'class': 'form-control currency'}
 
-    ownitems = Engine.objects.all().filter(clerk=user.first_name + " " + user.last_name, actiondate=date.today())
+    allitems = Engine.objects.all().filter(done=False)
 
-    return render_to_response('edit.html', {'ownitems': ownitems,
+    return render_to_response('edit.html', {'allitems': allitems,
                                             'distitems': distitems,
                                             'trackform': trackform}, RequestContext(request))
 
