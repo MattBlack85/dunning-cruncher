@@ -5,6 +5,8 @@ from core.models import Engine, TrackingForm, StoredDocs, StoredForm, Vendor
 from core.decorators import json_response
 from django.core.mail import EmailMessage
 
+from utils.sendmail import new_vendor
+
 import simplejson
 
 @json_response
