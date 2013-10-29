@@ -170,3 +170,36 @@ def done(request):
         return json_data
 
     return json_data
+
+@json_response
+def get_vmail(request):
+    json_data = {
+        'success': False,
+        'error': '',
+        'mail_sent': False
+        }
+
+    try:
+        vnum =  simplejson.loads(request.POST.get('vendNum'))
+
+    except Exception as err:
+        json_data['error'] = str(err)
+        return json_data
+    try:
+        mail = Vendor.objects.get(vnumber=vnum).vmail
+
+    except Vendor.DoesNotExist:
+        # we have no vendor in our db
+        mail = "No mail in our DB"
+        try:
+            new_vendor(request)
+            json_data['mail_sent'] = True
+
+        except Exception as err:
+            json_data['error'] = str(err)
+            return json_data
+
+    json_data['success'] = True
+    json_data['mail'] = str(mail)
+
+    return json_data
