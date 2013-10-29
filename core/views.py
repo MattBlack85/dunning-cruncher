@@ -9,6 +9,7 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
+from django.utils import timezone
 
 from datetime import date, timedelta
 
