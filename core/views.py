@@ -148,8 +148,38 @@ def edit (request):
                                             'trackform': trackform}, RequestContext(request))
 
 @login_required(redirect_field_name='error', login_url='/')
-def reporting (request):
-    pass
+def reporting (request, rmonth=timezone.now().month, ryear=timezone.now().year):
+    '''
+    This view returns (for now) data from DB regarding the number of documents processed
+    during the ongoing month of the ongoing year for all markets. If the user is not in
+    the groups required a 403 error is raised.
+    A choice for the month and year could be added to the html page to surf back
+    in the past to see old data.
+    '''
+    try:
+	user = auth.models.User.objects.get(id=request.session.get("user_id"))
+    except auth.models.User.DoesNotExist:
+	return render_to_response('index.html',
+				  {'login': Login()},
+				  RequestContext(request))
+
+    if user.groups.get().name == 'TL' or user.groups.get().name == 'SV':
+        allmarketsdone = []
+        allmarketsnotdone = []
+
+        for choice in Engine.MARKET_OPT:
+            country = choice[0]
+            howmanydone = Engine.objects.filter(market=country, actiondate__year=ryear, actiondate__month=rmonth, \
+                                                done=1).count()
+            howmanynotdone = Engine.objects.filter(market=country, actiondate__year=ryear, actiondate__month=rmonth, \
+                                                   done=0).count()
+            allmarketsdone.append(howmanydone)
+            allmarketsnotdone.append(howmanynotdone)
+
+        return render_to_response('reports.html', {'allmarketsdone': allmarketsdone,
+                                                   'allmarketsnotdone': allmarketsnotdone,
+                                                   'markets': Engine.MARKET_OPT}, RequestContext(request))
+    else:
         raise PermissionDenied()
 
 @csrf_protect
