@@ -160,6 +160,41 @@ $(document).ready(function(){
 	$('#id_remindernumber').val(market+rdate[0]+rdate[1]+rdate[2]+'/');
     });
 
+    $("#id_vendor").on("keyup", function() {
+	//Check if the number has 9 characters and returns from DB the mail.
+	if ( $(this).val().length == 9 ) {
+	    var vnum = $(this).val();
+
+	    //setup the AJAX request
+	    $.ajaxSetup({
+		type: 'POST',
+		dataType: 'json'
+	    });
+
+	    //the real AJAX request
+	    $.ajax({
+		url: '/ajax/',
+		data: {
+		    form_type: 'get_vmail',
+		    vendNum: JSON.stringify(vnum)
+		},
+		success: function(response) {
+		    if ( response.success === true ) {
+			$("#id_mailvendor").val(response.mail);
+		    } else {
+			alert(response.error);
+		};
+		},
+		error: function (ajaxObj, textStatus, error) {
+		    alert(error);
+		}
+	    });
+	    return true;
+	} else {
+	    $("#id_mailvendor").val("");
+	};
+    });
+
     function DunningTrack(id) {
 	// get the total number of invoices.
 	var invo = $('.invoice').length;
