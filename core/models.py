@@ -7,11 +7,11 @@ from django.forms import ModelForm
 class Vendor(models.Model):
     vname = models.CharField(max_length=200)
     vnumber = models.IntegerField(max_length=11, unique=True)
-    vmail = models.EmailField()
-    vstate = models.CharField(max_length=20)
-    vstreet = models.CharField(max_length=70)
-    vcity = models.CharField(max_length=30)
-    vzip = models.CharField(max_length=10)
+    vmail = models.CharField(max_length=100)
+    vstate = models.CharField(max_length=100, null=True, blank=True)
+    vstreet = models.CharField(max_length=170, null=True, blank=True)
+    vcity = models.CharField(max_length=130, null=True, blank=True)
+    vzip = models.CharField(max_length=100, null=True, blank=True)
 
     def __unicode__(self):
         return '%s %s %s' %(self.vname, str(self.vnumber), str(self.vmail))
