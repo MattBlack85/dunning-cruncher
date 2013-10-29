@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.core.exceptions import PermissionDenied
 from django.db import models
 from core.models import Login, Engine, TrackingForm, StoredDocs, StoredForm
 from django.http import HttpResponse, Http404, HttpResponseRedirect
@@ -148,6 +149,7 @@ def edit (request):
 @login_required(redirect_field_name='error', login_url='/')
 def reporting (request):
     pass
+        raise PermissionDenied()
 
 @csrf_protect
 @login_required(redirect_field_name='error', login_url='/')
