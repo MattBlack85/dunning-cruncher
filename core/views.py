@@ -13,7 +13,7 @@ from django.utils import timezone
 
 from datetime import date, timedelta
 
-from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item, ajax_file_upload, done
+from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item, ajax_file_upload, done, get_vmail
 from utils.sendmail import send_info, send_to_buy, shubmail
 
 
@@ -257,6 +257,7 @@ def ajax (request):
         'ajax_file_upload': ajax_file_upload,
         'shubmail': shubmail,
         'done': done,
+        'get_vmail': get_vmail,
         }
 
     try:
