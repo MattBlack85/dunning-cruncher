@@ -1,0 +1,44 @@
+{% extends "nav.html" %}
+{% block tablerep %}
+<table class="table table-striped table-hover table-bordered" id="repotable">
+  <tr>
+    <td>
+    </td>
+    {% for choice in markets %}
+    <td>
+      {{ choice.0 }}
+    </td>
+    {% endfor %}
+  </tr>
+  <tr>
+    <td>
+      Done
+    </td>
+    {% for choice in allmarketsdone %}
+    <td>
+      {{ choice }}
+    </td>
+    {% endfor %}
+  </tr>
+  <tr>
+    <td>
+      Not Done
+    </td>
+    {% for choice in allmarketsnotdone %}
+    <td>
+      {{ choice }}
+    </td>
+    {% endfor %}
+  </tr>
+  <tr>
+    <td>
+      Saldo
+    </td>
+    {% for choice in allmarketsdone %}
+    <td>
+      {{ "" }}
+    </td>
+    {% endfor %}
+  </tr>
+</table>
+{% endblock tablerep %}
