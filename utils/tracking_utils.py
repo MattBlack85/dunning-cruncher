@@ -1,7 +1,7 @@
 from django.template import Context
 from django.http import Http404, HttpResponse
 
-from core.models import Engine, TrackingForm, StoredDocs, StoredForm
+from core.models import Engine, TrackingForm, StoredDocs, StoredForm, Vendor
 from core.decorators import json_response
 from django.core.mail import EmailMessage
 
