@@ -279,18 +279,20 @@ def draft (request, dnumber, language):
     if language == 'EN':
         status = Engine.INVSTATUS_OPT
         reasons = Engine.REJ_REASONS
-
-    if language == 'FI':
+    elif language == 'FI':
         status = Engine.INVSTATUS_OPT_FI
         reasons = Engine.REJ_REASONS
-
-    if language == 'NL':
+    elif language == 'NL':
         status = Engine.INVSTATUS_OPT
-        reasons = Engine.REJ.REASONS_NL
-
-    if language == 'SE':
+        reasons = Engine.REJ_REASONS_NL
+    elif language == 'SE':
         status = Engine.INVSTATUS_OPT_SE
-        reasons = Engine.REJ.REASONS
+        reasons = Engine.REJ_REASONS
+    elif language == 'DE':
+        status = Engine.INVSTATUS_OPT_DE
+        reasons = Engine.REJ_REASONS
+    else:
+        return render_to_response("404.html", {}, RequestContext(request))
 
     return render_to_response(template, {'items': items,
                                          'mainit': mainit,
