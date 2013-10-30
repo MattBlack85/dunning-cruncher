@@ -79,6 +79,7 @@ class Engine(models.Model):
         ('PD', 'Paid on'),
         ('NP', 'Not posted yet'),
         ('BL', 'Blocked'),
+        ('PK', 'Parked'),
         ('NR', 'Not received'),
         ('CA', 'Cancelled'),
         ('RE', 'Reversed'),
