@@ -87,6 +87,19 @@ class Engine(models.Model):
         ('OX', 'Other')
         )
 
+    INVSTATUS_OPT_DE = (
+        ('RJ', 'Abgelehnt'),
+        ('PO', 'Verbucht'),
+        ('PD', 'Bezahlt am'),
+        ('NP', 'Noch nicht gebucht'),
+        ('BL', 'Gesperrt'),
+        ('PK', 'Vorerfasst'),
+        ('NR', 'Nicht erhalten'),
+        ('CA', 'Storniert'),
+        ('PB', 'Verbucht - im sollsaldo'),
+        ('OX', 'Andere')
+    )
+
     INVSTATUS_OPT_FI = (
         ('RJ', 'Hylätty'),
         ('PO', 'Kirjattu'),
