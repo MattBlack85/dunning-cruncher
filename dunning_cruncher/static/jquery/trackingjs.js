@@ -61,6 +61,8 @@ $(document).ready(function(){
 	    var marketArray = ['11'];
 	} else if (market == 'DK') {
 	    var marketArray = ['12'];
+	} else if (market == 'CH') {
+	    var marketArray = ['11', '12', '82', '85'];
 	} else {
 	    var marketArray = [''];
 	}
