@@ -89,6 +89,8 @@ class Engine(models.Model):
         ('3', '3rd'),
         ('4', '4th'),
         ('5', 'to scan'),
+        ('6', 'critical'),
+        ('7', 'non critical'),
         )
 
     INVSTATUS_OPT = (
