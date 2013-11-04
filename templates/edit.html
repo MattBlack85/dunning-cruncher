@@ -12,7 +12,9 @@
     <th width=100px>Rej. Reason</th>
     <th width=80px>Paid on</th>
     <th width=100px>Action</th>
+    <th width=50px>Print</th>
     <th width=50px>Done</th>
+    <th width=50px>Delete</th>
   </tr>
   {% for object in distitems%}
   <tr class='mainitems'>
@@ -37,7 +39,12 @@
       <button type="button" class="btn btn-info btn-xs draftbutt"><span class="glyphicon glyphicon-envelope"></span> Prepare draft</button>
     </td>
     <td>
-      <button type="button" class="btn btn-info btn-xs donebutt"><span class="glyphicon glyphicon-ok"></span> Done</button>
+    </td>
+    <td>
+      <span style="color: green" class="glyphicon glyphicon-ok"></span>
+    </td>
+    <td>
+      <span style="color: red" class="glyphicon glyphicon-remove"></span>
     </td>
   </tr>
   {% for obj in allitems %}
@@ -74,8 +81,6 @@
     </td>
     <td width=100px>
       <button type="button" class="btn btn-info btn-xs editbutton">Edit</button>
-    </td>
-    <td width=50px>
     </td>
   </tr>
   {% else %}
