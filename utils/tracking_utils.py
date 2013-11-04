@@ -203,3 +203,24 @@ def get_vmail(request):
     json_data['mail'] = str(mail)
 
     return json_data
+
+@json_response
+def del_item(request):
+    json_data = {
+        'success': False,
+        'error': '',
+        }
+
+    try:
+        getids = simplejson.loads(request.POST.get('idarray'))
+        for item in getids:
+            itemdone = Engine.objects.get(pk=item)
+            itemdone.delete()
+
+        json_data['success'] = True
+
+    except Exception as err:
+        json_data['error'] = str(err)
+        return json_data
+
+    return json_data
