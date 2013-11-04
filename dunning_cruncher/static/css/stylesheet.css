@@ -12,6 +12,14 @@ body {
     margin-bottom: 8px;
 }
 
+.glyphicon-ok {
+    cursor: pointer;
+}
+
+.glyphicon-remove {
+    cursor: pointer;
+}
+
 #repotable {
     width: 80%;
     text-align: center;
