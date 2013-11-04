@@ -57,6 +57,43 @@ $(document).ready(function() {
 	return true;
     });
 
+    $(".glyphicon-remove").on("click", function(event) {
+	event.stopPropagation();
+	var itemNumber = $(this).parent().parent().attr("class").substr(10)
+	var secItems = $(document).find(".secondaryitems."+itemNumber)
+	var secondaryIdArray = new Array()
+
+	$.each(secItems, function() {
+	    secondaryIdArray.push(this.id)
+	});
+
+	//setup the AJAX request
+	$.ajaxSetup({
+	    type: 'POST',
+	    dataType: 'json'
+	});
+
+	//the real AJAX request
+	$.ajax({
+	    url: '/ajax/',
+	    data: {
+		form_type: 'del_item',
+		idarray: JSON.stringify(secondaryIdArray)
+	    },
+	    success: function(response) {
+		if ( response.success === true ) {
+		    window.location.replace("/overview/");
+		} else {
+		    alert(response.error);
+		};
+	    },
+	    error: function (ajaxObj, textStatus, error) {
+		alert(error);
+	    }
+	});
+	return true;
+    });
+
     $('.mainitems, .secondaryitems').each(function() {
 	var cleanclass = $(this).children('td:first').text().replace('/','').trim();
 	$(this).addClass(cleanclass);
