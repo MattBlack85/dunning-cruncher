@@ -20,7 +20,8 @@ $(document).ready(function() {
 	});
     });
 
-    $(".donebutt").on("click", function() {
+    $(".glyphicon-ok").on("click", function(event) {
+	event.stopPropagation();
 	var itemNumber = $(this).parent().parent().attr("class").substr(10)
 	var secItems = $(document).find(".secondaryitems."+itemNumber)
 	var secondaryIdArray = new Array()
