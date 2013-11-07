@@ -9,28 +9,38 @@ $(document).ready(function() {
     });
 
     $("#mailbuttonvendor").on("click", function() {
+	$("#vendormodal").modal();
+    });
+
+    $("#vendorok").on("click", function() {
 	var mailData = $(".mailbody").html();
+	var formdata = new FormData();
 
-	//setup the AJAX request
-	$.ajaxSetup({
-	    type: 'POST',
-	    dataType: 'json'
-	});
+	if ( $("#vendorattach").get(0).files[0] ) {
+	    formdata.append('newattach', $("#vendorattach").get(0).files[0]);
+	};
 
-	//the real AJAX request
+	formdata.append('form_type', 'mailsend');
+	formdata.append('id', $(".mailbody").attr("id"));
+	formdata.append('mailbody', mailData);
+
 	$.ajax({
 	    url: '/ajax/',
-	    data: {
-		form_type: "mailsend",
-		id: $(".mailbody").attr("id"),
-		mailbody: JSON.stringify(mailData),
+	    type: 'POST',
+	    data: formdata,
+	    processData: false,
+	    contentType: false,
+	    success: function(response) {
+		if ( response.success === true ) {
+		    vmailSuccess();
+		} else {
+		    alert(response.error);
+		};
 	    },
-	    success: window.location.replace("/overview/"),
 	    error: function (ajaxObj, textStatus, error) {
 		alert(error);
 	    }
 	});
-	return true;
     });
 
     $("#mailbuttonbuy").on("click", function() {
