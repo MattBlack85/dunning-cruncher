@@ -134,14 +134,14 @@ class Engine(models.Model):
         )
 
     INVSTATUS_OPT_SE = (
-        ('RJ', 'Avvisad'),
+        ('RJ', 'Avvisat'),
         ('PO', 'Bokfört'),
         ('PD', 'Betalt den'),
         ('NP', 'Inte bokfört än'),
-        ('BL', 'Blockerad'),
+        ('BL', 'Blockerat'),
         ('NR', 'Inte mottagits'),
         ('CA', 'Raderad'),
-        ('RE', 'Annulerad'),
+        ('RE', 'Annulerat'),
         ('PB', 'Bokfört - debit balans'),
         ('OX', 'Annat')
         )
