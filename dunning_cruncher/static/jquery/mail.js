@@ -108,3 +108,8 @@ $(document).ready(function() {
 	};
     });
 });
+
+function vmailSuccess() {
+    $("#vendormodal").modal("hide");
+    alert("Mail sent");
+};
