@@ -129,7 +129,7 @@ class Engine(models.Model):
         ('NR', 'Ei saapunut'),
         ('CA', 'Peruutettu'),
         ('RE', 'Kumottu'),
-        ('PB', 'Lähetetty - velkasaldo'),
+        ('PB', 'Kirjattu - velkasaldo'),
         ('OX', 'Muu')
         )
 
