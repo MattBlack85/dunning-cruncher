@@ -5,7 +5,7 @@
 dunning_cruncher/settings.py
 cstatic/
 templates/drafts/*.*html
-templates/letters/*.*
+templates/letters/*.html
 core/migrations/
 dunning_cruncher/static/images/*.*
 utils/sendmail.py
