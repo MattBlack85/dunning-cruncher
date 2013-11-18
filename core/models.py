@@ -105,7 +105,17 @@ class Engine(models.Model):
         ('RE', 'Reversed'),
         ('PB', 'Posted - debit balance'),
         ('OX', 'Other')
-        )
+    )
+
+    INVSTATUS_OPT_IT = (
+        ('RJ', 'Rifiutato'),
+        ('PO', 'Registrato'),
+        ('PD', 'Pagato'),
+        ('NP', 'Non ancora registrato'),
+        ('BL', 'Bloccato'),
+        ('NR', 'Non pervenuto'),
+        ('OX', 'Altro')
+    )
 
     INVSTATUS_OPT_DE = (
         ('RJ', 'Abgelehnt'),
@@ -131,7 +141,7 @@ class Engine(models.Model):
         ('RE', 'Kumottu'),
         ('PB', 'Kirjattu - velkasaldo'),
         ('OX', 'Muu')
-        )
+    )
 
     INVSTATUS_OPT_SE = (
         ('RJ', 'Avvisat'),
@@ -144,7 +154,7 @@ class Engine(models.Model):
         ('RE', 'Annulerat'),
         ('PB', 'Bokfört - debit balans'),
         ('OX', 'Annat')
-        )
+    )
 
     REJ_REASONS = (
         ("MPO", "Missing Purchase Order Number"),
@@ -182,7 +192,7 @@ class Engine(models.Model):
         ("VMX", "Vendor Master"),
         ("MUI", "Multiple invoices"),
         ("RES", "Rescan, poor quality")
-        )
+    )
 
     REJ_REASONS_NL = (
         ("MPO", "Ontbrekend PO nummer"),
@@ -211,7 +221,7 @@ class Engine(models.Model):
         ("SDM", "Onbrekende dienstomschrijving"),
         ("MIA", "Ontbrekend factuurbedrag"),
         ("IIX", "Incomplete factuur"),
-        )
+    )
 
     REJ_REASONS_DE = (
         ("MPO", "Bestellnummer fehlt"),
@@ -249,7 +259,83 @@ class Engine(models.Model):
         ("VMX", "Lieferantenstamm"),
         ("MUI", "Mehrere rechnungen"),
         ("RES", "Neu scannen, schlechte qualität")
-        )
+    )
+
+    REJ_REASONS_FI = (
+        ("MPO", "Ostotilausnumero puuttuu"),
+        ("BIX", "Väärä info"),
+        ("DIX", "Tuplalasku"),
+        ("OTH", "Muu"),
+        ("IDX", "Viallinen tiedosto"),
+        ("WFI", "Väärä järjestelmä - Ohjaa FI laatikkoon"),
+        ("WSO", "Väärä järjestelmä - Ohjaa SOS laatikkoon"),
+        ("WCO", "Väärä järjestelmä - Ohjaa COM laatikkoon"),
+        ("IPO", "Viallinen Ostotilausnumero"),
+        ("WCN", "Väärä yritysnimi"),
+        ("WCA", "Väärä yritysosoite"),
+        ("ICX", "Virheellinen valuutta"),
+        ("MCX", "Puuttuva valuutta"),
+        ("WVA", "Väärä ALV"),
+        ("MVN", "Puuttuva ALV"),
+        ("VMX", "Laskun summa laskettu virheellisesti"),
+        ("DNV", "Laskun tiedot eivät ole näkyvissä"),
+        ("IDM", "Laskupäivämäärä puuttuu"),
+        ("INM", "Laskunumero puuttuu"),
+        ("MPX", "Sivuja puuttuu"),
+        ("TFM", "Verovapaa lasku-huomautus puuttuu"),
+        ("DEM", "Toimituspäivä / Toimitusviesti puuttuu"),
+        ("QMX", "Määrä puuttuu"),
+        ("SDM", "Palvelunkuvaus puuttuu"),
+        ("MIA", "Laskun summa puuttuu"),
+        ("IIX", "Epätäydellinen lasku"),
+        ("MAI", "Puuttuva kirjanpitotieto"),
+        ("IAI", "Virheellinen kirjanpitotieto"),
+        ("MAX", "Puuttuva hyväksyntä"),
+        ("IRA", "Virheellinen Lasku Lähettäkää osoitteeseen"),
+        ("MRA", "Puuttuva Lähettäkää osoitteeseen"),
+        ("RNL", "Lähettäkää osoitteeseen ei yhdistetty toimittajan rekisteriin"),
+        ("VMX", "Toimittajahallinta"),
+        ("MUI", "Monta laskua"),
+        ("RES", "Scannaa uudelleen - huono laatu")
+    )
+
+    REJ_REASONS_SE = (
+        ("MPO", "Inköpsordernummer saknas"),
+        ("BIX", "Fel info"),
+        ("DIX", "Dublett"),
+        ("OTH", "Annat"),
+        ("IDX", "Felaktig dokument"),
+        ("WFI", "Fel system - Vidarebefodra till FI box"),
+        ("WSO", "Fel system - Vidarebefodra till SOS box"),
+        ("WCO", "Fel system - Vidarebefodra till COM box"),
+        ("IPO", "Felaktig Inköpsordernummer"),
+        ("WCN", "Fel företagsnamn"),
+        ("WCA", "Fel företagsadress"),
+        ("ICX", "Felaktig Valuta"),
+        ("MCX", "Valuta saknas"),
+        ("WVA", "Fel MOMS"),
+        ("MVN", "MOMS saknas"),
+        ("VMX", "Fakturavärde felberäknat"),
+        ("DNV", "Fakturainformation ej synlig"),
+        ("IDM", "Fakturadatum saknas"),
+        ("INM", "Fakturanummer saknas"),
+        ("MPX", "Sidor saknas"),
+        ("TFM", "Skattefri faktura - notering saknas"),
+        ("DEM", "Leveransdatum / Leveransnotering saknas"),
+        ("QMX", "Kvantitet saknas"),
+        ("SDM", "Tjänstebeskrivning saknas"),
+        ("MIA", "Fakturavärde saknas"),
+        ("IIX", "Ej fullständig faktura"),
+        ("MAI", "Redovisningsinformation saknas"),
+        ("IAI", "Felaktig redovisningsinformation"),
+        ("MAX", "Saknar acceptans"),
+        ("IRA", "Felaktig adress att skicka till"),
+        ("MRA", "Saknas adressen att skicka till"),
+        ("RNL", "Adressen att skicka till ej kopplad till leverantörsregister"),
+        ("VMX", "Leverantörsregister"),
+        ("MUI", "Många fakturor"),
+        ("RES", "Skanna om - dålig kvalite")
+    )
 
     CURR_OPT = (
         ("EUR", "EUR"),
@@ -259,7 +345,7 @@ class Engine(models.Model):
         ("SEK", "SEK"),
         ("PLN", "PLN"),
         ("USD", "USD")
-        )
+    )
 
     market = models.CharField(max_length=3, choices=MARKET_OPT)
     ccode = models.CharField(max_length=2, choices=CCODE_OPT)
