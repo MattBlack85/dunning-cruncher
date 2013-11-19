@@ -229,6 +229,9 @@ function whatLanguage(market) {
 	case "CH":
 	var lObj = {EN: "English", DE: "German"};
 	break;
+	case "NO":
+	var lObj = {EN: "English"};
+	break;
     };
 
     return lObj;
