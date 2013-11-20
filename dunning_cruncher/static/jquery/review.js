@@ -16,7 +16,7 @@ $(document).ready(function() {
 	$('#modalreview2').modal();
 
 	$('#loaddraft').on('click', function() {
-	    window.location.replace('/draft/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
+	    window.location.replace('/mail/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
 	});
     });
 
