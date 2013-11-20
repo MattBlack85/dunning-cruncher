@@ -130,6 +130,19 @@ class Engine(models.Model):
         ('OX', 'Andere')
     )
 
+    INVSTATUS_OPT_SE = (
+        ('RJ', 'Avvisat'),
+        ('PO', 'Bokfört'),
+        ('PD', 'Betalt den'),
+        ('NP', 'Inte bokfört än'),
+        ('BL', 'Blockerat'),
+        ('NR', 'Inte mottagits'),
+        ('CA', 'Raderad'),
+        ('RE', 'Annulerat'),
+        ('PB', 'Bokfört - debit balans'),
+        ('OX', 'Annat')
+    )
+
     INVSTATUS_OPT_FI = (
         ('RJ', 'Hylätty'),
         ('PO', 'Kirjattu'),
@@ -143,17 +156,15 @@ class Engine(models.Model):
         ('OX', 'Muu')
     )
 
-    INVSTATUS_OPT_SE = (
-        ('RJ', 'Avvisat'),
-        ('PO', 'Bokfört'),
-        ('PD', 'Betalt den'),
-        ('NP', 'Inte bokfört än'),
-        ('BL', 'Blockerat'),
-        ('NR', 'Inte mottagits'),
-        ('CA', 'Raderad'),
-        ('RE', 'Annulerat'),
-        ('PB', 'Bokfört - debit balans'),
-        ('OX', 'Annat')
+    INVSTATUS_OPT_IT = (
+        ('RJ', 'Rifiutato'),
+        ('PO', 'Registrato'),
+        ('PD', 'Pagato'),
+        ('NP', 'Non ancora registrato'),
+        ('BL', 'Bloccato'),
+        ('NR', 'Non pervenuto'),
+        ('PB', 'Registrato - saldo debitore'),
+        ('OX', 'Altro')
     )
 
     REJ_REASONS = (
@@ -192,6 +203,44 @@ class Engine(models.Model):
         ("VMX", "Vendor Master"),
         ("MUI", "Multiple invoices"),
         ("RES", "Rescan, poor quality")
+    )
+
+    REJ_REASONS_IT = (
+        ("MPO", "Numero d'ordine mancante"),
+        ("BIX", "Informazione errata"),
+        ("DIX", "Fattura duplicato"),
+        ("OTH", "Altro"),
+        ("IDX", "Documento non valido"),
+        ("WFI", "Sistema errato, girare su FI"),
+        ("WSO", "Sistema errato, girare su SOS"),
+        ("WCO", "Sistema errato, girare su COM"),
+        ("IPO", "Numero d'ordine errato"),
+        ("WCN", "Nome dell'azienda errato"),
+        ("WCA", "Indirizzo dell'azienda errato"),
+        ("ICX", "Valuta errata"),
+        ("MCX", "Valuta mancante"),
+        ("WVA", "Importo iva errato"),
+        ("MVN", "Importo iva mancante"),
+        ("VMX", "Importo della fattura erroneamente calcolato"),
+        ("DNV", "Dati del documento non visibili"),
+        ("IDM", "Data documento mancante"),
+        ("INM", "Numero documento mancante"),
+        ("MPX", "Pagine mancanti"),
+        ("TFM", "Fattura esente da tasse - nota mancante"),
+        ("DEM", "Data/Nota di consegna errate"),
+        ("QMX", "Quantità mancante"),
+        ("SDM", "Descrizione servizio mancante"),
+        ("MIA", "Importo della fattura mancante"),
+        ("IIX", "Documento incompleto"),
+        ("MAI", "Dati contabili mancanti"),
+        ("IAI", "Dati contabili errati"),
+        ("MAX", "Autorizzazione mancante"),
+        ("IRA", "Indirizzo spedizione errato"),
+        ("MRA", "Indirizzo di spedizione mancante"),
+        ("RNL", "Indirizzo di spedizione non corrisponde ai dati del fornitore"),
+        ("VMX", "Dati fornitore"),
+        ("MUI", "Fatture multiple"),
+        ("RES", "Da reinserire - pessima qualità")
     )
 
     REJ_REASONS_NL = (
