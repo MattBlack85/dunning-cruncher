@@ -212,7 +212,7 @@ function whatLanguage(market) {
     switch(market)
     {
 	case "IT":
-	var lObj = {IT: "Italian", EN: "English"};
+	var lObj = {EN: "English", IT: "Italian"};
 	break;
 	case "DE":
 	var lObj = {EN: "English", DE: "German"};
