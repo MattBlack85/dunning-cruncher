@@ -117,6 +117,18 @@ class Engine(models.Model):
         ('OX', 'Altro')
     )
 
+    INVSTATUS_OPT_NL = (
+        ('RJ', 'Afgewezen'),
+        ('PO', 'Verwerkt'),
+        ('PD', 'Betaald'),
+        ('NP', 'Nog niet goedgekeurd'),
+        ('BL', 'Geblokkeerd'),
+        ('NR', 'Niet ontvangen'),
+        ('RE', 'Teruggeboekt'),
+        ('PB', 'Verwerkt - negatief saldo'),
+        ('OX', 'Overige redden')
+    )
+
     INVSTATUS_OPT_DE = (
         ('RJ', 'Abgelehnt'),
         ('PO', 'Verbucht'),
