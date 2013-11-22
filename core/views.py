@@ -271,7 +271,7 @@ def ajax (request):
         return ajax_error("Function does not exist")
 
 @login_required(redirect_field_name='error', login_url='/')
-def draft (request, dnumber, language):
+def draft (request, drafttype, dnumber, language):
     mainit = Engine.objects.get(pk=dnumber)
     vendor = mainit.vendor
     items = Engine.objects.all().filter(remindernumber=mainit.remindernumber)
