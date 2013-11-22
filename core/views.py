@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib import auth
 from django.core.exceptions import PermissionDenied
 from django.db import models
