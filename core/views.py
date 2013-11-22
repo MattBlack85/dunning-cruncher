@@ -273,7 +273,7 @@ def ajax (request):
         'done': done,
         'get_vmail': get_vmail,
         'del_item': del_item,
-        }
+    }
 
     try:
         return ajax_funcs.get(
