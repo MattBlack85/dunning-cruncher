@@ -7,10 +7,20 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import Context
 from django.template import RequestContext
+from django.template.loader import get_template
+
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
+
 from django.views.decorators.csrf import csrf_protect
+
 from django.utils import timezone
+
+from io import BytesIO
+
+import cStringIO as StringIO
+
+import ho.pisa as pisa
 
 from datetime import date, timedelta
 
