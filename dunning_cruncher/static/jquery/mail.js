@@ -12,7 +12,16 @@ $(document).ready(function() {
 	$("#vendormodal").modal();
     });
 
-    $("#vendorok").on("click", function() {
+    $("#efax,#vendorok").on("click", function() {
+	//Check which kind of request we are dealing with
+	if ( $(this).attr("id") == "vendorok" ) {
+	    var sendType = "email";
+	} else if ( $(this).attr("id") == "efax" ) {
+	    var sendType = "efax";
+	} else {
+	    alert("You are trying to cheat me uh?");
+	}
+
 	var mailData = $(".mailbody").html();
 	var formdata = new FormData();
 
@@ -21,6 +30,7 @@ $(document).ready(function() {
 	};
 
 	formdata.append('form_type', 'mailsend');
+	formdata.append('send_type', sendType);
 	formdata.append('id', $(".mailbody").attr("id"));
 	formdata.append('mailbody', mailData);
 
