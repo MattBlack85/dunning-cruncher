@@ -275,7 +275,8 @@ def draft (request, drafttype, dnumber, language):
     mainit = Engine.objects.get(pk=dnumber)
     vendor = mainit.vendor
     items = Engine.objects.all().filter(remindernumber=mainit.remindernumber)
-    template = mainit.market+'_'+language+'.html'
+    today = date.today()
+    vendord = Vendor.objects.get(vnumber=vendor)
 
     if language == 'EN':
         status = Engine.INVSTATUS_OPT
@@ -298,9 +299,31 @@ def draft (request, drafttype, dnumber, language):
     else:
         return render_to_response("404.html", {}, RequestContext(request))
 
-    return render_to_response(template, {'items': items,
-                                         'mainit': mainit,
-                                         'status': status,
-                                         'reasons': reasons,
-                                         'iid': mainit.id,
-                                         'vendor': vendor}, RequestContext(request))
+    context_dict =  {
+        'items': items,
+        'mainit': mainit,
+        'status': status,
+        'reasons': reasons,
+        'iid': mainit.id,
+        'today': today,
+        'vendor': vendor,
+        'vendord': vendord
+    }
+
+    if drafttype == 'mail':
+        template = mainit.market+'_'+language+'.html'
+        return render_to_response(template, context_dict, RequestContext(request))
+
+    elif drafttype == 'prnt':
+        template = 'pdf'+mainit.market+'_'+language+'.html'
+        template2pdf = get_template(template)
+        context = Context(context_dict)
+        html  = template2pdf.render(context)
+        result = StringIO.StringIO()
+
+        pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("utf-8")), result)
+
+        if not pdf.err:
+            return HttpResponse(result.getvalue(), mimetype='application/pdf')
+
+        return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
