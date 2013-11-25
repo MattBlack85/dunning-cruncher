@@ -418,6 +418,7 @@ class Engine(models.Model):
     reasonother = models.CharField(max_length=500, null=True, blank=True)
     actiondate = models.DateField()
     reminderdate = models.DateField()
+    invoicedate = models.DateField(null=True, blank=True)
     remindernumber = models.CharField(max_length=30)
     vendor = models.CharField(max_length=10)
     mailvendor = models.EmailField(null=True, blank=True)
