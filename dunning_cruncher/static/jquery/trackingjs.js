@@ -182,7 +182,11 @@ $(document).ready(function(){
 		},
 		success: function(response) {
 		    if ( response.success === true ) {
-			$("#id_mailvendor").val(response.mail);
+			if ( !response.mail == "No mail in our DB" ) {
+			    $("#id_mailvendor").val(response.mail);
+			} else {
+			    $("#id_mailvendor").attr('placeholder', response.mail);
+			}
 		    } else {
 			alert(response.error);
 		};
