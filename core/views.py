@@ -291,7 +291,10 @@ def draft (request, drafttype, dnumber, language):
     vendor = mainit.vendor
     items = Engine.objects.all().filter(remindernumber=mainit.remindernumber)
     today = date.today()
-    vendord = Vendor.objects.get(vnumber=vendor)
+    try:
+        vendord = Vendor.objects.get(vnumber=vendor)
+    except Vendor.DoesNotExist:
+        vendord = ''
 
     if language == 'EN':
         status = Engine.INVSTATUS_OPT
