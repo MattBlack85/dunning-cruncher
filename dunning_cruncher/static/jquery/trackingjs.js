@@ -394,17 +394,17 @@ function additionalErrorCheck() {
     var mailVendor = $("#id_mailvendor");
     var amount = $(".amount");
 
-    if ( !$("#noact").prop("checked") ) {\
+    if ( !$("#noact").prop("checked") ) {
 	$.each(amount, function() {
-		if ( !$(this).val() == "" ) {
+	    if ( !$(this).val() == "" ) {
 		    if ( !isValidAmount($(this).val()) ) {
 			if ( !$(this).hasClass("has-error") ) {
 			    $(this).parent().parent().addClass("has-error");
 			};
 			error++;
 		    };
-		};
-	    });
+	    };
+	});
 	//check if email field is e-mail like
 	if ( !isValidEmailAddress(mailVendor.val()) ) {
 	    if ( !mailVendor.hasClass("has-error") ) {
@@ -413,7 +413,7 @@ function additionalErrorCheck() {
 	    error++;
 	};
     };
-
+    
     //check if vendor number has 9 characters or if starts with 100 or if there are no characters into the field
     if ( !(vendor.val().length == 9) || !(vendor.val().substr(0, 3) == "100") || !isInteger(vendor.val()) ) {
 	if ( ! vendor.hasClass("has-error") ) {
