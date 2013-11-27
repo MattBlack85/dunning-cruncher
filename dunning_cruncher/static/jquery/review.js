@@ -137,8 +137,9 @@ function modalEdit(dataEdit) {
     changedStuff = 0;
     var iid = dataEdit.itemid;
 
+    $('h4:first').children().remove();
     $("#id_paidon").datepicker({dateFormat: 'yyyy-mm-dd'});
-    $('h4').append('<span id="itemid">'+iid+'</span>');
+    $('h4:first').append('<span id="itemid">'+iid+'</span>');
     $('#id_market').val(dataEdit.market);
     $('#id_ccode').show();
     $('#id_ccode').val(dataEdit.ccode);
