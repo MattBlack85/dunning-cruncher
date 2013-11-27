@@ -247,6 +247,7 @@ $(document).ready(function(){
 		rejectreason: $('#id_rejectreason'+x).val(),
 		paidon: $('#id_paidon'+x).val(),
 		invoicedate: $('#id_invoicedate'+x).val(),
+		reasonother: $('#id_reasonother'+x).val(),
 		attachment: attach
 	    };
 	    data.push(obj);
