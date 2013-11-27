@@ -294,7 +294,7 @@ def draft (request, drafttype, dnumber, language):
     try:
         vendord = Vendor.objects.get(vnumber=vendor)
     except Vendor.DoesNotExist:
-        vendord = ''
+        vendord = None
 
     if language == 'EN':
         status = Engine.INVSTATUS_OPT
