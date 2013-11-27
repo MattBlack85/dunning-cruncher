@@ -111,14 +111,12 @@ def update_item(request):
     db_item.reminderdate = data['reminderdate']
     db_item.currency = data['currency']
 
-    if data['paidon'] == "None":
-        pass
-    else:
-        db_item.paidon = data['paidon']
     if data['amount']:
         db_item.amount = data['amount']
 
     db_item.ccode = data['ccode']
+    if data['paidon']:
+        db_item.paidon = data['paidon']
 
     try:
         db_item.save()
