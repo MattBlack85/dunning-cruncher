@@ -2,7 +2,7 @@ from django.http import HttpResponse
 
 from functools import wraps
 
-import simplejson
+import json
 
 def json_response(func):
 
@@ -26,6 +26,6 @@ def json_response(func):
         it
         """
         
-        return HttpResponse(simplejson.dumps(func(request)),
+        return HttpResponse(json.dumps(func(request)),
                             mimetype="application/json")
     return inner

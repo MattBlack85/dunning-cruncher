@@ -390,10 +390,21 @@ function ValidateForm() {
 
 function additionalErrorCheck() {
     var error = 0;
-    var vendor = $("#id_vendor")
-    var mailVendor = $("#id_mailvendor")
+    var vendor = $("#id_vendor");
+    var mailVendor = $("#id_mailvendor");
+    var amount = $(".amount");
 
-    if ( !$("#noact").prop("checked") ) {
+    if ( !$("#noact").prop("checked") ) {\
+	$.each(amount, function() {
+		if ( !$(this).val() == "" ) {
+		    if ( !isValidAmount($(this).val()) ) {
+			if ( !$(this).hasClass("has-error") ) {
+			    $(this).parent().parent().addClass("has-error");
+			};
+			error++;
+		    };
+		};
+	    });
 	//check if email field is e-mail like
 	if ( !isValidEmailAddress(mailVendor.val()) ) {
 	    if ( !mailVendor.hasClass("has-error") ) {
@@ -423,4 +434,9 @@ function isValidEmailAddress(emailAddress) {
 function isInteger(value) {
     var intPattern = new RegExp(/^[0-9]+$/)
     return intPattern.test(value);
+};
+
+function isValidAmount(amount) {
+	var intPattern = new RegExp(/^[0-9]\d*((\.\d{0,2})?)$/)
+	return intPattern.test(amount);
 };

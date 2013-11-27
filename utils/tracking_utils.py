@@ -7,7 +7,7 @@ from django.core.mail import EmailMessage
 
 from utils.sendmail import new_vendor
 
-import simplejson
+import json
 
 @json_response
 def ajax_error(error):
@@ -39,7 +39,7 @@ def ajax_multitracking(request):
         }
 
     try:
-        form_data = simplejson.loads(request.POST.get('mass_data'))
+        form_data = json.loads(request.POST.get('mass_data'))
         for item in form_data:
             TrackingForm(item).save()
 
@@ -92,7 +92,7 @@ def update_item(request):
         }
 
     try:
-        data = simplejson.loads(request.POST.get('mass_data'))
+        data = json.loads(request.POST.get('mass_data'))
         object_id = data['itemid']
         db_item = Engine.objects.get(pk=object_id)
 
@@ -157,7 +157,7 @@ def done(request):
         }
 
     try:
-        getids = simplejson.loads(request.POST.get('idarray'))
+        getids = json.loads(request.POST.get('idarray'))
         for item in getids:
             itemdone = Engine.objects.get(pk=item)
             itemdone.done = True
@@ -180,7 +180,7 @@ def get_vmail(request):
         }
 
     try:
-        vnum =  simplejson.loads(request.POST.get('vendNum'))
+        vnum =  json.loads(request.POST.get('vendNum'))
 
     except Exception as err:
         json_data['error'] = str(err)
@@ -212,7 +212,7 @@ def del_item(request):
         }
 
     try:
-        getids = simplejson.loads(request.POST.get('idarray'))
+        getids = json.loads(request.POST.get('idarray'))
         for item in getids:
             itemdone = Engine.objects.get(pk=item)
             itemdone.delete()
