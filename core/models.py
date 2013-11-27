@@ -117,6 +117,18 @@ class Engine(models.Model):
         ('OX', 'Altro')
     )
 
+    INVSTATUS_OPT_NL = (
+        ('RJ', 'Afgewezen'),
+        ('PO', 'Verwerkt'),
+        ('PD', 'Betaald'),
+        ('NP', 'Nog niet goedgekeurd'),
+        ('BL', 'Geblokkeerd'),
+        ('NR', 'Niet ontvangen'),
+        ('RE', 'Teruggeboekt'),
+        ('PB', 'Verwerkt - negatief saldo'),
+        ('OX', 'Overige redden')
+    )
+
     INVSTATUS_OPT_DE = (
         ('RJ', 'Abgelehnt'),
         ('PO', 'Verbucht'),
@@ -406,6 +418,7 @@ class Engine(models.Model):
     reasonother = models.CharField(max_length=500, null=True, blank=True)
     actiondate = models.DateField()
     reminderdate = models.DateField()
+    invoicedate = models.DateField(null=True, blank=True)
     remindernumber = models.CharField(max_length=30)
     vendor = models.CharField(max_length=10)
     mailvendor = models.EmailField(null=True, blank=True)

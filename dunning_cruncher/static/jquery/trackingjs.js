@@ -7,8 +7,10 @@ $(document).ready(function(){
     $("#id_amount").addClass("amount"+" "+nofinv);
     $("#id_currency").addClass("currency"+" "+nofinv);
     $("#id_reasonother").addClass("other"+" "+nofinv);
+    $("#id_invoicedate").addClass("invoicedate"+" "+nofinv);
     $('.addhiddendata:first').find('#id_invoicenumber').attr('id', 'id_invoicenumber'+nofinv);
     $('.addhiddendata:first').find('#id_invoicestatus').attr('id', 'id_invoicestatus'+nofinv);
+    $('.addhiddendata:first').find('#id_invoicedate').attr('id', 'id_invoicedate'+nofinv);
     $('.addhiddendata:first').find('#id_paidon').attr('id', 'id_paidon'+nofinv);
     $('.addhiddendata:first').find('#id_rejectreason').attr('id', 'id_rejectreason'+nofinv);
     $(".addhiddendata:first").find("#id_amount").attr("id", "id_amount"+nofinv);
@@ -27,7 +29,7 @@ $(document).ready(function(){
 	constrainInput: false
     });
 
-    $('.paid:first').datepicker({
+    $('.paid:first,.invoicedate:first').datepicker({
 	dateFormat: 'yy-mm-dd',
 	constrainInput: false
     });
@@ -110,7 +112,10 @@ $(document).ready(function(){
 	formToApp.find('button').remove();
 	formToApp.find('.paid').removeClass('hasDatepicker');
 	formToApp.find('.paid').val('');
+	formToApp.find('.invoicedate').removeClass('hasDatepicker');
+	formToApp.find('.invoicedate').val('');
 	formToApp.find('#id_invoicenumber1').removeClass('invoice'+' '+nofinv);
+	formToApp.find('#id_invoicedate1').removeClass('invoice'+' '+nofinv);
 	formToApp.find('#id_invoicestatus1').removeClass('invoiceadditional'+' '+nofinv);
 	formToApp.find('#id_paidon1').removeClass('paid'+' '+nofinv);
 	formToApp.find('#id_rejectreason1').removeClass('reject'+' '+nofinv);
@@ -121,6 +126,9 @@ $(document).ready(function(){
 	formToApp.find('#id_rejectreason1').addClass('reject'+' '+nofinv);
 	formToApp.find('#id_rejectreason1').attr('name', 'reject'+nofinv);
 	formToApp.find('#id_rejectreason1').attr('id', 'id_rejectreason'+nofinv);
+	formToApp.find('#id_invoicedate1').addClass('invoicedate'+' '+nofinv);
+	formToApp.find('#id_invoicedate1').attr('name', 'invoicedate'+nofinv);
+	formToApp.find('#id_invoicedate1').attr('id', 'id_invoicedate'+nofinv);
 	formToApp.find('#id_paidon1').addClass('paid'+' '+nofinv);
 	formToApp.find('#id_paidon1').attr('name', 'paid'+nofinv);
 	formToApp.find('#id_paidon1').attr('id', 'id_paidon'+nofinv);
@@ -140,7 +148,7 @@ $(document).ready(function(){
 	formToApp.find('#id_reasonother1').attr('name', 'reasonother'+nofinv);
 	formToApp.find('#id_reasonother1').attr('id', 'id_reasonother'+nofinv);
 	$('#vendorform').before(formToApp);
-	formToApp.find('.paid').datepicker({
+	formToApp.find('.paid,.invoicedate').datepicker({
 	    dateFormat: 'yy-mm-dd',
 	    constrainInput: false
 	});
@@ -182,7 +190,11 @@ $(document).ready(function(){
 		},
 		success: function(response) {
 		    if ( response.success === true ) {
-			$("#id_mailvendor").val(response.mail);
+			if ( !response.mail == "No mail in our DB" ) {
+			    $("#id_mailvendor").val(response.mail);
+			} else {
+			    $("#id_mailvendor").attr('placeholder', response.mail);
+			}
 		    } else {
 			alert(response.error);
 		};
@@ -234,6 +246,7 @@ $(document).ready(function(){
 		actiontaken: actionArray(),
 		rejectreason: $('#id_rejectreason'+x).val(),
 		paidon: $('#id_paidon'+x).val(),
+		invoicedate: $('#id_invoicedate'+x).val(),
 		attachment: attach
 	    };
 	    data.push(obj);

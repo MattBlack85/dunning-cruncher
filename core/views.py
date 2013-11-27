@@ -1,15 +1,29 @@
+# -*- coding: utf-8 -*-
+
 from django.contrib import auth
 from django.core.exceptions import PermissionDenied
 from django.db import models
-from core.models import Login, Engine, TrackingForm, StoredDocs, StoredForm
+from core.models import Login, Engine, TrackingForm, StoredDocs, StoredForm, Vendor
 from django.http import HttpResponse, Http404, HttpResponseRedirect
+
 from django.shortcuts import render_to_response
+
 from django.template import Context
 from django.template import RequestContext
+from django.template.loader import get_template
+
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
+
 from django.views.decorators.csrf import csrf_protect
+
 from django.utils import timezone
+
+from io import BytesIO
+
+import cStringIO as StringIO
+
+import ho.pisa as pisa
 
 from datetime import date, timedelta
 
@@ -114,6 +128,7 @@ def tracker (request):
     question.fields['amount'].widget.attrs = {'class': 'form-control'}
     question.fields['reasonother'].widget.attrs = {'class': 'form-control'}
     question.fields['actiontaken'].widget.attrs = {'class': 'form-control'}
+    question.fields['invoicedate'].widget.attrs = {'class': 'form-control'}
     question.fields['actiondate'].widget.attrs = {
         'class': 'form-control',
         'value': date.today()
@@ -259,7 +274,7 @@ def ajax (request):
         'done': done,
         'get_vmail': get_vmail,
         'del_item': del_item,
-        }
+    }
 
     try:
         return ajax_funcs.get(
@@ -271,11 +286,15 @@ def ajax (request):
         return ajax_error("Function does not exist")
 
 @login_required(redirect_field_name='error', login_url='/')
-def draft (request, dnumber, language):
+def draft (request, drafttype, dnumber, language):
     mainit = Engine.objects.get(pk=dnumber)
     vendor = mainit.vendor
     items = Engine.objects.all().filter(remindernumber=mainit.remindernumber)
-    template = mainit.market+'_'+language+'.html'
+    today = date.today()
+    try:
+        vendord = Vendor.objects.get(vnumber=vendor)
+    except Vendor.DoesNotExist:
+        vendord = ''
 
     if language == 'EN':
         status = Engine.INVSTATUS_OPT
@@ -284,7 +303,7 @@ def draft (request, dnumber, language):
         status = Engine.INVSTATUS_OPT_FI
         reasons = Engine.REJ_REASONS
     elif language == 'NL':
-        status = Engine.INVSTATUS_OPT
+        status = Engine.INVSTATUS_OPT_NL
         reasons = Engine.REJ_REASONS_NL
     elif language == 'SE':
         status = Engine.INVSTATUS_OPT_SE
@@ -292,12 +311,37 @@ def draft (request, dnumber, language):
     elif language == 'DE':
         status = Engine.INVSTATUS_OPT_DE
         reasons = Engine.REJ_REASONS_DE
+    elif language == 'IT':
+        status = Engine.INVSTATUS_OPT_IT
+        reasons = Engine.REJ_REASONS_IT
     else:
         return render_to_response("404.html", {}, RequestContext(request))
 
-    return render_to_response(template, {'items': items,
-                                         'mainit': mainit,
-                                         'status': status,
-                                         'reasons': reasons,
-                                         'iid': mainit.id,
-                                         'vendor': vendor}, RequestContext(request))
+    context_dict =  {
+        'items': items,
+        'mainit': mainit,
+        'status': status,
+        'reasons': reasons,
+        'iid': mainit.id,
+        'today': today,
+        'vendor': vendor,
+        'vendord': vendord
+    }
+
+    if drafttype == 'mail':
+        template = mainit.market+'_'+language+'.html'
+        return render_to_response(template, context_dict, RequestContext(request))
+
+    elif drafttype == 'prnt':
+        template = 'pdf'+mainit.market+'_'+language+'.html'
+        template2pdf = get_template(template)
+        context = Context(context_dict)
+        html  = template2pdf.render(context)
+        result = StringIO.StringIO()
+
+        pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("utf-8")), result)
+
+        if not pdf.err:
+            return HttpResponse(result.getvalue(), mimetype='application/pdf')
+
+        return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
