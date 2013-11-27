@@ -301,13 +301,13 @@ def draft (request, drafttype, dnumber, language):
         reasons = Engine.REJ_REASONS
     elif language == 'FI':
         status = Engine.INVSTATUS_OPT_FI
-        reasons = Engine.REJ_REASONS
+        reasons = Engine.REJ_REASONS_FI
     elif language == 'NL':
         status = Engine.INVSTATUS_OPT_NL
         reasons = Engine.REJ_REASONS_NL
     elif language == 'SE':
         status = Engine.INVSTATUS_OPT_SE
-        reasons = Engine.REJ_REASONS
+        reasons = Engine.REJ_REASONS_SE
     elif language == 'DE':
         status = Engine.INVSTATUS_OPT_DE
         reasons = Engine.REJ_REASONS_DE
