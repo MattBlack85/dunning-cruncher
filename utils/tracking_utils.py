@@ -110,11 +110,11 @@ def update_item(request):
     db_item.rejectreason = data['rejectreason']
     db_item.reminderdate = data['reminderdate']
     db_item.currency = data['currency']
+    db_item.ccode = data['ccode']
 
     if data['amount']:
         db_item.amount = data['amount']
 
-    db_item.ccode = data['ccode']
     if data['paidon']:
         db_item.paidon = data['paidon']
 
