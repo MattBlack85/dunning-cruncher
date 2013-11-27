@@ -109,13 +109,14 @@ def update_item(request):
     db_item.level = data['level']
     db_item.rejectreason = data['rejectreason']
     db_item.reminderdate = data['reminderdate']
-    db_item.amount = data['amount']
     db_item.currency = data['currency']
 
     if data['paidon'] == "None":
         pass
     else:
         db_item.paidon = data['paidon']
+    if data['amount']:
+        db_item.amount = data['amount']
 
     db_item.ccode = data['ccode']
 
