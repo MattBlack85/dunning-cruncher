@@ -16,6 +16,7 @@
       {% if user.groups.values.0.name == 'RU' %}
       <li><a href="{% url 'core.views.edit' %}">Review</a></li>
       {% endif %}
+      <li><a href="{% url 'django.contrib.auth.views.password_change' %}">Account</a></li>
     </ul>
   </div>
   <ul class="nav navbar-nav navbar-right">
