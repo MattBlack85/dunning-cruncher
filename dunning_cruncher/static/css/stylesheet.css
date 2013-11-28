@@ -6,6 +6,12 @@ body {
     display: none;
 }
 
+#changesuccess {
+    margin-top: 5%;
+    margin-left: 37%;
+    text-align: center;
+}
+
 .mailbutton {
     margin-left: 35%;
     margin-top: 8px;
