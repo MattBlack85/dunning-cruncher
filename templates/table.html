@@ -1,0 +1,45 @@
+{% for object in items %}
+<tr>
+  <td>
+    {{ object.invoicenumber }}
+  </td>
+  <td>
+    {% if object.amount %}
+    {{ object.amount }}
+    {% else %}
+    {{ "" }}
+    {% endif %}
+  </td>
+  <td>
+    {% for choice in status %}
+    {% if object.invoicestatus == choice.0 %}
+    {{ choice.1 }}
+    {% endif %}
+    {% endfor %}
+  </td>
+  <td>
+    {% if object.paidon %}
+    {{ object.paidon|date:"d/m/Y" }}
+    {% else %}
+    {{ "" }}
+    {% endif %}
+  </td>
+  <td>
+  </td>
+  <td>
+    {% if object.rejectreason %}
+    {% for choice in reasons %}
+    {% if object.rejectreason == choice.0 %}
+    {% if choice.0 == "OTH" %}
+    {{ object.reasonother }}
+    {% else %}
+    {{ choice.1 }}
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    {{ "" }}
+    {% endif %}
+  </td>
+</tr>
+{% endfor %}
