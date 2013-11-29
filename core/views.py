@@ -317,6 +317,8 @@ def draft (request, drafttype, dnumber, language):
     else:
         return render_to_response("404.html", {}, RequestContext(request))
 
+    template = mainit.market+'_'+language+'.html'
+
     context_dict =  {
         'items': items,
         'mainit': mainit,
@@ -329,11 +331,10 @@ def draft (request, drafttype, dnumber, language):
     }
 
     if drafttype == 'mail':
-        template = mainit.market+'_'+language+'.html'
         return render_to_response(template, context_dict, RequestContext(request))
 
     elif drafttype == 'prnt':
-        template = 'pdf'+mainit.market+'_'+language+'.html'
+        template = 'pdf'+template
         template2pdf = get_template(template)
         context = Context(context_dict)
         html  = template2pdf.render(context)
