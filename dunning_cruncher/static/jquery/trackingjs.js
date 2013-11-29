@@ -190,10 +190,10 @@ $(document).ready(function(){
 		},
 		success: function(response) {
 		    if ( response.success === true ) {
-			if ( !response.mail == "No mail in our DB" ) {
-			    $("#id_mailvendor").val(response.mail);
-			} else {
+			if ( response.mail == "No mail in our DB" ) {
 			    $("#id_mailvendor").attr('placeholder', response.mail);
+			} else {
+			    $("#id_mailvendor").val(response.mail);
 			}
 		    } else {
 			alert(response.error);
