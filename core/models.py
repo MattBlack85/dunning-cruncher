@@ -405,7 +405,8 @@ class Engine(models.Model):
         ("NOK", "NOK"),
         ("SEK", "SEK"),
         ("PLN", "PLN"),
-        ("USD", "USD")
+        ("USD", "USD"),
+        ("DKK", "DKK")
     )
 
     market = models.CharField(max_length=3, choices=MARKET_OPT)
