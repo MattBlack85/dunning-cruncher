@@ -1,0 +1,9 @@
+django==1.6
+xhtml2pdf>=0.0.5
+south>=0.8.2
+reportlab>=2.5
+pisa>=3.0.33
+html5lib>=1.0b3
+isoweek>=1.2.0
+PIL>=1.1.7
+Pillow>=2.0.0
