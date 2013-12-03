@@ -352,3 +352,55 @@ def draft (request, drafttype, dnumber, language):
             return HttpResponse(result.getvalue(), mimetype='application/pdf')
 
         return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
+
+@login_required(redirect_field_name='error', login_url='/')
+def tracking_calendar(request, year=None, week=None):
+    '''
+    This view will get parameters from url and will try to generate
+    a table of the current week where reminders we get can be tracked.
+    '''
+
+    # If there is no year we generate it
+    if year == None:
+        ryear = date.today().year
+    else:
+        ryear = int(year)
+
+    # The same with the week
+    if week == None:
+        rweek = date.today().isocalendar()[1]
+    else:
+        rweek = int(week)
+
+    # If someone tries to insert manually a week which doesn't exist
+    # we return him/her a 403 page (have to change with something else).
+    if week > '53':
+        raise PermissionDenied()
+
+    isoweek = Week(ryear, rweek)
+    sqlweek = []
+
+    for x in range(5):
+        sqlweek.append(isoweek.day(x))
+
+    try:
+        RemindersTable.objects.get(rday=isoweek.day(0))
+    except RemindersTable.DoesNotExist:
+        for x in range(5):
+            RemindersTable.objects.create(rday=isoweek.day(x))
+
+    tableresults = []
+    dayrow = []
+
+    for day in sqlweek:
+        weekresults = RemindersTable.objects.filter(rday=day)
+        for value in weekresults.values_list()[0]:
+            dayrow.append(value)
+        tableresults.append(dayrow)
+        dayrow = []
+
+    headers = weekresults.values().field_names
+
+    return render_to_response("calendar.html", {'sqlweek': sqlweek,
+                                                'headers': headers,
+                                                'tableresults': tableresults}, RequestContext(request))
