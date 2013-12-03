@@ -23,6 +23,7 @@ from django.views.decorators.csrf import csrf_protect
 
 from django.utils import timezone
 
+from isoweek import Week
 
 import cStringIO as StringIO
 
