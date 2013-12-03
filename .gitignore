@@ -13,3 +13,4 @@ upload/img/*.jpg
 upload/img/*.png
 upload/img/*.pdf
 upload/img/*.tiff
+reminders/*
