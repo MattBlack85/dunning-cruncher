@@ -3,7 +3,11 @@
 from django.contrib import auth
 from django.core.exceptions import PermissionDenied
 from django.db import models
+
 from core.models import Login, Engine, TrackingForm, StoredDocs, StoredForm, Vendor
+
+from reminders.models import RemindersTable
+
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 
 from django.shortcuts import render_to_response
