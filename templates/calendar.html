@@ -1,0 +1,24 @@
+{% extends "nav.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+<table class="table table-striped table-bordered">
+  {% for header in headers %}
+  {% if not forloop.first %}
+  <th>{{ header }}</th>
+  {% else %}
+  <th>Date</th>
+  {% endif %}
+  {% endfor %}
+  {% for row in tableresults %}
+  <tr>
+    {% for value in row %}
+    {% if forloop.first %}
+    <td>{{ value|date:"d-m-Y" }}</td>
+    {% else %}
+    <td class="{{ row.0|date:'Y-m-d' }}">{{ value }}</td>
+    {% endif %}
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+{% endblock content %}

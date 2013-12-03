@@ -4,6 +4,7 @@ from django.db import models
 from django import forms
 from django.forms import ModelForm
 
+
 class Vendor(models.Model):
     vname = models.CharField(max_length=200)
     vnumber = models.IntegerField(max_length=11, unique=True)

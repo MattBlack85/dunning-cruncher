@@ -12,9 +12,11 @@
       {% if user.groups.values.0.name == 'TL' %}
       <li><a href="{% url 'core.views.edit' %}">Review</a></li>
       <li><a href="{% url 'core.views.reporting' %}">Reporting</a></li>
+      <li><a href="{% url 'core.views.tracking_calendar' year week %}">Reminders</a></li>
       {% endif %}
       {% if user.groups.values.0.name == 'RU' %}
       <li><a href="{% url 'core.views.edit' %}">Review</a></li>
+       <li><a href="{% url 'core.views.tracking_calendar' year week %}"> Reminders</a></li>
       {% endif %}
       <li><a href="{% url 'django.contrib.auth.views.password_change' %}">Account</a></li>
     </ul>
@@ -38,6 +40,7 @@
 {% else %}
 {% endif %}
 {% endblock nav %}
+{% block content %}{% endblock content %}
 {% block tablerep %}{% endblock tablerep %}
 {% block draft %}{% endblock draft %}
 {% block letter %}{% endblock letter %}
