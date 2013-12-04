@@ -3,6 +3,15 @@
   <td>
     {{ object.invoicenumber }}
   </td>
+  {% if mainit.market == "DE" %}
+  <td>
+    {% if object.documentdate %}
+    {{ object.documentdate }}
+    {% else %}
+    {{ "" }}
+    {% endif %}
+  </td>
+  {% endif %}
   <td>
     {% if object.amount %}
     {{ object.amount }}
