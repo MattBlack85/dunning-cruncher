@@ -2,6 +2,9 @@ from django.template import Context
 from django.http import Http404, HttpResponse
 
 from core.models import Engine, TrackingForm, StoredDocs, StoredForm, Vendor
+
+from reminders.models import RemindersTable
+
 from core.decorators import json_response
 from django.core.mail import EmailMessage
 
@@ -215,6 +218,34 @@ def del_item(request):
         for item in getids:
             itemdone = Engine.objects.get(pk=item)
             itemdone.delete()
+
+        json_data['success'] = True
+
+    except Exception as err:
+        json_data['error'] = str(err)
+        return json_data
+
+    return json_data
+
+@json_response
+def reminders(request):
+    json_data = {
+        'success': False,
+        'error': '',
+        }
+
+    try:
+        date = request.POST.get('item_date')
+        market = request.POST.get('market_val')
+        newvalue = request.POST.get('new_value')
+
+        # Get out from DB the item we want to update
+        item = RemindersTable.objects.get(rday=date)
+
+        # Try to update the value if we got a different value from user
+        if not int(getattr(item, market)) == int(newvalue):
+            setattr(item, market, newvalue)
+            item.save()
 
         json_data['success'] = True
 
