@@ -31,7 +31,8 @@ import ho.pisa as pisa
 
 from datetime import date, timedelta
 
-from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item, ajax_file_upload, done, get_vmail, del_item
+from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item
+from utils.tracking_utils import ajax_file_upload, done, get_vmail, del_item, reminders
 from utils.sendmail import send_info, send_to_buy, shubmail
 
 
@@ -280,6 +281,7 @@ def ajax (request):
         'done': done,
         'get_vmail': get_vmail,
         'del_item': del_item,
+        'reminders': reminders,
     }
 
     try:
