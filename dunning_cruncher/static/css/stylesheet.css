@@ -6,6 +6,12 @@ body {
     display: none;
 }
 
+#prev-back {
+    padding-bottom: 15px;
+    width: 50%;
+    margin-left: 40%
+}
+
 #changesuccess {
     margin-top: 5%;
     margin-left: 37%;
