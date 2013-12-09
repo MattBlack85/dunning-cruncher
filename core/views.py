@@ -3,6 +3,7 @@
 from django.contrib import auth
 from django.core.exceptions import PermissionDenied
 from django.db import models
+from django.db.models import Sum
 
 from core.models import Login, Engine, TrackingForm, StoredDocs, StoredForm, Vendor
 
@@ -34,6 +35,7 @@ from datetime import date, timedelta
 from utils.tracking_utils import ajax_multitracking, ajax_error, edit_item, update_item
 from utils.tracking_utils import ajax_file_upload, done, get_vmail, del_item, reminders
 from utils.sendmail import send_info, send_to_buy, shubmail
+from utils.func_utils import rem_to_do
 
 
 def user_context_manager(request):
@@ -187,19 +189,35 @@ def reporting (request, rmonth=timezone.now().month, ryear=timezone.now().year):
 
     if user.groups.get().name == 'TL' or user.groups.get().name == 'SV':
         allmarketsdone = []
-        allmarketsnotdone = []
+        allmarketstodo = []
+        howmanytodo = 0
 
+        # We loop through all the possible options for market
         for choice in Engine.MARKET_OPT:
-            country = choice[0]
-            howmanydone = Engine.objects.filter(market=country, actiondate__year=ryear, actiondate__month=rmonth, \
-                                                done=1).count()
-            howmanynotdone = Engine.objects.filter(market=country, actiondate__year=ryear, actiondate__month=rmonth, \
-                                                   done=0).count()
-            allmarketsdone.append(howmanydone)
-            allmarketsnotdone.append(howmanynotdone)
+            if not choice[0] in ['GB', 'ES']:
+                # Get from tuple the abbreviation for country
+                country = choice[0]
+
+                # Get out from DB how many items for that market have done=1
+                howmanydone = Engine.objects.filter(market=country, actiondate__year=ryear, actiondate__month=rmonth, \
+                                                    done=1).count()
+
+                # Also we get a list of columns where we need to count the items "to be done"
+                # and looping through that list we use Sum to get the sum of all item that 
+                # must be done for specific market.
+                for mcode in rem_to_do.MCODE.get(country):
+                    forcountry = RemindersTable.objects.filter(rday__gte=str(ryear)+'-'+str(rmonth)+'-01') \
+                    .aggregate(Sum(mcode)) \
+                    .values()
+                    forcountryint = forcountry[0]
+                    howmanytodo = howmanytodo + forcountryint
+
+                allmarketsdone.append(howmanydone)
+                allmarketstodo.append(howmanytodo)
+                howmanytodo = 0
 
         return render_to_response('reports.html', {'allmarketsdone': allmarketsdone,
-                                                   'allmarketsnotdone': allmarketsnotdone,
+                                                   'allmarketstodo': allmarketstodo,
                                                    'markets': Engine.MARKET_OPT}, RequestContext(request))
     else:
         raise PermissionDenied()
@@ -322,6 +340,9 @@ def draft (request, drafttype, dnumber, language):
     elif language == 'IT':
         status = Engine.INVSTATUS_OPT_IT
         reasons = Engine.REJ_REASONS_IT
+    elif language == 'PT':
+        status = Engine.INVSTATUS_OPT_PT
+        reasons = Engine.REJ_REASONS_PT
     else:
         return render_to_response("404.html", {}, RequestContext(request))
 
