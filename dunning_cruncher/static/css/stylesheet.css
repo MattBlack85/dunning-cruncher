@@ -44,6 +44,10 @@ body {
     width: 40px;
 }
 
+#repotable th {
+    text-align: center;
+}
+
 #succalert {
     margin-top: 20%;
     margin-left: 35%;
