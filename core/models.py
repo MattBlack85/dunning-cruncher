@@ -108,16 +108,6 @@ class Engine(models.Model):
         ('OX', 'Other')
     )
 
-    INVSTATUS_OPT_IT = (
-        ('RJ', 'Rifiutato'),
-        ('PO', 'Registrato'),
-        ('PD', 'Pagato'),
-        ('NP', 'Non ancora registrato'),
-        ('BL', 'Bloccato'),
-        ('NR', 'Non pervenuto'),
-        ('OX', 'Altro')
-    )
-
     INVSTATUS_OPT_NL = (
         ('RJ', 'Afgewezen'),
         ('PO', 'Verwerkt'),
