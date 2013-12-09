@@ -2,12 +2,15 @@
 {% block tablerep %}
 <table class="table table-striped table-hover table-bordered" id="repotable">
   <tr>
-    <td>
-    </td>
+    <th>
+    </th>
     {% for choice in markets %}
-    <td>
+    {% if choice.0 == "GB" or choice.0 == "ES" %}
+    {% else %}
+    <th>
       {{ choice.0 }}
-    </td>
+    </th>
+    {% endif %}
     {% endfor %}
   </tr>
   <tr>
@@ -15,17 +18,17 @@
       Done
     </td>
     {% for choice in allmarketsdone %}
-    <td>
+    <td class="alldone">
       {{ choice }}
     </td>
     {% endfor %}
   </tr>
   <tr>
     <td>
-      Not Done
+      To Do
     </td>
-    {% for choice in allmarketsnotdone %}
-    <td>
+    {% for choice in allmarketstodo %}
+    <td class="todo">
       {{ choice }}
     </td>
     {% endfor %}
@@ -35,10 +38,13 @@
       Saldo
     </td>
     {% for choice in allmarketsdone %}
-    <td>
+    <td class="saldo">
       {{ "" }}
     </td>
     {% endfor %}
   </tr>
 </table>
 {% endblock tablerep %}
+{% block tablerepJS %}
+<script src="{{ STATIC_URL }}jquery/reports.js"></script
+{% endblock tablerepJS %}
