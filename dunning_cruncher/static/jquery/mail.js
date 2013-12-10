@@ -64,6 +64,7 @@ $(document).ready(function() {
     $("#buyermod").on("click", "button :last",  function() {
 	var mailTo = $("#modalmailemail").val();
 	var mailData = $("#modalmailbody").html();
+	var itemID = $(".mailbody").attr("id");
 
 	//setup the AJAX request
 	$.ajaxSetup({
@@ -78,6 +79,7 @@ $(document).ready(function() {
 		form_type: "mailsendbuy",
 		mailbody: JSON.stringify(mailData),
 		mailto: JSON.stringify(mailTo),
+		itemid: JSON.stringify(itemID),
 	    },
 	    //success: window.location.replace("/overview/"),
 	    error: function (ajaxObj, textStatus, error) {
