@@ -81,7 +81,13 @@ $(document).ready(function() {
 		mailto: JSON.stringify(mailTo),
 		itemid: JSON.stringify(itemID),
 	    },
-	    //success: window.location.replace("/overview/"),
+	    success: function(response){
+		if ( response.success === true ) {
+		    alert("Mail sent!");
+		} else {
+		    alert(response.error);
+		};
+	    },
 	    error: function (ajaxObj, textStatus, error) {
 		alert(error);
 	    }
