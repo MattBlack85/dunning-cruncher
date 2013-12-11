@@ -359,7 +359,7 @@ function ValidateForm() {
     error = 0;
     var howManyErrors = $(".has-error").length;
 
-    if ( !$("#noact").prop("checked") ) {
+    if ( !$("#noact").prop("checked") && !$("#clist").prop("checked") ) {
 	var fieldsToCheck = ["market", "ccode", "reminderdate", "remindernumber",
 			     "level", "vendor", "mailvendor"];
     } else {
@@ -395,7 +395,7 @@ function additionalErrorCheck() {
     var mailVendor = $("#id_mailvendor");
     var amount = $(".amount");
 
-    if ( !$("#noact").prop("checked") ) {
+    if ( !$("#noact").prop("checked") && !$("#clist").prop("checked") ) {
 	$.each(amount, function() {
 	    if ( !$(this).val() == "" ) {
 		    if ( !isValidAmount($(this).val()) ) {
@@ -414,11 +414,19 @@ function additionalErrorCheck() {
 	    error++;
 	};
     };
-    
+
     //check if vendor number has 9 characters or if starts with 100 or if there are no characters into the field
     if ( !(vendor.val().length == 9) || !(vendor.val().substr(0, 3) == "100") || !isInteger(vendor.val()) ) {
 	if ( ! vendor.hasClass("has-error") ) {
 	    vendor.parent().parent().addClass("has-error");
+	};
+	error++;
+    };
+
+    //check if reminder number is complete, if ends with "/" do not permit to track item
+    if ( $("#id_remindernumber").val().substr(-1,1) == "/") {
+	if ( !$("#id_remindernumber").hasClass("has-error") ) {
+	    $("#id_remindernumber").parent().parent().addClass("has-error");
 	};
 	error++;
     };
