@@ -65,6 +65,9 @@ $(document).ready(function(){
 	    var marketArray = ['12'];
 	} else if (market == 'CH') {
 	    var marketArray = ['11', '12', '82', '85'];
+	} else if (market == 'FR') {
+	    var marketArray = ['0W', '0X', '0Y', '10', '12', '13', '15', '20', '29', '34', '42', '45', '49'
+			       , '54', '56', '57', '58','65', '66', '69', '78', '80'];
 	} else {
 	    var marketArray = [''];
 	}
