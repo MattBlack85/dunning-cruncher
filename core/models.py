@@ -120,6 +120,18 @@ class Engine(models.Model):
         ('OX', 'Overige redden')
     )
 
+    INVSTATUS_OPT_FR = (
+        ('RJ', 'Refusé'),
+        ('PO', 'Comptabilisé'),
+        ('PD', 'Payé'),
+        ('NP', 'En cours de traitement'),
+        ('BL', 'Anomalie sur la commande'),
+        ('NR', 'Non reçu'),
+        ('RE', 'En cours de traitement'),
+        ('PB', 'comptabilisé - compte créditeur'),
+        ('OX', 'Autres')
+    )
+
     INVSTATUS_OPT_DE = (
         ('RJ', 'Abgelehnt'),
         ('PO', 'Verbucht'),
@@ -168,6 +180,17 @@ class Engine(models.Model):
         ('NR', 'Non pervenuto'),
         ('PB', 'Registrato - saldo debitore'),
         ('OX', 'Altro')
+    )
+
+    INVSTATUS_OPT_PT = (
+        ('RJ', 'Rejetada'),
+        ('PO', 'Lançada na conta'),
+        ('PD', 'Paga no dia '),
+        ('NP', 'Ainda não está lançada'),
+        ('PK', 'Está a esperar para aprovação'),
+        ('BL', 'Bloqueada'),
+        ('NR', 'Não recebida'),
+        ('CA', 'Lançada e posteriormente anulada'),
     )
 
     REJ_REASONS = (
@@ -244,6 +267,38 @@ class Engine(models.Model):
         ("VMX", "Dati fornitore"),
         ("MUI", "Fatture multiple"),
         ("RES", "Da reinserire - pessima qualità")
+    )
+
+    REJ_REASONS_PT = (
+        ("MPO", "Recursar e devolver ao fornecedor - Falta n pedido"),
+        ("BIX", "Recursar e devolver ao fornecedor - Informações incorrectas"),
+        ("DIX", "Recursar - Factura dupla"),
+        ("OTH", "Outros"),
+        ("IDX", "Documento inválido"),
+        ("IPO", "Pedido inválido"),
+        ("WCN", "Nome da empresa errado"),
+        ("WCA", "Endereço da empresa errado"),
+        ("ICX", "Moeda incorrecta "),
+        ("MCX", "Moeda inexistente "),
+        ("WVA", "Montante IVA errado "),
+        ("MVN", "Número  IVA inexistente"),
+        ("VMX", "Valor na fatura calculado errado"),
+        ("DNV", "Dados na fatura não visíveis"),
+        ("IDM", "Data fatura inexistente"),
+        ("INM", " Número  fatura inexistente"),
+        ("MPX", "Páginas inexistentes"),
+        ("TFM", "Nota fatura sem imposto inexistente"),
+        ("DEM", "Data remessa / Nota remessa inexistente"),
+        ("QMX", "Quantidade en falta"),
+        ("SDM", "Descrição do serviço inexistente"),
+        ("MIA", "Montante fatura inexistente"),
+        ("IIX", "Fatura incompleta"),
+        ("MAI", "Rejeitar – Informações de contabilidade inexistentes"),
+        ("IAI", " Rejeitar – Informações de contabilidade  inválidas"),
+        ("MAX", "Rejeitar – Aprovação inexistente"),
+        ("VMX", "Dados da empresa incorrectos "),
+        ("MUI", "Várias faturas"),
+        ("RES", "qualidade baixa")
     )
 
     REJ_REASONS_NL = (
