@@ -24,6 +24,8 @@ $(document).ready(function() {
 
 	var mailData = $(".mailbody").html();
 	var formdata = new FormData();
+	var formbcc = $("#vendorbcc").val().split(",")
+	var formcc = $("#vendorcc").val().split(",")
 
 	if ( $("#vendorattach").get(0).files[0] ) {
 	    formdata.append('newattach', $("#vendorattach").get(0).files[0]);
@@ -33,6 +35,8 @@ $(document).ready(function() {
 	formdata.append('send_type', sendType);
 	formdata.append('id', $(".mailbody").attr("id"));
 	formdata.append('mailbody', mailData);
+	formdata.append('bcc', formbcc);
+	formdata.append('cc', formcc);
 
 	$.ajax({
 	    url: '/ajax/',
