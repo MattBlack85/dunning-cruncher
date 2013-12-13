@@ -7,11 +7,11 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="{% url 'core.views.index' %}">Home</a></li>
       {% if user.groups.values.0.name == 'SV' %}
-      <li><a href="{% url 'core.views.reporting' %}">Reporting</a></li>
+      <li><a href="{% url 'core.views.reporting' year month%}">Reporting</a></li>
       {% endif %}
       {% if user.groups.values.0.name == 'TL' %}
       <li><a href="{% url 'core.views.edit' %}">Review</a></li>
-      <li><a href="{% url 'core.views.reporting' %}">Reporting</a></li>
+      <li><a href="{% url 'core.views.reporting' year month %}">Reporting</a></li>
       <li><a href="{% url 'core.views.tracking_calendar' year week %}">Reminders</a></li>
       {% endif %}
       {% if user.groups.values.0.name == 'RU' %}
