@@ -10,6 +10,10 @@ body {
     color: red;
 }
 
+#repodiv {
+    margin-left: 40%;
+}
+
 #prev-back {
     padding-bottom: 15px;
     width: 50%;
