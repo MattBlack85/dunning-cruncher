@@ -6,6 +6,10 @@ body {
     display: none;
 }
 
+.negative {
+    color: red;
+}
+
 #prev-back {
     padding-bottom: 15px;
     width: 50%;
