@@ -54,6 +54,7 @@ def user_context_manager(request):
     return {
 	"user": user,
         "year": date.today().year,
+        "month": date.today().month,
         "week": date.today().isocalendar()[1],
 	"welcome_name": user.first_name+" "+user.last_name,
     }
