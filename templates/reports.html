@@ -1,5 +1,13 @@
 {% extends "nav.html" %}
 {% block tablerep %}
+<fieldset>
+<legend><b>DL Report for {{ thismonth }}</b></legend>
+<div>
+  <div id="repodiv">
+    Year: <select id="yearchoice">{% for year in years %} <option value="{{ year }}">{{ year }}</option>{% endfor %}</select>
+    Month: <select id="monthchoice">{% for month in months %} <option value="{{ forloop.counter }}">{{ month }}</option>{% endfor %}</select>
+  </div>
+</div>
 <table class="table table-striped table-hover table-bordered" id="repotable">
   <tr>
     <th>
@@ -35,15 +43,26 @@
   </tr>
   <tr>
     <td>
-      Saldo
+      Balance
     </td>
     {% for choice in allmarketsdone %}
-    <td class="saldo">
+    <td class="balance">
       {{ "" }}
     </td>
     {% endfor %}
   </tr>
+  <tr>
+    <td>
+      Backlog
+    </td>
+    {% for choice in allmarketsbacklog %}
+    <td class="backlog">
+      {{ choice }}
+    </td>
+    {% endfor %}
+  </tr>
 </table>
+</fieldset>
 {% endblock tablerep %}
 {% block tablerepJS %}
 <script src="{{ STATIC_URL }}jquery/reports.js"></script
