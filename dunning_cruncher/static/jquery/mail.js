@@ -16,13 +16,14 @@ $(document).ready(function() {
 	//Check which kind of request we are dealing with
 	if ( $(this).attr("id") == "vendorok" ) {
 	    var sendType = "email";
+	    var mailData = $(".mailbody").html();
 	} else if ( $(this).attr("id") == "efax" ) {
 	    var sendType = "efax";
+	    var mailData = $("#efaxentire").html();
 	} else {
 	    alert("You are trying to cheat me uh?");
 	}
 
-	var mailData = $(".mailbody").html();
 	var formdata = new FormData();
 	var formbcc = $("#vendorbcc").val().split(",")
 	var formcc = $("#vendorcc").val().split(",")
