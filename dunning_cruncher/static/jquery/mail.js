@@ -1,10 +1,10 @@
 $(document).ready(function() {
     //make a p element editable
-    $("p").bind('dblclick', function() {
+    $("p,td").bind('click', function() {
         $(this).attr('contentEditable', true);
     });
 
-    $("p").on("focusout", function() {
+    $("p,td").on("focusout", function() {
 	$(this).attr('contentEditable', false);
     });
 
