@@ -6,7 +6,7 @@
     <a class="navbar-brand" href="{% url 'core.views.index' %}">Dunning Cruncher</a>
     <ul class="nav navbar-nav">
       <li class="active"><a href="{% url 'core.views.index' %}">Home</a></li>
-      {% if user.groups.values.0.name == 'SV' %}
+      {% if user.groups.values.0.name == 'SV' or user.groups.values.0.name == 'REP' %}
       <li><a href="{% url 'core.views.reporting' year month%}">Reporting</a></li>
       {% endif %}
       {% if user.groups.values.0.name == 'TL' %}
