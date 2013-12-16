@@ -445,7 +445,7 @@ def tracking_calendar(request, year=None, week=None):
 
     # If someone tries to insert manually a week which doesn't exist
     # we return him/her a 403 page (have to change with something else).
-    if week > '53':
+    if rweek > '53':
         raise PermissionDenied()
 
     isoweek = Week(ryear, rweek)
