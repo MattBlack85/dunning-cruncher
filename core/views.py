@@ -176,7 +176,7 @@ def edit (request):
                                             'trackform': trackform}, RequestContext(request))
 
 @login_required(redirect_field_name='error', login_url='/')
-def reporting (request, rmonth=timezone.now().month, ryear=timezone.now().year):
+def reporting (request, ryear=None, rmonth=None):
     '''
     This view returns (for now) data from DB regarding the number of documents processed
     during the ongoing month of the ongoing year for all markets. If the user is not in
@@ -191,10 +191,37 @@ def reporting (request, rmonth=timezone.now().month, ryear=timezone.now().year):
 				  {'login': Login()},
 				  RequestContext(request))
 
-    if user.groups.get().name == 'TL' or user.groups.get().name == 'SV':
+    if ryear is None:
+        ryear = timezone.now().year
+
+    if rmonth is None:
+        rmonth = timezone.now().month
+
+    # Only people who are in TL or SV or REP group can access this view
+    # if another person tries to do that we return a 403 error.
+    if user.groups.get().name == 'TL' or user.groups.get().name == 'SV' or user.groups.get().name == 'REP':
+        years = []
+        months = []
+
+        thismonth = month_name[int(rmonth)]
+
+        # We create a list of 5 years, from the actual one to this year -5
+        for x in range(int(timezone.now().year)-5,int(timezone.now().year)+1):
+            years.append(x)
+
+        # We reverse the list to have the actual year as first element
+        years.reverse()
+
+        # Creating a list of months, this will be placed into month list on the page
+        for x in range(1,13):
+            months.append(month_name[int(x)])
+
         allmarketsdone = []
         allmarketstodo = []
+        allmarketsbacklog = []
         howmanytodo = 0
+        backlog = 0
+        lastday = monthrange(int(ryear), int(rmonth))[1]
 
         # We loop through all the possible options for market
         for choice in Engine.MARKET_OPT:
@@ -202,26 +229,43 @@ def reporting (request, rmonth=timezone.now().month, ryear=timezone.now().year):
                 # Get from tuple the abbreviation for country
                 country = choice[0]
 
-                # Get out from DB how many items for that market have done=1
+                # Get out from DB how many items for that market have done=1 during the month
                 howmanydone = Engine.objects.filter(market=country, actiondate__year=ryear, actiondate__month=rmonth, \
-                                                    done=1).count()
+                                                    done=1) \
+                                            .aggregate(Count('remindernumber', distinct=True)).values()[0]
+
+                forcountrydone = Engine.objects.filter(market=country, done=1, \
+                                                       actiondate__lte=str(ryear)+'-'+str(rmonth)+'-'+str(lastday)) \
+                                               .aggregate(Count('remindernumber', distinct=True)).values()[0]
 
                 # Also we get a list of columns where we need to count the items "to be done"
                 # and looping through that list we use Sum to get the sum of all item that 
                 # must be done for specific market.
                 for mcode in rem_to_do.MCODE.get(country):
-                    forcountry = RemindersTable.objects.filter(rday__gte=str(ryear)+'-'+str(rmonth)+'-01') \
-                    .aggregate(Sum(mcode)) \
-                    .values()
+                    forcountry = RemindersTable.objects.filter(rday__gte=str(ryear)+'-'+str(rmonth)+'-01',
+                                                               rday__lte=str(ryear)+'-'+str(rmonth)+'-'+str(lastday)) \
+                                                       .aggregate(Sum(mcode)) \
+                                                       .values()
+                    forcountrytodo = RemindersTable.objects.filter(rday__lte=str(ryear)+'-'+str(rmonth)+'-'+str(lastday)) \
+                                                           .aggregate(Sum(mcode)) \
+                                                           .values()
                     forcountryint = forcountry[0]
+                    forcountrytodoint = forcountrytodo[0]
                     howmanytodo = howmanytodo + forcountryint
+                    backlog = backlog + forcountrytodoint
 
                 allmarketsdone.append(howmanydone)
                 allmarketstodo.append(howmanytodo)
+                allmarketsbacklog.append(backlog-forcountrydone)
                 howmanytodo = 0
+                backlog = 0
 
         return render_to_response('reports.html', {'allmarketsdone': allmarketsdone,
                                                    'allmarketstodo': allmarketstodo,
+                                                   'allmarketsbacklog': allmarketsbacklog,
+                                                   'years': years,
+                                                   'months': months,
+                                                   'thismonth': thismonth,
                                                    'markets': Engine.MARKET_OPT}, RequestContext(request))
     else:
         raise PermissionDenied()
