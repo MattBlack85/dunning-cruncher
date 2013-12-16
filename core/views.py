@@ -391,6 +391,9 @@ def draft (request, drafttype, dnumber, language):
     elif language == 'PT':
         status = Engine.INVSTATUS_OPT_PT
         reasons = Engine.REJ_REASONS_PT
+    elif language == 'FR':
+        status = Engine.INVSTATUS_OPT
+        reasons = Engine.REJ_REASONS_FR
     else:
         return render_to_response("404.html", {}, RequestContext(request))
 
