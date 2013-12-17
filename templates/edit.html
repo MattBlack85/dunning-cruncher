@@ -4,38 +4,36 @@
 {% csrf_token %}
 <table class="table table-striped table-hover table-bordered">
   <tr>
-    <th width=90px>DL number</th>
-    <th width=75px>Market</th>
-    <th width=75px>C. Code</th>
-    <th width=90px>Invoice N.</th>
-    <th width=90px>Inv. Status</th>
-    <th width=100px>Rej. Reason</th>
-    <th width=80px>Paid on</th>
-    <th width=100px>Action</th>
-    <th width=50px>Print</th>
-    <th width=50px>Done</th>
-    <th width=50px>Delete</th>
+    <th width="120px">DL number</th>
+    <th width="75px">Market</th>
+    <th width="75px">C. Code</th>
+    <th width="90px">Invoice N.</th>
+    <th width="90px">Inv. Status</th>
+    <th width="100px">Rej. Reason</th>
+    <th width="80px">Paid on</th>
+    <th width="70px">Action</th>
+    <th width="50px">Done</th>
+    <th width="50px">Delete</th>
   </tr>
   {% for object in distitems%}
-  <tr class='mainitems'>
-    <td>
+  <tr class="mainitems">
+    <td width="120px">
       {{ object.remindernumber }}
     </td>
-    <td>
+    <td width="75px">
       {{ object.market }}
     </td>
-    <td>
+    <td width="75px">
       {{ object.ccode }}
     </td>
-    <td>
+    <td width="90px">
     </td>
-    <td>
+    <td width="90px">
     </td>
-    <td>
+    <td width="100px">
     </td>
-    <td>
+    <td width="80px">
     </td>
-    <td>
     <td class="optionchoose" width="100px">
       <select class="copt" style="width=100px">
 	<option>--------</option>
@@ -43,12 +41,10 @@
 	<option value="balance">Balance conf.</option>
       </select>
     </td>
-    <td>
-    </td>
-    <td>
+    <td width="50px">
       <span style="color: green" class="glyphicon glyphicon-ok"></span>
     </td>
-    <td>
+    <td width="50px">
       <span style="color: red" class="glyphicon glyphicon-remove"></span>
     </td>
   </tr>
