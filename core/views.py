@@ -475,7 +475,12 @@ def serve_pdf(request, file_name=None):
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=%s' % file_name
-    download_file = open(os.path.dirname(os.path.dirname(__file__))+'/upload/'+file_name, 'r+b')
+
+    try:
+        download_file = open(os.path.dirname(os.path.dirname(__file__))+'/upload/'+file_name, 'r+b')
+    except IOerror:
+        raise Http404
+
     download_file.seek(0)
     pdf = download_file.read()
     download_file.close()
