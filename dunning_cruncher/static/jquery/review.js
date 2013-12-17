@@ -3,6 +3,8 @@ $(document).ready(function() {
 	event.stopPropagation();
     });
 
+    $('.copt').on('change', function() {
+	var action = $(this).val()
 	var dnum = $(this).parent().parent().next('.secondaryitems').attr('id');
 	var mark = $(this).parent().parent().find('td :first').next().text().trim();
 	var langSelect = whatLanguage(mark);
@@ -19,7 +21,11 @@ $(document).ready(function() {
 	$('#modalreview2').modal();
 
 	$('#loaddraft').on('click', function() {
-	    window.location.replace('/mail/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
+	    if ( action  == 'draftbutt' ) {
+		window.location.replace('/mail/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
+	    } else if ( action  == 'balance' ){
+		window.location.replace('/blnc/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
+	    };
 	});
     });
 
