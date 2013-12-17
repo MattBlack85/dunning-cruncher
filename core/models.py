@@ -106,6 +106,7 @@ class Engine(models.Model):
         ('CA', 'Cancelled'),
         ('RE', 'Reversed'),
         ('PB', 'Posted - debit balance'),
+        ('BC', 'Balance confirmation'),
         ('OX', 'Other')
     )
 
@@ -229,7 +230,10 @@ class Engine(models.Model):
         ("RNL", "Remit to address not linked to vendor's record"),
         ("VMX", "Vendor Master"),
         ("MUI", "Multiple invoices"),
-        ("RES", "Rescan, poor quality")
+        ("RES", "Rescan, poor quality"),
+        ("BCV", "Vendor account not found in SAP"),
+        ("BCS", "Statement attached"),
+        ("BCI", "No invoice posted on vendor's account"),
     )
 
     REJ_REASONS_IT = (
