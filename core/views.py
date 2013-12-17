@@ -432,6 +432,40 @@ def draft (request, drafttype, dnumber, language):
 
         return render_to_response(template, context_dict, RequestContext(request))
 
+@csrf_protect
+@json_response
+@login_required(redirect_field_name='error', login_url='/')
+def pdfgeneration(request, html=None):
+    json_data = {
+        'success': False,
+        'error': ''
+        }
+
+    template = 'pdftoprint2.html'
+
+    try:
+        htmlc = json.loads(request.POST.get('html'))
+    except:
+        htmlc = 'No html'
+
+    try:
+        itemid = request.POST.get('id')
+    except:
+        itemid = None
+
+    rnumber = Engine.objects.get(pk=itemid).remindernumber
+    savingname = rnumber.replace('/','')+'.pdf'
+    context_dict = { 'htmlc': htmlc }
+
+    try:
+        render_to_pdf_response2(template, context_dict, savingname)
+        json_data['url'] = savingname
+        json_data['success'] = True
+    except Exception:
+        json_data['error'] = str(Exception)
+
+    return json_data
+
 @login_required(redirect_field_name='error', login_url='/')
 def serve_pdf(request, file_name=None):
     '''
