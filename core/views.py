@@ -425,6 +425,11 @@ def draft (request, drafttype, dnumber, language):
         result = StringIO.StringIO()
 
         pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("utf-8")), result)
+    elif drafttype == 'blnc':
+        template = 'balance'+template
+
+        return render_to_response(template, context_dict, RequestContext(request))
+
 
         if not pdf.err:
             return HttpResponse(result.getvalue(), mimetype='application/pdf')
