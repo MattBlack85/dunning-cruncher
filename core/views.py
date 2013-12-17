@@ -366,6 +366,8 @@ def draft (request, drafttype, dnumber, language):
     vendor = mainit.vendor
     items = Engine.objects.all().filter(remindernumber=mainit.remindernumber)
     today = date.today()
+    user = auth.models.User.objects.get(id=request.session.get("user_id"))
+
     try:
         vendord = Vendor.objects.get(vnumber=vendor)
     except Vendor.DoesNotExist:
@@ -408,7 +410,8 @@ def draft (request, drafttype, dnumber, language):
         'iid': mainit.id,
         'today': today,
         'vendor': vendor,
-        'vendord': vendord
+        'vendord': vendord,
+        'name': user
     }
 
     if drafttype == 'mail':
