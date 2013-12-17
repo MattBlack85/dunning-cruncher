@@ -417,14 +417,16 @@ def draft (request, drafttype, dnumber, language):
     if drafttype == 'mail':
         return render_to_response(template, context_dict, RequestContext(request))
 
+    elif drafttype == 'pdfp':
+        template = 'pdftoprint.html'
+
+        return render_to_response(template, context_dict, RequestContext(request))
+
     elif drafttype == 'prnt':
         template = 'pdf'+template
-        template2pdf = get_template(template)
-        context = Context(context_dict)
-        html  = template2pdf.render(context)
-        result = StringIO.StringIO()
 
-        pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("utf-8")), result)
+        return render_to_pdf_response(template, context_dict, 'pdf-file-name')
+
     elif drafttype == 'blnc':
         template = 'balance'+template
 
