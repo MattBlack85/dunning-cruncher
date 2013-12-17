@@ -7,6 +7,7 @@ cstatic/
 templates/drafts/*.*html
 templates/letters/*.html
 templates/balance/*
+templates/vendor/*
 core/migrations/
 dunning_cruncher/static/images/*.*
 utils/sendmail.py
