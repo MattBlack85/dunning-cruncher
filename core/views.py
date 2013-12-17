@@ -348,6 +348,7 @@ def ajax (request):
         'get_vmail': get_vmail,
         'del_item': del_item,
         'reminders': reminders,
+        'generate_pdf': generate_pdf
     }
 
     try:
