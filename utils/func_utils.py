@@ -7,7 +7,6 @@ from xhtml2pdf import pisa # TODO: Change this when the lib changes.
 import StringIO
 import os
 
-import json
 
 #===============================================================================
 # HELPERS
