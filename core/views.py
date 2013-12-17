@@ -430,11 +430,23 @@ def draft (request, drafttype, dnumber, language):
 
         return render_to_response(template, context_dict, RequestContext(request))
 
+@login_required(redirect_field_name='error', login_url='/')
+def serve_pdf(request, file_name=None):
+    '''
+    This simple view will get the name of the file and will
+    serve it as downloadable item.
+    '''
 
-        if not pdf.err:
-            return HttpResponse(result.getvalue(), mimetype='application/pdf')
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=%s' % file_name
+    download_file = open(os.path.dirname(os.path.dirname(__file__))+'/upload/'+file_name, 'r+b')
+    download_file.seek(0)
+    pdf = download_file.read()
+    download_file.close()
+    os.remove(os.path.dirname(os.path.dirname(__file__))+'/upload/'+file_name)
+    response.write(pdf)
 
-        return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
+    return response
 
 @login_required(redirect_field_name='error', login_url='/')
 def tracking_calendar(request, year=None, week=None):
