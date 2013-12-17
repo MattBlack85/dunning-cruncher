@@ -1,5 +1,8 @@
 $(document).ready(function() {
-    $('.draftbutt').on('click', function() {
+    $('.optionchoose').on('click', function(event) {
+	event.stopPropagation();
+    });
+
 	var dnum = $(this).parent().parent().next('.secondaryitems').attr('id');
 	var mark = $(this).parent().parent().find('td :first').next().text().trim();
 	var langSelect = whatLanguage(mark);
