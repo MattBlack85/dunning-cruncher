@@ -109,6 +109,12 @@ $(document).ready(function(){
 	    nextform.find("label:first").hide();
 	    nextform.find("label:first").next().next("label").hide();
 	    nextform.fadeIn("slow");
+	} else if ( status == 'OX' ) {
+	    nextform.find(".paid").hide();
+	    nextform.find(".reject").hide();
+	    nextform.find("label:last").hide();
+	    nextform.find("label:first").hide();
+	    nextform.fadeIn('slow');
 	};
     });
 
