@@ -13,7 +13,7 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
         '''
         This function will retrieve all items in DB (done and not done)
-        and will save them into a CSV file.
+        during the previous month and will save them into a CSV file.
         '''
         csv_list = []
 
@@ -25,5 +25,8 @@ class Command(NoArgsCommand):
         for item in data_csv:
             csv_list.append(item)
 
-        for x in csv_list:
-            csvfile.writerow(x.values())
+        headers = csv_list[0].keys()
+        csvfile.writerow(headers)
+
+        for item in csv_list:
+            csvfile.writerow(item.values())
