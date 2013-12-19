@@ -76,7 +76,62 @@
     {% endfor %}
   </tr>
 </table>
+</fieldset><br><br>
+{% if user.groups.values.0.name == 'SV' or user.groups.values.0.name == 'TL'%}
+<fieldset>
+  <legend><b>Special report</b></legend>
+  <div id="specialrep">
+    <form class="form-horizontal">
+      <div class="form-group">
+	<label class="col-sm-2">Market:</label>
+	<div class="col-sm-2">
+	  <select class="form-control" id="market">
+	    <option>-----------</option>
+	    {% for choice in markets %}
+	    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+	    {% endfor %}
+	  </select>
+	</div>
+      </div>
+      <div class="form-group">
+	<label class="col-sm-2">Year:</label>
+	<div class="col-sm-2">
+	  <select class="form-control" id="year">
+	    {% for year in years %}
+	    <option value="{{ year }}">{{ year }}</option>
+	    {% endfor %}
+	  </select>
+	</div>
+      </div>
+      <div class="form-group">
+	<label class="col-sm-2">Month from:</label>
+	<div class="col-sm-2">
+	  <select class="form-control" id="fmonth">
+	    {% for month in months %}
+	    <option value="{{ forloop.counter }}">{{ month }}</option>
+	    {% endfor %}
+	  </select>
+	</div>
+      </div>
+      <div class="form-group">
+	<label class="col-sm-2">Month to:</label>
+	<div class="col-sm-2">
+	  <select class="form-control" id="tmonth">
+	    {% for month in months %}
+	    <option value="{{ forloop.counter }}">{{ month }}</option>
+	    {% endfor %}
+	  </select>
+	</div>
+      </div>
+      <div class="form-group">
+	<div class="col-sm-offset-1 col-sm-2">
+	  <button type="button" class="btn btn-primary" id="repobutton">Generate report</button>
+	</div>
+      </div>
+    </form>
+  </div>
 </fieldset>
+{% endif %}
 {% endblock tablerep %}
 {% block tablerepJS %}
 <script src="{{ STATIC_URL }}jquery/reports.js"></script
