@@ -81,7 +81,7 @@ def edit_item(request):
     json_data['invoicenumber'] = str(db_item.invoicenumber)
     json_data['invoicestatus'] = str(db_item.invoicestatus)
     json_data['rejectreason'] = str(db_item.rejectreason)
-    json_data['paidon'] = db_item.paidon
+    json_data['paidon'] = str(db_item.paidon)
     json_data['amount'] = db_item.amount
     json_data['currency'] = str(db_item.currency)
 
