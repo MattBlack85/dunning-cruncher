@@ -6,6 +6,15 @@ $(document).ready(function() {
 
     $('#monthchoice').val(month);
 
+    $('#repobutton').on('click', function() {
+	var market = $('#market').val();
+	var ryear = $('#year').val();
+	var rfmonth = $('#fmonth').val();
+	var rtmonth = $('#tmonth').val();
+
+	window.location.replace('/sreport/'+market+'/'+ryear+'/'+rfmonth+'/'+rtmonth+'/');
+    });
+
     $.each(rowBalance, function() {
 	var index = $(this).index()-1;
 	var thiscountrydone = parseInt($('.alldone').eq(index).text().trim());
