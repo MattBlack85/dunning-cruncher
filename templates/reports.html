@@ -4,8 +4,22 @@
 <legend><b>DL Report for {{ thismonth }}</b></legend>
 <div>
   <div id="repodiv">
-    Year: <select id="yearchoice">{% for year in years %} <option value="{{ year }}">{{ year }}</option>{% endfor %}</select>
-    Month: <select id="monthchoice">{% for month in months %} <option value="{{ forloop.counter }}">{{ month }}</option>{% endfor %}</select>
+    <label>Year:</label>
+    <select id="yearchoice">
+      {% for year in years %}
+      <option value="{{ year }}">
+	{{ year }}
+      </option>
+      {% endfor %}
+    </select>
+    <label>Month:</label>
+    <select id="monthchoice">
+      {% for month in months %}
+      <option value="{{ forloop.counter }}">
+	{{ month }}
+      </option>
+      {% endfor %}
+    </select>
   </div>
 </div>
 <table class="table table-striped table-hover table-bordered" id="repotable">
