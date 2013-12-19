@@ -423,16 +423,25 @@ def draft (request, drafttype, dnumber, language):
         return render_to_response(template, context_dict, RequestContext(request))
 
     elif drafttype == 'pdfp':
+
         template = 'pdftoprint.html'
 
         return render_to_response(template, context_dict, RequestContext(request))
 
     elif drafttype == 'prnt':
+
         template = 'pdf'+template
 
         return render_to_pdf_response(template, context_dict, 'pdf-file-name')
 
+    elif drafttype == 'dscn':
+
+        template = 'discount'+template
+
+        return render_to_response(template, context_dict, RequestContext(request))
+
     elif drafttype == 'blnc':
+
         template = 'balance'+template
 
         return render_to_response(template, context_dict, RequestContext(request))
