@@ -8,6 +8,7 @@ templates/drafts/*.*html
 templates/letters/*.html
 templates/balance/*
 templates/vendor/*
+templates/discount/*
 core/migrations/
 dunning_cruncher/static/images/*.*
 utils/sendmail.py
