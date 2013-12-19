@@ -43,6 +43,8 @@ from utils.tracking_utils import ajax_file_upload, done, get_vmail, del_item, re
 from utils.sendmail import send_info, send_to_buy, shubmail
 from utils.func_utils import *
 
+import datetime
+
 import csv
 
 
@@ -502,6 +504,48 @@ def serve_pdf(request, file_name=None):
     response.write(pdf)
 
     return response
+
+@login_required(redirect_field_name='error', login_url='/')
+def csv_report(request, rmarket=None, ryear=None, rfmonth=None, rtmonth=None):
+    '''
+    This view generates a report in CSV querying the DB after
+    user's input.
+    '''
+
+    report_list = []
+    lastday = monthrange(int(ryear), int(rtmonth))[1]
+
+    start_date = datetime.date(int(ryear), int(rfmonth), 1)
+    end_date = datetime.date(int(ryear), int(rtmonth), lastday)
+
+    file_name = 'Report_'+rmarket+'_'+ryear+rfmonth+rtmonth+'.csv'
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=%s' % file_name
+
+    writer = csv.writer(response)
+
+    report_query = Engine.objects.filter(market=rmarket,
+                                         actiondate__year=ryear,
+                                         actiondate__range=(start_date, end_date)).values()
+
+    if report_query:
+        headers = report_query[0].keys()
+
+        writer.writerow(headers)
+
+        for item in report_query:
+            report_list.append(item)
+
+        for item in report_list:
+            writer.writerow(item.values())
+
+        return response
+
+    else:
+        writer.writerow(['No items'])
+
+        return response
 
 @login_required(redirect_field_name='error', login_url='/')
 def tracking_calendar(request, year=None, week=None):
