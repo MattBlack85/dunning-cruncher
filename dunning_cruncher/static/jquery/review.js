@@ -131,8 +131,12 @@ $(document).ready(function() {
 		form_type: 'edit',
 		id: objId
 	    },
-	    success: function(json_data) {
-		modalEdit(json_data);
+	    success: function(response) {
+		if ( response.success == true) {
+		    modalEdit(response);
+		} else {
+		    alert(response.error)
+		};
 		},
 	    error: function (ajaxObj, textStatus, error) {
 		alert(error);
