@@ -107,6 +107,7 @@ class Engine(models.Model):
         ('RE', 'Reversed'),
         ('PB', 'Posted - debit balance'),
         ('BC', 'Balance confirmation'),
+        ('CD', 'Cash discount'),
         ('OX', 'Other')
     )
 
@@ -144,6 +145,7 @@ class Engine(models.Model):
         ('NR', 'Nicht erhalten'),
         ('CA', 'Storniert'),
         ('PB', 'Verbucht - im sollsaldo'),
+        ('CD', 'Skonto'),
         ('OX', 'Andere')
     )
 
