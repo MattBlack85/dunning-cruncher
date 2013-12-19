@@ -451,6 +451,13 @@ class Engine(models.Model):
         ("RES", "Skanna om - dålig kvalite")
     )
 
+    REJ_REASONS_FR = (
+        ("MPO", "Manque de numéro de commande"),
+        ("IPO", "Numéro de commande incorrect"),
+        ("WCN", "Mauvaise adresse de facturation"),
+        ("WCA", "Mauvaise adresse de facturation")
+        )
+
     CURR_OPT = (
         ("EUR", "EUR"),
         ("GBP", "GBP"),
