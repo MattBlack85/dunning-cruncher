@@ -25,6 +25,8 @@ $(document).ready(function() {
 		window.location.replace('/mail/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
 	    } else if ( action  == 'balance' ){
 		window.location.replace('/blnc/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
+	    } else if ( action  == 'discount' ){
+		window.location.replace('/dscn/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
 	    };
 	});
     });
