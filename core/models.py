@@ -101,6 +101,7 @@ class Engine(models.Model):
         ('PD', 'Paid on'),
         ('NP', 'Not posted yet'),
         ('BL', 'Blocked'),
+        ('MB', 'Manual block'),
         ('PK', 'Parked'),
         ('NR', 'Not received'),
         ('CA', 'Cancelled'),
@@ -195,6 +196,15 @@ class Engine(models.Model):
         ('BL', 'Bloqueada'),
         ('NR', 'Não recebida'),
         ('CA', 'Lançada e posteriormente anulada'),
+    )
+
+    BLOCK_TYPE = (
+        ('TCM', 'Tax residence certificate missing'),
+        ('CRX', 'Compensation with receivables'),
+        ('CCN', 'Compensation with credit note'),
+        ('DBR', 'Due to buyer request'),
+        ('PTF', 'Will be paid to factor'),
+        ('WBA', 'Wrong bank account'),
     )
 
     REJ_REASONS = (
@@ -477,6 +487,7 @@ class Engine(models.Model):
     currency = models.CharField(max_length=3, choices=CURR_OPT, null=True, blank=True)
     attachment = models.ForeignKey(StoredDocs, null=True, blank=True)
     reasonother = models.CharField(max_length=500, null=True, blank=True)
+    blocktype = models.CharField(max_length=30, choices=BLOCK_TYPE, null=True, blank=True)
     actiondate = models.DateField()
     reminderdate = models.DateField()
     invoicedate = models.DateField(null=True, blank=True)
