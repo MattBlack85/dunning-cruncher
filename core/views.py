@@ -513,6 +513,7 @@ def csv_report(request, rmarket=None, ryear=None, rfmonth=None, rtmonth=None):
     '''
 
     report_list = []
+    item_list = []
     lastday = monthrange(int(ryear), int(rtmonth))[1]
 
     start_date = datetime.date(int(ryear), int(rfmonth), 1)
@@ -526,7 +527,7 @@ def csv_report(request, rmarket=None, ryear=None, rfmonth=None, rtmonth=None):
     writer = csv.writer(response)
 
     report_query = Engine.objects.filter(market=rmarket,
-                                         actiondate__year=ryear,
+                                         actiondate__year=ryear, # to delete
                                          actiondate__range=(start_date, end_date)).values()
 
     if report_query:
@@ -537,8 +538,29 @@ def csv_report(request, rmarket=None, ryear=None, rfmonth=None, rtmonth=None):
         for item in report_query:
             report_list.append(item)
 
+        keys = report_list[0].keys()
+
         for item in report_list:
-            writer.writerow(item.values())
+            for key in keys:
+                if key == 'actiondate' or key == 'reminderdate' \
+                   or key == 'id' or key == 'amount' or key == 'attachment_id' \
+                   or key == 'done' or key == 'invoicedate' or key == 'paidon':
+                    if item[key]:
+                        item_list.append(item[key])
+                    else:
+                        item_list.append(' ')
+                elif key == 'reasonother':
+                    if item[key]:
+                        item_list.append(item[key].encode('utf-8'))
+                    else:
+                        item_list.append(' ')
+                else:
+                    if item[key]:
+                        item_list.append(item[key].encode('utf-8'))
+                    else:
+                        item_list.append(' ')
+            writer.writerow(item_list)
+            item_list = []
 
         return response
 
