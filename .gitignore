@@ -11,6 +11,7 @@ templates/vendor/*
 templates/discount/*
 core/migrations/
 dunning_cruncher/static/images/*.*
+dunning_cruncher/static/*.jpg
 utils/sendmail.py
 upload/img/*.jpg
 upload/img/*.png
