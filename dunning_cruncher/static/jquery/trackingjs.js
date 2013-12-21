@@ -96,25 +96,40 @@ $(document).ready(function(){
 	    if (nextform.find('.paid').is(':hidden')) {nextform.find('.paid').show()};
 	    if (nextform.find('.other').is(':hidden')) {nextform.find('.other').show()};
 	    if (nextform.find('.reject').is(':hidden')) {nextform.find('.reject').show()};
+	    if (nextform.find('.blocktype').is(':hidden')) {nextform.find('.blocktype').show()}
 	    nextform.find('label').show();
 	}
 
 	if ( status == 'RJ' ) {
 	    nextform.find(".paid").hide();
+	    nextform.find(".blocktype").hide();
 	    nextform.find("label:last").hide();
+	    nextform.find("label:last").prev().prev().hide()
 	    nextform.fadeIn('slow');
 	} else if ( status == 'PD' || status == 'PO' ) {
 	    nextform.find(".reject").hide();
 	    nextform.find(".other").hide();
+	    nextform.find(".blocktype").hide();
 	    nextform.find("label:first").hide();
+	    nextform.find("label:last").hide();
 	    nextform.find("label:first").next().next("label").hide();
 	    nextform.fadeIn("slow");
 	} else if ( status == 'OX' ) {
-	    nextform.find(".paid").hide();
 	    nextform.find(".reject").hide();
-	    nextform.find("label:last").hide();
+	    nextform.find(".paid").hide();
+	    nextform.find(".blocktype").hide();
 	    nextform.find("label:first").hide();
+	    nextform.find("label:last").prev().prev().hide()
+	    nextform.find("label:last").hide();
 	    nextform.fadeIn('slow');
+	} else if ( status == 'MB') {
+	    nextform.find(".reject").hide();
+	    nextform.find(".other").hide();
+	    nextform.find(".paid").hide();
+	    nextform.find("label:first").hide();
+	    nextform.find("label:first").next().next("label").hide();
+	    nextform.find("label:last").prev().prev().hide()
+	    nextform.fadeIn("slow");
 	};
     });
 
