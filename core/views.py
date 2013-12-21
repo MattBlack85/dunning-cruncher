@@ -149,6 +149,7 @@ def tracker (request):
     question.fields['reasonother'].widget.attrs = {'class': 'form-control'}
     question.fields['actiontaken'].widget.attrs = {'class': 'form-control'}
     question.fields['invoicedate'].widget.attrs = {'class': 'form-control'}
+    question.fields['blocktype'].widget.attrs = {'class': 'form-control blocktype'}
     question.fields['actiondate'].widget.attrs = {
         'class': 'form-control',
         'value': date.today()
