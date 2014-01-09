@@ -100,7 +100,7 @@ $(document).ready(function(){
 	    nextform.find('label').show();
 	}
 
-	if ( status == 'RJ' ) {
+	if ( status == 'RJ' || status == 'BC' ) {
 	    nextform.find(".paid").hide();
 	    nextform.find(".blocktype").hide();
 	    nextform.find("label:last").hide();
