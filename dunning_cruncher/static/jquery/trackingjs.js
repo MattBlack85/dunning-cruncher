@@ -442,7 +442,7 @@ function additionalErrorCheck() {
     };
 
     //check if vendor number has 9 characters or if starts with 100 or if there are no characters into the field
-    if ( !(vendor.val().length == 9) || !(vendor.val().substr(0, 3) == "100") || !isInteger(vendor.val()) ) {
+    if ( !(vendor.val().length == 9) || !(vendor.val().substr(0, 3) == "100" || vendor.val().substr(0, 3) == "101") || !isInteger(vendor.val()) ) {
 	if ( ! vendor.hasClass("has-error") ) {
 	    vendor.parent().parent().addClass("has-error");
 	};
