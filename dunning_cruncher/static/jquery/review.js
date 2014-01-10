@@ -22,11 +22,11 @@ $(document).ready(function() {
 
 	$('#loaddraft').on('click', function() {
 	    if ( action  == 'draftbutt' ) {
-		window.location.replace('/mail/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
+		window.location.assign('/mail/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
 	    } else if ( action  == 'balance' ){
-		window.location.replace('/blnc/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
+		window.location.assign('/blnc/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
 	    } else if ( action  == 'discount' ){
-		window.location.replace('/dscn/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
+		window.location.assign('/dscn/'+dnum+'/'+$('#lansel option:selected').attr('val')+'/');
 	    };
 	});
     });
