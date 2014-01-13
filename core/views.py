@@ -560,6 +560,7 @@ def csv_report(request, rmarket=None, ryear=None, rfmonth=None, rtmonth=None):
                         item_list.append(item[key].encode('utf-8'))
                     else:
                         item_list.append(' ')
+
             writer.writerow(item_list)
             item_list = []
 
