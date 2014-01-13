@@ -212,6 +212,8 @@ $(document).ready(function(){
 		url: '/ajax/',
 		data: {
 		    form_type: 'get_vmail',
+		    mark: JSON.stringify($('#id_market').val()),
+		    ccode: JSON.stringify($('#id_ccode').val()),
 		    vendNum: JSON.stringify(vnum)
 		},
 		success: function(response) {
