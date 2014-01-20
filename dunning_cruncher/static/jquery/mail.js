@@ -23,7 +23,7 @@ $(document).ready(function() {
 	} else {
 	    alert("You are trying to cheat me uh?");
 	}
-
+	var language = window.location.pathname.split("/")[3]
 	var formdata = new FormData();
 	var formbcc = $("#vendorbcc").val().split(",")
 	var formcc = $("#vendorcc").val().split(",")
@@ -36,6 +36,7 @@ $(document).ready(function() {
 	formdata.append('send_type', sendType);
 	formdata.append('id', $(".mailbody").attr("id"));
 	formdata.append('mailbody', mailData);
+	formdata.append('language', language);
 	formdata.append('bcc', formbcc);
 	formdata.append('cc', formcc);
 

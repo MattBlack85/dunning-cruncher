@@ -100,7 +100,7 @@ $(document).ready(function(){
 	    nextform.find('label').show();
 	}
 
-	if ( status == 'RJ' ) {
+	if ( status == 'RJ' || status == 'BC' ) {
 	    nextform.find(".paid").hide();
 	    nextform.find(".blocktype").hide();
 	    nextform.find("label:last").hide();
@@ -212,6 +212,8 @@ $(document).ready(function(){
 		url: '/ajax/',
 		data: {
 		    form_type: 'get_vmail',
+		    mark: JSON.stringify($('#id_market').val()),
+		    ccode: JSON.stringify($('#id_ccode').val()),
 		    vendNum: JSON.stringify(vnum)
 		},
 		success: function(response) {

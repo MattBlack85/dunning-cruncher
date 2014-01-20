@@ -97,5 +97,10 @@ class rem_to_do():
              'FI': ['FI2', 'FI3'],
              'NO': ['NO2', 'NO3'],
              'CH': ['CH2', 'CH3', 'CH4', 'CHW2', 'CHW3', 'CHW4']
-         }
+             }
+
+    MAILSUBJECT = {'EN': "reply to reminder",
+                   'DE': "Antwort auf Mahnung",
+                   'PL': "odpowiedz na wezwanie do zaplaty",
+                   }
     
