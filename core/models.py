@@ -109,7 +109,8 @@ class Engine(models.Model):
         ('PB', 'Posted - debit balance'),
         ('BC', 'Balance confirmation'),
         ('CD', 'Cash discount'),
-        ('OX', 'Other')
+        ('OX', 'Other'),
+        ('IN', 'Interest note'),
     )
 
     INVSTATUS_OPT_NL = (
@@ -477,6 +478,35 @@ class Engine(models.Model):
         ("PLN", "PLN"),
         ("USD", "USD"),
         ("DKK", "DKK")
+    )
+
+    REJ_REASONS_PL = (
+        ("MPO", "Brak numeru zamówienia"),
+        ("IPO", "Niepoprawny numer zamówienia"),
+        ("VMX", "Błędna faktura"),
+        ("OTH", "Inne"),
+    )
+
+
+    INVSTATUS_OPT_PL = (
+        ('RJ', 'Odrzucony'),
+        ('PO', 'Zaksięgowany'),
+        ('PD', 'Zapłacony'),
+        ('NP', 'W trakcie księgowania'),
+        ('BL', 'Zablokowany systemowo'),
+        ('MB', 'Zablokowany manualnie'),
+        ('NR', 'Brak dokumentu'),
+        ('IN', 'W trakcie weryfikacji'),
+    )
+
+
+    BLOCK_TYPE_PL = (
+        ('TCM', 'Brak certyfikatu rezydencji podatkowej'),
+        ('CRX', 'Kompensata z należnościami'),
+        ('CCN', 'Kompensata z fakturą korygującą'),
+        ('DBR', 'Blokada na prośbę Kupca'),
+        ('PTF', 'Cesja wierzytelności'),
+        ('WBA', 'Niepoprawne konto bankowe'),
     )
 
     market = models.CharField(max_length=3, choices=MARKET_OPT)
