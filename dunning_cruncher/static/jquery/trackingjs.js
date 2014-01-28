@@ -8,6 +8,7 @@ $(document).ready(function(){
     $("#id_currency").addClass("currency"+" "+nofinv);
     $("#id_reasonother").addClass("other"+" "+nofinv);
     $("#id_invoicedate").addClass("invoicedate"+" "+nofinv);
+    $("#id_blocktype").addClass("blocktype"+" "+nofinv);
     $('.addhiddendata:first').find('#id_invoicenumber').attr('id', 'id_invoicenumber'+nofinv);
     $('.addhiddendata:first').find('#id_invoicestatus').attr('id', 'id_invoicestatus'+nofinv);
     $('.addhiddendata:first').find('#id_invoicedate').attr('id', 'id_invoicedate'+nofinv);
@@ -15,6 +16,7 @@ $(document).ready(function(){
     $('.addhiddendata:first').find('#id_rejectreason').attr('id', 'id_rejectreason'+nofinv);
     $(".addhiddendata:first").find("#id_amount").attr("id", "id_amount"+nofinv);
     $(".addhiddendata:first").find("#id_currency").attr("id", "id_currency"+nofinv);
+    $(".addhiddendata:first").find("#id_blocktype").attr("id", "id_blocktype"+nofinv);
     $("#id_reasonother").attr("id", "id_reasonother"+nofinv);
     
     $('#trbutton').on('click', function(){
@@ -148,6 +150,7 @@ $(document).ready(function(){
 	formToApp.find("#id_amount1").removeClass("amount"+" "+nofinv);
 	formToApp.find("#id_currency1").removeClass("currency"+" "+nofinv);
 	formToApp.find("#id_reasonother1").removeClass("other"+" "+nofinv);
+	formToApp.find("#id_blocktype1").removeClass("blocktype"+" "+nofinv);
 	nofinv = nofinv + 1;
 	formToApp.find('#id_rejectreason1').addClass('reject'+' '+nofinv);
 	formToApp.find('#id_rejectreason1').attr('name', 'reject'+nofinv);
@@ -173,6 +176,9 @@ $(document).ready(function(){
 	formToApp.find('#id_reasonother1').addClass('other'+' '+nofinv);
 	formToApp.find('#id_reasonother1').attr('name', 'reasonother'+nofinv);
 	formToApp.find('#id_reasonother1').attr('id', 'id_reasonother'+nofinv);
+	formToApp.find('#id_blocktype1').addClass('blocktype'+' '+nofinv);
+	formToApp.find('#id_blocktype1').attr('name', 'blocktype'+nofinv);
+	formToApp.find('#id_blocktype1').attr('id', 'id_blocktype'+nofinv);
 	$('#vendorform').before(formToApp);
 	formToApp.find('.paid,.invoicedate').datepicker({
 	    dateFormat: 'yy-mm-dd',
@@ -276,7 +282,8 @@ $(document).ready(function(){
 		paidon: $('#id_paidon'+x).val(),
 		invoicedate: $('#id_invoicedate'+x).val(),
 		reasonother: $('#id_reasonother'+x).val(),
-		attachment: attach
+		attachment: attach,
+		blocktype: $("#id_blocktype"+x).val(),
 	    };
 	    data.push(obj);
 	}
