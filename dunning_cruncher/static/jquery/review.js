@@ -226,43 +226,46 @@ function Update(item) {
 function whatLanguage(market) {
 
     switch(market)
-    {
+	{
 	case "IT":
-	var lObj = {EN: "English", IT: "Italian"};
-	break;
+	    var lObj = {EN: "English", IT: "Italian"};
+	    break;
 	case "DE":
-	var lObj = {DE: "German",EN: "English"};
-	break;
+	    var lObj = {DE: "German", EN: "English"};
+	    break;
+	case "PL":
+	    var lObj = {PL: "Polish", EN: "English"};
+	    break;
 	case "FI":
-	var lObj = {EN: "English", FI: "Finnish"};
-	break;
+	    var lObj = {EN: "English", FI: "Finnish"};
+	    break;
 	case "SE":
-	var lObj = {EN: "English", SE: "Swedish"};
-	break;
+	    var lObj = {EN: "English", SE: "Swedish"};
+	    break;
 	case "DK":
-	var lObj = {EN: "English"};
-	break;
+	    var lObj = {EN: "English"};
+	    break;
 	case "CH":
-        var lObj = {DE: "German", EN: "English", FR: "French"};
-	break;
+	    var lObj = {DE: "German", EN: "English", FR: "French"};
+	    break;
 	case "NO":
-	var lObj = {EN: "English"};
-	break;
+	    var lObj = {EN: "English"};
+	    break;
 	case "BE":
-	var lObj = {NL: "Dutch"};
-	break;
+	    var lObj = {NL: "Dutch"};
+	    break;
 	case "NL":
-	var lObj = {NL: "Dutch"};
-	break;
+	    var lObj = {NL: "Dutch"};
+	    break;
 	case "PT":
-	var lObj = {PT: "Portuguese"};
-	break;
+	    var lObj = {PT: "Portuguese"};
+	    break;
 	case "FR":
-	var lObj = {FR: "French", EN: "English"};
-	break;
+	    var lObj = {FR: "French", EN: "English"};
+	    break;
 	case "AT":
-	var lObj = {DE: "German"};
-	break;
+	    var lObj = {DE: "German"};
+	    break;
     };
 
     return lObj;
