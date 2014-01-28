@@ -44,7 +44,7 @@ def generate_pdf_template_object(template_object, file_object, context):
 Inner function to pass template objects directly instead of passing a filename
 """
     html = template_object.render(Context(context))
-    pisa.CreatePDF(html.encode("UTF-8"), file_object, link_callback=fetch_resources)
+    pisa.CreatePDF(html.encode('utf-8'), file_object, link_callback=fetch_resources, encodiing='UTF-8')
     return file_object
 
 #===============================================================================
@@ -96,7 +96,7 @@ class rem_to_do():
              'SE': ['SE2', 'SE3'],
              'FI': ['FI2', 'FI3'],
              'NO': ['NO2', 'NO3'],
-             'CH': ['CH2', 'CH3', 'CH4', 'CHW2', 'CHW3', 'CHW4']
+             'CH': ['CH1T', 'CH2', 'CH3', 'CH4', 'CHW1T', 'CHW2', 'CHW3', 'CHW4', 'CHC1T', 'CHC2', 'CHC3', 'CHC4']
              }
 
     MAILSUBJECT = {'EN': "reply to reminder",
