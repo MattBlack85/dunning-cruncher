@@ -22,7 +22,12 @@ class Command(NoArgsCommand):
         data_csv = Engine.objects.filter(actiondate__year=tyear, actiondate__month=prev_month).values()
         csvfile = csv.writer(open('All_data_'+str(prev_month)+str(tyear)+'.csv', 'wb'))
 
+        status_dict = dict(Engine.INVSTATUS_OPT)
+
         for item in data_csv:
+            item['reasonother'] = item['reasonother'].encode('utf-8')
+            item['remindernumber'] = item['remindernumber'].encode('utf-8')
+            item['invoicestatus'] = status_dict.get(item['invoicestatus'])
             csv_list.append(item)
 
         headers = csv_list[0].keys()
