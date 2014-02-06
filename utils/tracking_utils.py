@@ -12,6 +12,9 @@ from utils.sendmail import new_vendor
 
 import json
 
+from datetime import date
+
+
 @json_response
 def ajax_error(error):
 
@@ -171,6 +174,7 @@ def done(request):
         getids = json.loads(request.POST.get('idarray'))
         for item in getids:
             itemdone = Engine.objects.get(pk=item)
+            itemdone.actiondate = date.today()
             itemdone.done = True
             itemdone.save()
 
